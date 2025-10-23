@@ -109,7 +109,7 @@ body {
     color: white;
     font-weight: bold;
     transition: 0.3s;
-    white-space: nowrap; /* không xuống dòng */
+    white-space: nowrap;
 }
 
 .menu a:hover {
@@ -136,7 +136,6 @@ body {
 .dropdown-container {
     background: #fff;
     width: 100%;
-
     margin: 0 auto;
     padding: 40px 1432.5px;
     display: grid;
@@ -152,16 +151,22 @@ body {
     margin-bottom: 10px;
     font-size: 17px;
     font-weight: 600;
-    white-space: nowrap; /* Giữ trên 1 dòng */
+    white-space: nowrap;
 }
 
 /* Danh sách mục con */
 .dropdown p {
+    color: #333;
+    font-size: 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: 0.3s;
     white-space: nowrap;
 }
 
 .dropdown p:hover {
     color: #2346C5;
+    text-decoration: underline;
 }
 
 /* Hiệu ứng hover menu */
