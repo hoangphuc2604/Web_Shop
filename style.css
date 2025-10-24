@@ -220,9 +220,57 @@ body {
 
 /* ================= FOOTER ICON ================= */
 .icon_social {
+/*Slide show container css*/
+#slider-container{
+    max-width: 1370px;
+    height: 530px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+#slider-container:hover {
+    cursor: pointer;
+}
+.slider{
     display: flex;
-    align-items: center;
-    justify-content: right;
+    width: 100%;
+    position: relative;
+    height: 0;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(0);
+}
+.slider-item{
+    display: flex;
+    width: 350%;
+    height: 100%;
+    flex: 0 0 100%;
+}
+#slider-container .slider-item img{
+    width: 100%;
+    height: 520px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
+#slider-container .btns {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.btn-left,
+.btn-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.6);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 28px;
 }
 
 .small_icon {
