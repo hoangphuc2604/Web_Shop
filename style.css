@@ -174,9 +174,12 @@ body {
     visibility: visible;
     transform: translateY(0);
 }
-=======
-    font-family: Arial, Tahoma, sans-serif;
+.small_icon{
+    width: 40px;
+    height: 40px;
 }
-#slider-container .button{
-
+.icon_social{
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
