@@ -272,6 +272,106 @@ body {
     border-radius: 50%;
     font-size: 28px;
 }
+.footer{
+    font-family: Arial, sans-serif;
+}
+.small_icon{
+    width: 40px;
+    height: 40px;
+}
+.icon_social{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.social_btn{
+    margin: 0 6px;
+}
+.footer-top{
+    background: #eeeeee;
+    height: 700px;
+}
+.L1_style{
+    margin: 0;
+    padding-top: 35px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.L2_style{
+    padding-top: 15px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: normal;
+    width: 790px;
+    margin-left: 200px;
+    color: #333333;
+}
+.email_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+.email_box input{
+    padding: 10px;
+    width: 500px;
+    margin-right: 30px;
+    border: 1px solid #b4b4b4;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+.email_box button{
+    padding: 10px 40px;
+    background-color: #234BBB;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.email_box button:hover{
+    background-color: #000000;
+    color: white;
+}
+.ft_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+.ft_col{
+    overflow: hidden;
+    margin-bottom: 30px;
+    margin-top: 55px;
+}
+.list_col{
+    width: 25%;
+    float: left;
+    padding: 10px;
+}
+.list_col h4{
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+.list_col p{
+    margin: 20px 0;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+.icon_ft .call-item, .icon_ft .email-item{
+    display: flex;
+    align-items: center;
+}
+.icon_ft i{
+    margin-right: 10px;
+}
+.footer-bottom{
+    height: 220px;
+    text-align: center;
+    padding: 60px 0;
+}
+.f_style{
+    color: #b4b4b4;
+    font-family: sans-serif;
 
 .small_icon {
     width: 40px;
