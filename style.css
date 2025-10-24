@@ -174,4 +174,12 @@ body {
     visibility: visible;
     transform: translateY(0);
 }
-
+.small_icon{
+    width: 40px;
+    height: 40px;
+}
+.icon_social{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
