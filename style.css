@@ -219,7 +219,7 @@ body {
 }
 
 /* ================= FOOTER ICON ================= */
-.icon_social {
+
 /*Slide show container css*/
 #slider-container{
     max-width: 1370px;
@@ -420,4 +420,5 @@ body {
 /* Nếu muốn lùi sang trái nhẹ cho cân với text */
 .dropdown-small {
     transform: translateX(-20px);
+}
 }
