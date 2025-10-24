@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paddy.vn Header</title>
     <link rel="stylesheet" href="style.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -16,7 +15,7 @@
     </div>
 
     <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm...">
+        <input type="text" placeholder="Tìm kiếm sản phẩm...">
         <button><i class="fa fa-search"></i></button>
     </div>
 
@@ -34,11 +33,11 @@
     </div>
 </header>
 
-<!-- Menu -->
+<!-- MENU GIỮ NGUYÊN CẤU TRÚC CŨ -->
 <nav class="menu">
     <ul>
         <!-- CHÓ -->
-        <li>
+        <li class="has-dropdown">
             <a href="#">Chó</a>
             <div class="dropdown">
                 <div class="dropdown-container">
@@ -83,44 +82,53 @@
         </li>
 
         <!-- MÈO -->
-        <li>
+        <li class="has-dropdown">
             <a href="#">Mèo</a>
             <div class="dropdown">
-                <div class="dropdown-container">
+                <!-- ✅ Thêm class riêng để lùi trái -->
+                <div class="dropdown-container dropdown-meo">
                     <div>
                         <h4>Thức Ăn Cho Mèo</h4>
                         <p>Thức Ăn Hạt</p>
                         <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Điều Trị Bệnh</p>
-                        <p>Bánh Thưởng Mèo</p>
+                        <p>Thức Ăn Cho Mèo Con</p>
+                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
                     </div>
                     <div>
-                        <h4>Phụ Kiện - Đồ Chơi</h4>
-                        <p>Đồ Chơi</p>
-                        <p>Thời Trang - Quần Áo</p>
-                        <p>Vòng Cổ - Dây Dắt</p>
+                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
+                        <p>Cát Vệ Sinh</p>
+                        <p>Khử Mùi</p>
+                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
                     </div>
                     <div>
-                        <h4>Vận Chuyển - Chuồng</h4>
-                        <p>Chuồng - Nhà Nệm</p>
-                        <p>Vận Chuyển</p>
-
+                        <h4>Phụ Kiện & Đồ Chơi</h4>
+                        <p>Chuồng & Nệm Mèo</p>
+                        <p>Vòng Cổ & Dây Dắt</p>
+                        <p>Đồ Chơi Gãi Móng</p>
+                    </div>
+                    <div>
                         <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Sữa & Bình Bú Cho Mèo</p>
-                        <p>Vitamin & Thực Phẩm Bổ Sung</p>
+                        <p>Vitamin</p>
+                        <p>Xổ Giun & Ve Rận</p>
                     </div>
                     <div>
-                        <h4>Vệ Sinh</h4>
-                        <p>Cát Mèo</p>
-                        <p>Chăm Sóc Răng Miệng</p>
-                        <p>Sữa Tắm</p>
-                        <p>Xịt Khử Mùi</p>
+                        <h4>Vận Chuyển</h4>
+                        <p>Balo & Túi Vận Chuyển</p>
+                        <p>Lồng Vận Chuyển</p>
                     </div>
                 </div>
             </div>
         </li>
 
-        <li><a href="#">Thiết bị thông minh</a></li>
+        <!-- THIẾT BỊ THÔNG MINH -->
+        <li class="has-dropdown">
+            <a href="#">Thiết bị thông minh</a>
+            <div class="dropdown dropdown-small">
+                <p>Máy Ăn Uống Tự Động</p>
+                <p>Nhà Vệ Sinh Tự Động</p>
+                <p>Đồ Chơi Tương Tác</p>
+            </div>
+        </li>
         <li><a href="#">Hàng mới về</a></li>
         <li><a href="#">Thương hiệu</a></li>
         <li><a href="#">Pagazine chăm Boss</a></li>
@@ -128,6 +136,10 @@
         <li><a href="#">Today's Sale</a></li>
     </ul>
 </nav>
+
+
+
+<div id="slider-container">
 <!--Container-->
 <!--Slider-->
     <div id="slider-container">
