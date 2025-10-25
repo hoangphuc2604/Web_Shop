@@ -444,3 +444,13 @@ body {
     transform: translateX(-20px);
 }
 }
+.hover_col p{
+    margin: 20px 0;
+    font-size: 15px;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+.hover_col p:hover{
+    color: #2346C5;
+    text-decoration: underline;
+}
