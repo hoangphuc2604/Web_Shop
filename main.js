@@ -1,3 +1,4 @@
+//============== Javascript for slider image ===================
 document.addEventListener("DOMContentLoaded", function () {
     const sliderItem = document.querySelector('.slider-item');
     const images = document.querySelectorAll('.slider-item img');
@@ -53,3 +54,4 @@ document.addEventListener("DOMContentLoaded", function () {
     autoSlideInterval = setInterval(nextSlide, 5000);
     updateSlider();
 });
+//============================================
