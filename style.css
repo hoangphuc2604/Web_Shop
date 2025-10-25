@@ -219,7 +219,7 @@ body {
 }
 
 /* ================= FOOTER ICON ================= */
-
+/*================= Start slider===============*/
 /*Slide show container css*/
 #slider-container {
     max-width: 1370px;
@@ -293,7 +293,7 @@ body {
 .dots:hover{
     cursor: pointer;
 }
-/*========================*/
+/*============End slider ============*/
 .footer{
     font-family: Arial, sans-serif;
 }
