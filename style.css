@@ -381,6 +381,43 @@ body {
 }
 /*====================End banner-content=================*/
 
+/*Collections-container*/
+#collections-content {
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+.collections-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 25px auto;
+    width: 85%;
+}
+.collections-item {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.4s ease;
+}
+.item img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    cursor: pointer;
+}
+
+
+/*End Collections-container*/
 .footer{
     font-family: Arial, sans-serif;
 }
