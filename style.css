@@ -453,6 +453,25 @@ body {
     padding: 20px;
     cursor: pointer;
 }
+.item:hover p {
+    color: #234BBB;
+    text-decoration: underline;
+}
+.collections-header h2 {
+    font-weight: 700;
+    color: #234BBB;
+    font-size: 24px;
+    text-align: center;
+    flex: 1;
+}
+.collections-header p {
+    color: #234BBB;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
 /*End Collections-container*/
 
 
