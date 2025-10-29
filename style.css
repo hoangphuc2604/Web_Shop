@@ -404,7 +404,7 @@ body {
 /*====================End banner-content=================*/
 
 
-/*===========Footer==========*/
+
 /*Collections-container*/
 #collections-content {
     width: 100%;
@@ -424,6 +424,13 @@ body {
     gap: 40px;
     flex-wrap: wrap;
 }
+.collections-header h2 {
+    font-weight: 700;
+    color: #1a3a8b;
+    font-size: 24px;
+    text-align: center;
+    flex: 1;
+}
 .item {
     display: flex;
     flex-direction: column;
@@ -439,9 +446,20 @@ body {
     padding: 20px;
     cursor: pointer;
 }
+.item:hover p {
+    color: #234BBB;
+    text-decoration: underline;
+}
+.collections-header p {
+    color: #234BBB;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 
 /*End Collections-container*/
+/*===========Footer==========*/
 .footer{
     font-family: Arial, sans-serif;
 }
@@ -550,10 +568,10 @@ body {
     text-align: center;
     padding: 60px 0;
 }
-.f_style{
+.f_style {
     color: #b4b4b4;
     font-family: sans-serif;
-
+}
 .dots {
  }
 .small_icon {
@@ -684,7 +702,7 @@ body {
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
-}
+} .collections-item
 .item {
     display: flex;
     flex-direction: column;
@@ -942,7 +960,7 @@ body {
     background-color: #000000;
     color: white;
 }
-.store-item img:hover{
+.store-item img:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
