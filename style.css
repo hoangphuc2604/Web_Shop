@@ -655,6 +655,30 @@ body {
     .dropdown-small {
         transform: translateX(-20px);
     }
+
+/*==========Hot deals==========*/
+.deal_container{
+    width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.deal_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.deal_see_all{
+    color: #234BBB;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.deal-slider{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
 /*========Trademark list========*/
 .trademark_container{
     width: 1380px;
