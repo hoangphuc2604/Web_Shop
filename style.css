@@ -421,15 +421,16 @@ body {
 
 /*Collections-container*/
 #collections-content {
-    max-width: 1370px;
-    margin: 0 auto;
-    text-align: center;
+    width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    margin-bottom: 32px;
 }
 .collections-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     margin-bottom: 25px;
 }
 .collections-item {
@@ -465,26 +466,23 @@ body {
     text-align: center;
     flex: 1;
 }
-.collections-header p {
+.collections-header a {
     color: #234BBB;
     font-size: 14px;
     text-decoration: underline;
     cursor: pointer;
-    transition: color 0.3s ease;
 }
 /*End Collections-container*/
 
 
 /*==================== Favorite Section ====================*/
 #fav-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    position: relative;
-    font-family: 'Arial', sans-serif;
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
-/* Header */
 #fav-container .fav-header {
     display: flex;
     justify-content: space-between;
@@ -499,9 +497,10 @@ body {
 }
 
 #fav-container .fav-header .see-all {
-    color: #007bff;
-    text-decoration: underline;
+    color: #234BBB;
     font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 #fav-container .fav-slider {
     display: flex;
