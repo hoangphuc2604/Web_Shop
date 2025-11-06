@@ -112,6 +112,7 @@ body {
 
 .menu li {
     position: relative;
+    z-index: 10;
 }
 
 
@@ -143,7 +144,7 @@ body {
 /* DROPDOWN LỚN  */
 .dropdown {
     position: absolute;
-    left: 0;
+    left: -4px;
     top: calc(100% + 14px);
     width: 100%;
     background: transparent;
@@ -152,9 +153,9 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(15px);
-    transition: all 0.35s ease;
     z-index: 999;
 }
+
 
 .menu li:hover .dropdown {
     opacity: 1;
@@ -198,38 +199,55 @@ body {
     text-decoration: underline;
 }
 
+
 /* ================= DROPDOWN NHỎ ================= */
+
 .dropdown-small {
     position: absolute;
+    top: 100%;
+    left: 0;
     background: #fff;
-    color: #2346C5;
     border-radius: 6px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 10px 0;
+    min-width: 230px;
+    min-height: calc(100% + 100px);
+    z-index: 9999;
     display: none;
-    width: 210px;
-    padding: 4px 0;
-    z-index: 99;
+    flex-direction: column;
 }
 
+
 .dropdown-small p {
-    font-size: 14.5px;
-    padding: 8px 16px;
-    line-height: 1.2;
+    margin: 0;
+    padding: 10px 20px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .dropdown-small p:hover {
     background: #eaf0ff;
     color: #2346C5;
 }
+
+.has-dropdown:hover .dropdown-small {
+    display: flex;
+    flex-direction: column;
+}
+
 .dropdown-meo {
     transform: translateX(-201px);
 }
+
+/* Đảm bảo hover không bị mất khi rê chuột */
 .has-dropdown:hover .dropdown,
 .has-dropdown:hover .dropdown-small,
 .dropdown:hover,
 .dropdown-small:hover {
     display: block;
 }
+
 
 /* ================= FOOTER ICON ================= */
 /*================= Start slider===============*/
