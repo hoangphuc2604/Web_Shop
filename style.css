@@ -446,6 +446,7 @@ body {
     transition: transform 0.4s ease;
     font-weight: 500;
 }
+
 .item img {
     width: 180px;
     height: 180px;
@@ -507,8 +508,9 @@ body {
     align-items: center;
     position: relative;
 }
-
-
+#fav-container .fav-item img:hover {
+    cursor: pointer;
+}
 #fav-container .fav-btn {
     background: white;
     border: 1px solid #ddd;
