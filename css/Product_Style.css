@@ -1,0 +1,237 @@
+#container #product_detail {
+    display: flex;
+    width: 1380px;
+    margin: 50px auto;
+    gap: 40px;
+    font-family: 'Arial', Tahoma, sans-serif;
+}
+
+#container #product_detail  .product-detail-left {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+#container #product_detail  .product-thumbnails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#container #product_detail  .product-thumbnails i {
+    color: #234BBB;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#container #product_detail  .product-thumbnails img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    object-fit: contain;
+    transition: 0.3s;
+}
+
+#container #product_detail  .product-thumbnails img:hover {
+    border-color: #234BBB;
+    transform: scale(1.05);
+}
+
+#container #product_detail .product-main-image img {
+    width: 480px;
+    height: 480px;
+    object-fit: contain;
+}
+
+#container #product_detail .product-detail-right {
+    flex: 1;
+}
+
+#container #product_detail .breadcrumb {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+#container #product_detail .breadcrumb a {
+    color: #234BBB;
+    text-decoration: none;
+}
+#container #product_detail .breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+#container #product_detail .product-detail-right h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #234BBB;
+    margin: 10px 0;
+}
+
+#container #product_detail .rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+#container #product_detail .rating i {
+    color: #ffb400;
+}
+#container #product_detail .rating span {
+    font-size: 14px;
+    color: #555;
+    margin-left: 8px;
+}
+
+#container #product_detail .product-brand {
+    margin-top: 10px;
+}
+#container #product_detail .product-brand span {
+    font-weight: bold;
+}
+
+#container #product_detail .product-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
+    margin: 20px 0;
+}
+
+/* ==== SIZE ==== */
+#container #product_detail .product-size p {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#container #product_detail .size-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#container #product_detail .size-options button {
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 6px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+#container #product_detail .size-options button:hover {
+    border-color: #234BBB;
+    color: #234BBB;
+}
+
+#container #product_detail .size-options .active {
+    border-color: #234BBB;
+    color: #234BBB;
+    font-weight: bold;
+}
+
+#container #product_detail .size-options .disabled {
+    color: #aaa;
+    text-decoration: line-through;
+    cursor: not-allowed;
+}
+
+/* ==== SỐ LƯỢNG ==== */
+#container #product_detail .product-quantity p {
+    font-weight: bold;
+    margin: 15px 0 5px 0;
+}
+
+#container #product_detail .quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#container #product_detail .quantity-control button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 4px;
+}
+#container #product_detail .quantity-control input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: 30px;
+}
+
+/* ==== TỔNG TIỀN ==== */
+#container #product_detail .product-total {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 15px;
+}
+#container #product_detail .product-total span {
+    color: red;
+}
+
+/* ==== NÚT HÀNH ĐỘNG ==== */
+#container #product_detail .product-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#container #product_detail .add-cart {
+    padding: 12px 25px;
+    background: #0849ff;
+    color: #e5ecff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#container #product_detail .add-cart:hover {
+    background: #18358b;
+}
+#container #product_detail .favorite i {
+    color: #555;
+    transition: 0.3s;
+}
+#container #product_detail .favorite:hover i {
+    color: red;
+}
+
+#container #product_detail .share i {
+    color: #555;
+    transition: 0.3s;
+}
+#container #product_detail .share:hover i {
+    color: #234BBB;
+}
+
+#container #product_detail .add-cart i {
+    margin-right: 8px;
+}
+
+/* ==== GIAO HÀNG ==== */
+#container #product_detail .product-shipping {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 25px;
+    font-size: 14px;
+    color: #555;
+}
+#container #product_detail .product-shipping i {
+    font-size: 24px;
+    color: #234BBB;
+}
+#container #product_detail .product-shipping strong {
+    color: #000;
+}
