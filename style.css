@@ -19,8 +19,7 @@ body {
 
 /* ==== HEADER TRÊN ==== */
 .header-top {
-    max-width: 1900px;
-    margin: 0 auto;
+    width: 100%;
     padding: 12px 80px;
     display: flex;
     align-items: center;
@@ -94,11 +93,13 @@ body {
 
 /* = MENU  */
 .menu {
+    width: 100%;
     background: #ffd54f;
     padding: 14px 80px;
     display: flex;
     justify-content: flex-start;
 }
+
 
 .menu ul {
     list-style: none;
@@ -166,16 +167,18 @@ body {
 .dropdown-container {
     background: #fff;
     width: calc(100vw + 4px);
-    padding: 40px 25px;
+    padding: 10px 105px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 80px 50px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 25px 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-top: 3px solid #ffce00;
     margin: 0;
     transform: translateX(-100px);
     overflow-x: hidden;
 }
+
 
 .dropdown-container h4 {
     color: #2346C5;
