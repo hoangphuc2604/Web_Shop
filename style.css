@@ -144,7 +144,7 @@ body {
 /* DROPDOWN LỚN  */
 .dropdown {
     position: absolute;
-    left: -4px;
+    left: -3px;
     top: calc(100% + 14px);
     width: 100%;
     background: transparent;
@@ -237,7 +237,7 @@ body {
 }
 
 .dropdown-meo {
-    transform: translateX(-201px);
+    transform: translateX(-202px);
 }
 
 /* Đảm bảo hover không bị mất khi rê chuột */
