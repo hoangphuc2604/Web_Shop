@@ -165,7 +165,7 @@ body {
 
 .dropdown-container {
     background: #fff;
-    width: calc(100vw + 4px);
+    width: calc(100vw + 8px);
     padding: 40px 25px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -494,146 +494,6 @@ body {
 /*End Collections-container*/
 
 
-/*==================== Favorite Section ====================*/
-#fav-container {
-    max-width: 1380px;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-}
-
-#fav-container .fav-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-#fav-container .fav-header h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #222;
-}
-
-#fav-container .fav-header .see-all {
-    color: #234BBB;
-    font-size: 14px;
-    text-decoration: underline;
-    cursor: pointer;
-}
-#fav-container .fav-slider {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-#fav-container .fav-item img:hover {
-    cursor: pointer;
-}
-#fav-container .fav-btn {
-    background: white;
-    border: 1px solid #ddd;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-
-#fav-container .fav-btn i {
-    font-size: 1rem;
-}
-
-#fav-container .fav-btn.prev {
-    position: absolute;
-    left: -20px;
-}
-
-#fav-container .fav-btn.next {
-    position: absolute;
-    right: -20px;
-}
-
-
-#fav-container .fav-wrapper {
-    display: flex;
-    gap: 20px;
-    overflow: hidden;
-    scroll-behavior: smooth;
-}
-
-#fav-container .fav-item {
-    flex: 0 0 calc(25% - 15px);
-    background: white;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: left;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#fav-container .fav-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-#fav-container .fav-item img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-#fav-container .fav-item h4 {
-    color: #003399;
-    font-size: 1rem;
-    margin-bottom: 5px;
-}
-
-#fav-container .fav-item p {
-    color: #333;
-    font-size: 0.9rem;
-    height: 40px;
-    overflow: hidden;
-}
-
-#fav-container .price {
-    display: block;
-    color: #000;
-    font-weight: 600;
-    margin-top: 8px;
-}
-
-#fav-container .fav-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #888;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-#fav-container .fav-icon:hover {
-    color: red;
-}
-
-/* Dots */
-#fav-container .fav-dots {
-    text-align: center;
-    margin-top: 15px;
-}
-
-#fav-container .fav-dots i {
-    margin: 0 5px;
-    color: #bbb;
-    font-size: 0.6rem;
-    cursor: pointer;
-}
-
-#fav-container .fav-dots i.fa-solid {
-    color: #007bff;
-}
-
     .dropdown-small {
         position: absolute;
         left: 0;
@@ -675,7 +535,7 @@ body {
         transform: translateX(-20px);
     }
 
-/*==========Hot deals==========*/
+/*==========Recommend product==========*/
 .deal_container{
     width: 1380px;
     margin-left: auto;
@@ -698,24 +558,12 @@ body {
     width: 100%;
     position: relative;
 }
-.deal-btn{
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    background: #fff;
-    cursor: pointer;
-}
-.deal-btn i{
-    pointer-events: none;
-}
 .deal-wrapper{
-    display: flex;
     margin: 0 20px;
 }
 .deal-item{
+    display: inline-block;
+    vertical-align: top;
     width: 310px;
     padding: 10px;
     margin-right: 20px;
@@ -770,19 +618,7 @@ body {
 .deal-icon:hover{
     color: red;
 }
-.deal-dots{
-    text-align: center;
-    margin-top: 15px;
-}
-.deal-dots i{
-    margin: 0 5px;
-    color: #aaa;
-    font-size: 10px;
-    cursor: pointer;
-}
-.deal-dots i.fa-solid {
-    color: #007bff;
-}
+
 /*========Trademark list========*/
 .trademark_container{
     width: 1380px;
