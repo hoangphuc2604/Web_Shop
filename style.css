@@ -550,6 +550,9 @@ body {
 .deal_see_all{
     color: #234BBB;
     text-decoration: underline;
+}
+.deal_see_all:hover{
+    color: darkblue;
     cursor: pointer;
 }
 .deal-slider{
