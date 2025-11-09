@@ -8,7 +8,7 @@
 
 #container #product_detail  .product-detail-left {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     align-items: flex-start;
 }
 
@@ -40,7 +40,7 @@
 }
 
 #container #product_detail .product-main-image img {
-    width: 480px;
+    width: 700px;
     height: 480px;
     object-fit: contain;
 }
@@ -178,7 +178,7 @@
     color: red;
 }
 
-/* ==== NÚT HÀNH ĐỘNG ==== */
+/**/
 #container #product_detail .product-buttons {
     display: flex;
     align-items: center;
@@ -199,17 +199,30 @@
 #container #product_detail .add-cart:hover {
     background: #18358b;
 }
-#container #product_detail .favorite i {
-    color: #555;
+.favorite, .share {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     transition: 0.3s;
 }
-#container #product_detail .favorite:hover i {
+
+.favorite i, .share i {
+    font-size: 18px;
+    color: #555;
+}
+
+.favorite:hover i {
     color: red;
 }
 
-#container #product_detail .share i {
-    color: #555;
-    transition: 0.3s;
+.share:hover i {
+    color: #234BBB;
 }
 #container #product_detail .share:hover i {
     color: #234BBB;
@@ -232,6 +245,6 @@
     font-size: 24px;
     color: #234BBB;
 }
-#container #product_detail .product-shipping strong {
+#container #product_detail .product-shipping {
     color: #000;
 }
