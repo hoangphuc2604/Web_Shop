@@ -248,3 +248,50 @@
 #container #product_detail .product-shipping {
     color: #000;
 }
+.product-description {
+    width: 1380px;
+    margin: 40px auto 80px auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.product-description .description-title {
+    margin-bottom: 20px;
+    position: relative;
+    margin-top: 80px;
+}
+
+.product-description .description-title h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #234BBB;
+}
+
+.product-description .description-title .underline {
+    width: 60px;
+    height: 3px;
+    background-color: #234BBB;
+    margin-top: 5px;
+}
+
+.product-description h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.product-description p {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.product-description ul {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.product-description ul li {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
