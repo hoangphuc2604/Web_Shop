@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>Đăng ký</title>
     <link rel="stylesheet" href="../css/DangKyTK.css">
-
+    <script src="../js/DangKyTK.js"></script>
 </head>
 <body>
 <div class="register-box">
     <h2>Đăng ký tài khoản</h2>
-    <form>
+    <form onsubmit="event.preventDefault(); goToLogin();">
         <label for="fullname">Họ và tên</label>
         <input type="text" id="fullname" placeholder="Nhập họ và tên" required>
 
@@ -25,12 +25,19 @@
         <label for="confirm">Nhập lại mật khẩu</label>
         <input type="password" id="confirm" placeholder="Nhập lại mật khẩu" required>
 
-        <button type="submit">Đăng ký</button>
+        <button type="submit" onclick="goToLogin()">Đăng ký</button>
 
         <p style="text-align:center; margin-top:10px;">
             Đã có tài khoản? <a href="DangNhap.html">Đăng nhập</a>
         </p>
     </form>
 </div>
+
+<script>
+    function goToLogin() {
+        alert("Đăng ký thành công!");
+        window.location.href = "DangNhap.html";
+    }
+</script>
 </body>
 </html>
