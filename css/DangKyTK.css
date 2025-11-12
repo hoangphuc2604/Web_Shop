@@ -6,6 +6,7 @@ body {
     align-items: center;
     height: 100vh;
 }
+
 .register-box {
     background: #fff;
     padding: 30px;
@@ -13,14 +14,18 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     width: 320px;
 }
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
+
 label {
     display: block;
     margin-top: 10px;
+    font-weight: bold;
 }
+
 input {
     width: 100%;
     padding: 8px;
@@ -28,27 +33,35 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-button {
+
+.btn-register {
+    display: block;
     width: 100%;
+    text-align: center;
     background: #007bff;
     color: #fff;
-    border: none;
+    text-decoration: none;
     padding: 10px;
-    margin-top: 15px;
     border-radius: 4px;
-    cursor: pointer;
+    margin-top: 15px;
     font-size: 16px;
+    cursor: pointer;
 }
-button:hover {
+.btn-register:hover {
     background: #0056b3;
 }
-p {
+
+.login-link {
+    text-align: center;
+    margin-top: 15px;
     font-size: 14px;
 }
-p a {
+
+.login-link a {
     color: #007bff;
     text-decoration: none;
 }
-p a:hover {
+
+.login-link a:hover {
     text-decoration: underline;
 }
