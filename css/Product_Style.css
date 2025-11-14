@@ -113,10 +113,10 @@
 }
 
 #container #product_detail .size-options button {
-    border: 1px solid #ccc;
-    background: #fff;
+    border: 1px solid #cccccc;
+    background: #ffffff;
     padding: 6px 15px;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     transition: 0.2s;
@@ -344,7 +344,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .rating-filters button {
@@ -433,4 +433,30 @@
 }
 .review-likes i {
     margin-right: 5px;
+}
+.create-comment {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-comment textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.create-comment .submit-comment {
+    width: 140px;
+    padding: 10px 14px;
+    background-color: #234bbb;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
