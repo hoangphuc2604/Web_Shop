@@ -1,9 +1,15 @@
 /* ===== HEADER ===== */
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+header .payment-container{
+    margin: 0 auto;
+    text-align: center;
+}
 .pay-header {
     background: #fff;
     padding: 20px 0;
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
 
 .pay-header h2 {
@@ -21,12 +27,17 @@
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    max-width: 1100px;
+    max-width: 900px;
     width: 100%;
     background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.fa-bag-shopping{
+    position: absolute;
+    top: 43px;
+}
+.bag-shop i{
+    color: #2346C5;
 }
 
 .payment-left {
@@ -117,7 +128,7 @@
 
 .shipping-method span {
     font-size: 13px;
-    color: #555;
+    color: #000000;
 }
 
 .radio-method-shipping .radio-item {
@@ -136,7 +147,7 @@
     font-size: 13px;
     display: block;
     margin-bottom: 10px;
-    color: #666;
+    color: #000000;
 }
 
 .location-payment {
@@ -191,8 +202,9 @@
     background: #eee;
     border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: no-drop;
     transition: background 0.2s;
+    color: #888888;
 }
 
 .discount button:hover {
