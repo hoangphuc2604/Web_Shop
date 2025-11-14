@@ -90,6 +90,9 @@
 .cs-icon:hover{
     color: red;
 }
+.cs-icon .active{
+    color: red;
+}
 .cs-rating{
     font-size: 13px;
     margin-bottom: 5px;
