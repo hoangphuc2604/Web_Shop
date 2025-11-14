@@ -1,6 +1,6 @@
-/* ===== HEADER ===== */
 *{
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 header .payment-container{
     margin: 0 auto;
@@ -17,6 +17,18 @@ header .payment-container{
     font-size: 22px;
 }
 
+.fa-bag-shopping{
+    position: absolute;
+    top: 43px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+}
+
+.bag-shop i{
+    color: #2346C5;
+}
+
 .payment-page {
     display: flex;
     justify-content: center;
@@ -27,17 +39,9 @@ header .payment-container{
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     background: #fff;
-}
-
-.fa-bag-shopping{
-    position: absolute;
-    top: 43px;
-}
-.bag-shop i{
-    color: #2346C5;
 }
 
 .payment-left {
@@ -47,7 +51,7 @@ header .payment-container{
 .payment-left h2 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #222;
+    color: #000000;
 }
 
 .payment-left input[type="text"],
@@ -78,7 +82,7 @@ header .payment-container{
     align-items: center;
     justify-content: flex-start;
     gap: 8px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border: 1px solid #ddd;
     border-radius: 6px;
     margin-bottom: 8px;
@@ -93,6 +97,11 @@ header .payment-container{
     margin-right: 10px;
 }
 
+.ship-inf span{
+    font-size: 13px;
+    display: block;
+    color: #000000;
+}
 .shipping-form {
     margin-top: 15px;
 }
@@ -146,18 +155,25 @@ header .payment-container{
 .payment-method span {
     font-size: 13px;
     display: block;
-    margin-bottom: 10px;
     color: #000000;
 }
 
 .location-payment {
     margin-top: 25px;
 }
+.location-payment span {
+    font-size: 13px;
+    display: block;
+    color: #000000;
+}
 
 .payment-right {
     flex: 1;
     border-left: 1px solid #eee;
     padding-left: 20px;
+    position: sticky;
+    top: 20px;
+    height: fit-content;
 }
 
 .product-summary {
@@ -234,7 +250,7 @@ header .payment-container{
     background-color: #2346C5;
     color: white;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bold;
     border: none;
     border-radius: 6px;
     padding: 14px 0;
@@ -244,8 +260,4 @@ header .payment-container{
 
 .complete-order-btn:hover {
     background-color: #18358b;
-}
-.fa-bag-shopping{
-    font-size: 20px;
-    color: #333;
 }
