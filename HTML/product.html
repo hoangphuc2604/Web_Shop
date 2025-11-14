@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../css/Product_Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
 <header class="header-top">
     <div class="logo">
-        <img src="https://paddy.vn/assets/logo.png" alt="Paddy.vn" />
+        <a href="../index.html"><img src="../assets/img/logo.avif" alt="Paddy.vn" />
+        </a>
     </div>
 
     <div class="search-bar">
@@ -30,14 +32,17 @@
                     <p>Wishlist</p>
                 </div>
 
-                <a href="HTML\DangNhap.html" class="icon-item">
+                <a href="../HTML/DangNhap.html" class="icon-item">
                     <i class="fa fa-user"></i>
                     <p>Đăng Nhập</p>
                 </a>
 
                 <div class="icon-item">
-                    <i class="fa fa-shopping-cart"></i>
-                    <p>Giỏ Hàng</p>
+                    <a href="../HTML/Cart.html">
+                        <i class="fa fa-shopping-cart"></i>
+                        <p>Giỏ Hàng</p>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -180,7 +185,7 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-regular fa-star"></i>
-                    <span>(5 đánh giá)</span>
+                    <span>(1 đánh giá)</span>
                 </div>
 
                 <p class="product-brand">Thương hiệu: <span>Royal Canin</span></p>
@@ -212,7 +217,7 @@
                 </div>
 
                 <div class="product-buttons">
-                    <button class="add-cart">
+                    <button class="add-cart" onclick="addToCart()">
                         <i class="fa-solid fa-cart-shopping"></i>
                         Thêm vào giỏ hàng
                     </button>
@@ -268,7 +273,7 @@
             <!-- SUMMARY BOX -->
             <div class="review-summary-box">
                 <div class="left-rating">
-                    <div class="avg-score">4.9 <span>trên 5</span></div>
+                    <div class="avg-score">4 <span>trên 5</span></div>
 
                     <div class="summary-stars">
                         <i class="fa-solid fa-star"></i>
@@ -276,6 +281,11 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="create-comment">
+                        <h4>Tạo bình luận</h4>
+                        <textarea placeholder="Thêm đánh giá của bạn..." rows="4"></textarea>
+                        <button class="submit-comment">Gửi đánh giá</button>
                     </div>
                 </div>
                 <div class="rating-filters">
@@ -304,7 +314,7 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
                     </div>
 
                     <!-- Main review content -->
@@ -326,7 +336,7 @@
 
         </div>
     </div>
-
+    <script src="../js/Product.js"></script>
 </div>
 </div>
 <!--Footer-->
