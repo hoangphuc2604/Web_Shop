@@ -34,7 +34,12 @@ input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+
 }
+
 .btn-login {
     display: block;
     width: 100%;
