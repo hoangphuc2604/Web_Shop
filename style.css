@@ -431,6 +431,14 @@ body {
     transition: transform 0.4s ease;
     font-weight: 500;
 }
+.collections-item .item:hover{
+    cursor: pointer;
+}
+.collections-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 
 .item img {
     width: 180px;
@@ -565,6 +573,7 @@ body {
     font-size: 14px;
     min-height: 40px;
     font-family: sans-serif;
+    color: #333333;
 }
 .price{
     font-weight: bold;
