@@ -1,3 +1,55 @@
+.cs-layout {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cs-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    border-right: 1px solid #000000;
+    padding-right: 30px;
+}
+
+.filter-box {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-box h3 span {
+    color: #999;
+    font-size: 18px;
+}
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-list label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.filter-list input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.cs-main{
+    flex: 1;
+}
 .cs-container{
     width: 1380px;
     margin-left: auto;
