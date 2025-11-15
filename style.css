@@ -250,7 +250,37 @@ body {
 .dropdown-small:hover {
     display: block;
 }
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
 
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Icon màu trắng, nét mảnh */
+.icon-item i {
+    font-size: 28px;
+    color: #ffffff !important;
+}
+
+/* Chữ màu trắng */
+.icon-item p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #ffffff !important;
+}
+.hotline p,
+.hotline strong {
+    font-weight: 700;
+    color: white;
+    font-size: 16px;
+}
 
 /* ================= FOOTER ICON ================= */
 /*================= Start slider===============*/
