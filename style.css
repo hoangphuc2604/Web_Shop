@@ -535,6 +535,83 @@ body {
     }
 
 /*==========Recommend product==========*/
+.dp_container{
+    width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dp_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.dp_see_all{
+    color: #234BBB;
+    text-decoration: underline;
+}
+.dp_see_all:hover{
+    color: darkblue;
+    cursor: pointer;
+}
+.dp-slider{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+.dp-wrapper{
+    margin: 0 20px;
+}
+.dp-item{
+    display: inline-block;
+    vertical-align: top;
+    width: 310px;
+    padding: 10px;
+    margin-right: 20px;
+    position: relative;
+    transition: 0.3s ease;
+    border-radius: 10px;
+}
+.dp-item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+.dp-item p:hover{
+    color: #234BBB;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.dp-item img{
+    width: 100%;
+    height: 330px;
+    object-fit: contain;
+}
+.dp-item h4{
+    color: #234BBB;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.dp-item p{
+    font-size: 14px;
+    min-height: 40px;
+    font-family: sans-serif;
+    color: #333333;
+}
+.dp-icon{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    color: #888;
+    cursor: pointer;
+}
+.dp-icon:hover{
+    color: red;
+}
+
+/*==========Recommend product==========*/
 .deal_container{
     width: 1380px;
     margin-left: auto;
@@ -544,6 +621,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 25px;
     margin-bottom: 25px;
 }
 .deal_see_all{
