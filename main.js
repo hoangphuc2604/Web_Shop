@@ -1,4 +1,4 @@
-const heartButtons = document.querySelectorAll(".deal-icon");
+const heartButtons = document.querySelectorAll(".deal-icon, .dp-icon");
 heartButtons.forEach(icon => {
     icon.addEventListener("click", function() {
         this.classList.toggle("active");
