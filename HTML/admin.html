@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ebook Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+
+
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2> Admin</h2>
+    <a class="tab-link active" data-target="dashboard">bảng điều khiển</a>
+    <a class="tab-link" data-target="san-pham">Sản phẩm</a>
+    <a class="tab-link" data-target="danh-muc">Danh mục</a>
+    <a class="tab-link" data-target="nguoi-dung">Người dùng</a>
+    <a class="tab-link" data-target="thanh-toan">Thanh toán</a>
+    <a class="tab-link" data-target="banner">Banner</a>
+    <a class="tab-link" data-target="logout">Đăng xuất</a>
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <span>Bảng điều khiển</span>
+        <span>Xin chào, Admin</span>
+    </div>
+
+    <div id="dashboard" class="section active">
+        <div class="stats">
+            <div class="card">
+                Tổng số sản phẩm
+                <div class="number">200</div>
+            </div>
+            <div class="card">
+                Người dùng
+                <div class="number">20</div>
+            </div>
+            <div class="card">
+                Đơn hàng
+                <div class="number">20</div>
+            </div>
+            <div class="card">
+                Doanh thu tháng
+                <div class="number">2.000.000 VND</div>
+            </div>
+        </div>
+
+        <h2>Hoạt động gần đây</h2>
+        <table>
+            <tr>
+                <th>Ngày</th>
+                <th>Người dùng</th>
+                <th>Hoạt động</th>
+                <th>Chi tiết</th>
+            </tr>
+
+            <tr>
+                <td>21/10/2025</td>
+                <td>nguyenkhanh</td>
+                <td>Mua sản phẩm</td>
+                <td>"Clean Code"</td>
+            </tr>
+
+            <tr>
+                <td>20/10/2025</td>
+                <td>admin</td>
+                <td>Thêm banner mới</td>
+                <td>Black Friday Sale</td>
+            </tr>
+
+            <tr>
+                <td>19/10/2025</td>
+                <td>huynnguyen</td>
+                <td>Đăng ký tài khoản</td>
+                <td>-</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id="san-pham" class="section">
+        <div class="title-bar">
+            <h2>Danh sách sản phẩm</h2>
+            <button class="btn-add">+ Thêm sản phẩm</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Danh mục</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td><img src="" width="60"></td>
+                <td>vitamin</td>
+                <td>120.000 VND</td>
+                <td>Thức ăn cho</td>
+                <td>✔ Còn hàng</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="danh-muc" class="section">
+        <div class="title-bar">
+            <h2>Danh sách danh mục</h2>
+            <button class="btn-add">+ Thêm danh mục</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Tên danh mục</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Thức ăn cho mèo</td>
+                <td>đồ ăn dành cho mèo</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="nguoi-dung" class="section">
+        <div class="title-bar">
+            <h2>Danh sách người dùng</h2>
+            <button class="btn-add">+ Thêm người dùng</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Avatar</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Quyền</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td><img src="" width="50" /></td>
+                <td>Nguyễn Văn A</td>
+                <td>a@gmail.com</td>
+                <td>Admin</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="thanh-toan" class="section">
+        <div class="title-bar">
+            <h2>Thanh toán</h2>
+            <button class="btn-add">+ Thêm giao dịch</button>
+        </div>
+
+        <p>Quản lý lịch sử thanh toán, trạng thái đơn hàng.</p>
+    </div>
+
+    <div id="banner" class="section">
+        <div class="title-bar">
+            <h2>Danh sách banner</h2>
+            <button class="btn-add">+ Thêm banner</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Ảnh</th>
+                <th>Tiêu đề</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td><img src="" width="120" /></td>
+                <td>Khuyến mãi 50%</td>
+                <td>Đang hiển thị</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="logout" class="section">
+        <h2>Đăng xuất</h2>
+        <p>Bạn có chắc muốn đăng xuất?</p>
+        <button>Đăng xuất ngay</button>
+    </div>
+
+</div>
+<script src="../js/admin.js"></script>
+
+
+</body>
+</html>
