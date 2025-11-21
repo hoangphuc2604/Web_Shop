@@ -10,9 +10,9 @@ window.onload = function () {
             this.classList.add("active");
 
             sections.forEach(sec => sec.classList.remove("active"));
-
-            const target = this.getAttribute("data-target");
+            const target = this.getAttribute("href").substring(1);
             document.getElementById(target).classList.add("active");
         };
     });
 };
+
