@@ -261,3 +261,7 @@ header .payment-container{
 .complete-order-btn:hover {
     background-color: #18358b;
 }
+.bt-success a{
+    text-decoration: none;
+    color: inherit;
+}
