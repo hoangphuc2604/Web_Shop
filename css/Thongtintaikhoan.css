@@ -117,7 +117,7 @@ body {
 
 .sidebar ul li a:hover,
 .sidebar ul li a.active {
-    color: #ff6600;
+    color: #2063f3;
 }
 
 /* ===== CONTENT ===== */
@@ -186,7 +186,7 @@ body {
     margin-top: 10px;
     width: 120px;
     padding: 9px;
-    background: #ff6600;
+    background: #2063f3;
     color: white;
     border: none;
     border-radius: 4px;
@@ -194,7 +194,7 @@ body {
 }
 
 .save-btn:hover {
-    background: #e35500;
+    background: #2063f3;
 }
 
 /* ==== ĐỊA CHỈ === */
@@ -206,9 +206,9 @@ body {
 }
 
 .default-btn {
-    border: 1px solid red;
+    border: 1px solid #2063f3;
     padding: 5px 12px;
-    color: red;
+    color: #2063f3;
     background: #fff;
     border-radius: 4px;
 }
@@ -240,7 +240,7 @@ body {
 }
 
 .order-tab.active {
-    color: #e74c3c;
+    color: #2063f3;
     font-weight: bold;
 }
 
@@ -278,7 +278,7 @@ body {
 }
 
 .menu-item a.active {
-    color: #ff6600;
+    color: #2063f3;
     font-weight: 600;
 }
 
@@ -300,10 +300,18 @@ body {
 
 .logout-link {
     text-decoration: none;
-    color: #d00;
+    color:#2063f3;
     font-weight: 600;
 }
 
 .logout-icon {
-    color: #d00;
+    color: #2063f3;
+}
+.btn-default {
+    border: 1px solid #2063f3;
+    padding: 4px 10px;
+    color: #0d57e4;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
 }
