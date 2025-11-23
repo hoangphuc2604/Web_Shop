@@ -612,6 +612,10 @@ body {
 }
 
 /*==========Recommend product==========*/
+.di-link{
+    text-decoration: none;
+    color: inherit;
+}
 .deal_container{
     width: 1380px;
     margin-left: auto;
