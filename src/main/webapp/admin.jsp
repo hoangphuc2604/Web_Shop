@@ -1,0 +1,381 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ebook Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin.css">
+
+
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2> Admin</h2>
+    <a class="tab-link active" href="#dashboard">Bảng điều khiển</a>
+    <a class="tab-link" href="#san-pham">Sản phẩm</a>
+    <a class="tab-link" href="#danh-muc">Danh mục</a>
+    <a class="tab-link" href="#nguoi-dung">Người dùng</a>
+    <a class="tab-link" href="#don-hang">Đơn hàng</a>
+    <a class="tab-link" href="#thanh-toan">Thanh toán</a>
+    <a class="tab-link" href="#doanh-thu">Doanh thu</a>
+    <a class="tab-link" href="#Anh">Ảnh</a>
+    <a class="tab-link" href="#logout">Đăng xuất</a>
+
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <span>Bảng điều khiển</span>
+        <span>Xin chào, Admin</span>
+    </div>
+
+    <div id="dashboard" class="section active">
+        <div class="stats">
+            <div class="card">
+                Tổng số sản phẩm
+                <div class="number">200</div>
+            </div>
+            <div class="card">
+                Người dùng
+                <div class="number">20</div>
+            </div>
+            <div class="card">
+                Đơn hàng
+                <div class="number">20</div>
+            </div>
+            <div class="card">
+                Doanh thu tháng
+                <div class="number">15.800.000 VND</div>
+            </div>
+        </div>
+
+        <h2>Hoạt động gần đây</h2>
+        <table>
+            <tr>
+                <th>Ngày</th>
+                <th>Người dùng</th>
+                <th>Hoạt động</th>
+                <th>Chi tiết</th>
+            </tr>
+
+            <tr>
+                <td>21/10/2025</td>
+                <td>nguyenkhanh</td>
+                <td>Mua sản phẩm</td>
+                <td>"Clean Code"</td>
+            </tr>
+
+            <tr>
+                <td>20/10/2025</td>
+                <td>admin</td>
+                <td>Thêm banner mới</td>
+                <td>Black Friday Sale</td>
+            </tr>
+
+            <tr>
+                <td>19/10/2025</td>
+                <td>huynnguyen</td>
+                <td>Đăng ký tài khoản</td>
+                <td>-</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id="san-pham" class="section">
+        <div class="title-bar">
+            <h2>Danh sách sản phẩm</h2>
+            <input type="text" id="timKiemSanPham" placeholder="Tìm kiếm sản phẩm..." />
+            <select id="locSanPham">
+                <option value="">Tất cả danh mục</option>
+                <option value="thuc-an-meo">Thức ăn cho mèo</option>
+                <option value="vitamin">Vitamin</option>
+            </select>
+            <select id="locTrangThaiSanPham">
+                <option value="">Tất cả trạng thái</option>
+                <option value="con-hang">Còn hàng</option>
+                <option value="het-hang">Hết hàng</option>
+            </select>
+            <button class="btn-add">+ Thêm sản phẩm</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Danh mục</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td>123</td>
+                <td>vitamin</td>
+                <td>120.000 VND</td>
+                <td>Thức ăn cho</td>
+                <td>✔ Còn hàng</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="danh-muc" class="section">
+        <div class="title-bar">
+            <h2>Danh sách danh mục</h2>
+            <input type="text" id="timKiemDanhMuc" placeholder="Tìm kiếm .." />
+            <button class="btn-add">+ Thêm danh mục</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Mã danh mục</th>
+                <th>Tên danh mục</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Thức ăn cho mèo</td>
+                <td>đồ ăn dành cho mèo</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="nguoi-dung" class="section">
+        <div class="title-bar">
+            <h2>Danh sách người dùng</h2>
+            <input type="text" id="timKiemNguoiDung" placeholder="Tìm kiếm .." />
+            <button class="btn-add">+ Thêm người dùng</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Mã người dùng</th>
+                <th>Tên</th>
+                <th>SDT</th>
+                <th>Email</th>
+                <th>Quyền</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td>A01</td>
+                <td>Nguyễn Văn A</td>
+                <td>0123456789</td>
+                <td>a@gmail.com</td>
+                <td>Admin</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                    <button class="btn-delete">khóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="don-hang" class="section">
+        <div class="title-bar">
+            <h2>Quản lý đơn hàng</h2>
+            <input type="text" id="timKiemDonHang" placeholder="Tìm kiếm theo mã đơn hoặc khách hàng..." />
+            <button class="btn-add">+ Thêm đơn hàng</button>
+        </div>
+
+        <table id="bangDonHang">
+            <tr>
+                <th>Mã đơn</th>
+                <th>Khách hàng</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+                <th>Phương thức thanh toán</th>
+                <th>Ngày đặt</th>
+                <th>Ngày giao</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+            <tr>
+                <td>DH001</td>
+                <td>Nguyễn Văn A</td>
+                <td>Vitamin</td>
+                <td>2</td>
+                <td>240.000 VND</td>
+                <td>COD</td>
+                <td>21/11/2025</td>
+                <td>25/11/2025</td>
+                <td>Chờ xử lý</td>
+                <td>
+                    <button class="btn-edit">Xem</button>
+                    <button class="btn-delete">Hủy</button>
+                </td>
+            </tr>
+            <tr>
+                <td>DH002</td>
+                <td>Trần Thị B</td>
+                <td>Thức ăn cho mèo</td>
+                <td>1</td>
+                <td>150.000 VND</td>
+                <td>Chuyển khoản</td>
+                <td>22/11/2025</td>
+                <td>26/11/2025</td>
+                <td>Đang giao</td>
+                <td>
+                    <button class="btn-edit">Xem</button>
+                    <button class="btn-delete">Hủy</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+    <div id="thanh-toan" class="section">
+        <div class="title-bar">
+            <h2>Thanh toán</h2>
+            <input type="text" id="timKiemThanhToan" placeholder="Tìm kiếm .." />
+        </div>
+        <table>
+            <tr>
+                <th>Mã thanh toán</th>
+                <th>Mã đơn hàng</th>
+                <th>Tổng số tiền</th>
+                <th>Phương thức thanh Toán</th>
+                <th>Trạng thái</th>
+                <th>Ngày thanh toán</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td>1215464</td>
+                <td>12345</td>
+                <td>240.000 VND</td>
+                <td>Chuyển khoản</td>
+                <td>Đã thanh toán</td>
+                <td>24/12/2025</td>
+                <td>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- Doanh thu -->
+    <div id="doanh-thu" class="section">
+        <div class="title-bar">
+            <h2>Doanh thu</h2>
+            <input type="text" id="timKiemDoanhThu" placeholder="Tìm kiếm theo tháng hoặc ngày..." />
+            <select id="locDoanhThuLoai">
+                <option value="">Chọn loại thống kê</option>
+                <option value="ngay">Theo ngày</option>
+                <option value="tuan">Theo tuần</option>
+                <option value="thang">Theo tháng</option>
+                <option value="nam">Theo năm</option>
+            </select>
+
+            <!-- Bộ lọc tháng / năm khi cần -->
+            <select id="locDoanhThuThang">
+                <option value="">Chọn tháng</option>
+                <option value="01">Tháng 1</option>
+                <option value="02">Tháng 2</option>
+                <option value="03">Tháng 3</option>
+                <option value="04">Tháng 4</option>
+                <option value="05">Tháng 5</option>
+                <option value="06">Tháng 6</option>
+                <option value="07">Tháng 7</option>
+                <option value="08">Tháng 8</option>
+                <option value="09">Tháng 9</option>
+                <option value="10">Tháng 10</option>
+                <option value="11">Tháng 11</option>
+                <option value="12">Tháng 12</option>
+            </select>
+
+            <select id="locDoanhThuNam">
+                <option value="">Chọn năm</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+            </select>
+        </div>
+
+        <table id="bangDoanhThu">
+            <tr>
+                <th>Ngày </th>
+                <th>Số đơn hàng</th>
+                <th>Tổng doanh thu</th>
+                <th>Đơn hàng thành công</th>
+                <th>Đơn hàng hủy</th>
+            </tr>
+            <tr>
+                <td>5/11/2025</td>
+                <td>50</td>
+                <td>5.000.000 VND</td>
+                <td>45</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>23/11/2025</td>
+                <td>70</td>
+                <td>7.500.000 VND</td>
+                <td>65</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>31/11/2025</td>
+                <td>30</td>
+                <td>3.200.000 VND</td>
+                <td>28</td>
+                <td>2</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="Anh" class="section">
+        <div class="title-bar">
+            <h2>Danh sách Ảnh</h2>
+            <input type="text" id="timKiemAnh" placeholder="Tìm kiếm .." />
+            <button class="btn-add">+ Thêm Ảnh</button>
+        </div>
+
+        <table>
+            <tr>
+                <th>Mã Ảnh</th>
+                <th>Tiêu đề</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+            </tr>
+
+            <tr>
+                <td>12</td>
+                <td>Khuyến mãi 50%</td>
+                <td>Đang hiển thị</td>
+                <td>
+                    <button class="btn-edit">Sửa</button>
+                    <button class="btn-delete">Xóa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="logout" class="section">
+        <h2>Đăng xuất</h2>
+        <p>Bạn có chắc muốn đăng xuất?</p>
+        <button>Đăng xuất ngay</button>
+    </div>
+
+</div>
+<script src="../js/admin.js"></script>
+
+
+</body>
+</html>

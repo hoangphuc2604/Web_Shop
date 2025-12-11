@@ -1,0 +1,413 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thức Ăn cho thú cưng</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="css/Product_Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+<header class="header-top">
+    <div class="logo">
+        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        </a>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Tìm kiếm sản phẩm...">
+        <button><i class="fa fa-search"></i></button>
+    </div>
+
+    <div class="right-info">
+        <div class="hotline">
+            <p>Hotline</p>
+            <strong>086 767 7891</strong>
+        </div>
+        <div class="icons">
+            <div class="icons">
+                <a href="wishlist.jsp" class="icon-item">
+                    <i class="fa fa-heart"></i>
+                    <p>Wishlist</p>
+                </a>
+
+                <a href="DangNhap.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>Tài Khoản</p>
+                </a>
+
+                <a href="Cart.jsp" class="icon-item">
+                    <i class="fa fa-cart-arrow-down"></i>
+                    <p>Giỏ Hàng</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MENU GIỮ NGUYÊN CẤU TRÚC CŨ -->
+<nav class="menu">
+    <ul>
+        <!-- CHÓ -->
+        <li class="has-dropdown">
+            <a href="#">Chó</a>
+            <div class="dropdown">
+                <div class="dropdown-container">
+                    <div>
+                        <h4>Thức Ăn Cho Chó</h4>
+                        <p>Thức Ăn Hạt</p>
+                        <p>Thức Ăn Ướt</p>
+                        <p>Thức Ăn Hữu Cơ</p>
+                        <p>Thức Ăn Không Ngũ Cốc</p>
+                    </div>
+                    <div>
+                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
+                        <p>Vệ Sinh Răng Miệng</p>
+                        <p>Sữa Tắm & Phụ Kiện</p>
+                        <p>Xịt Khử Mùi</p>
+                    </div>
+                    <div>
+                        <h4>Bánh Thưởng</h4>
+                        <p>Bánh Quy</p>
+                        <p>Súp Thưởng</p>
+                        <p>Thịt Sấy Khô</p>
+                    </div>
+                    <div>
+                        <h4>Phụ Kiện</h4>
+                        <p>Vòng Cổ & Dây Dắt</p>
+                        <p>Nệm - Chuồng Cho Cún</p>
+                        <p>Tã Lót & Khay Vệ Sinh</p>
+                    </div>
+                    <div>
+                        <h4>Chăm Sóc Sức Khoẻ</h4>
+                        <p>Vitamin</p>
+                        <p>Trị Ve Rận</p>
+                        <p>Thực Phẩm Chức Năng</p>
+                    </div>
+                    <div>
+                        <h4>Vận Chuyển</h4>
+                        <p>Balo & Túi Vận Chuyển</p>
+                        <p>Lồng Vận Chuyển</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- MÈO -->
+        <li class="has-dropdown">
+            <a href="#">Mèo</a>
+            <div class="dropdown">
+                <div class="dropdown-container dropdown-meo">
+                    <div>
+                        <h4>Thức Ăn Cho Mèo</h4>
+                        <p>Thức Ăn Hạt</p>
+                        <p>Thức Ăn Ướt</p>
+                        <p>Thức Ăn Cho Mèo Con</p>
+                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
+                    </div>
+                    <div>
+                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
+                        <p>Cát Vệ Sinh</p>
+                        <p>Khử Mùi</p>
+                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
+                    </div>
+                    <div>
+                        <h4>Phụ Kiện & Đồ Chơi</h4>
+                        <p>Chuồng & Nệm Mèo</p>
+                        <p>Vòng Cổ & Dây Dắt</p>
+                        <p>Đồ Chơi Gãi Móng</p>
+                    </div>
+                    <div>
+                        <h4>Chăm Sóc Sức Khỏe</h4>
+                        <p>Vitamin</p>
+                        <p>Xổ Giun & Ve Rận</p>
+                    </div>
+                    <div>
+                        <h4>Vận Chuyển</h4>
+                        <p>Balo & Túi Vận Chuyển</p>
+                        <p>Lồng Vận Chuyển</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        <!-- THIẾT BỊ THÔNG MINH -->
+        <li class="has-dropdown">
+            <a href="#">Thiết bị thông minh</a>
+            <div class="dropdown dropdown-small">
+                <p>Máy Ăn Uống Tự Động</p>
+                <p>Nhà Vệ Sinh Tự Động</p>
+                <p>Đồ Chơi Tương Tác</p>
+            </div>
+        </li>
+        <li><a href="#">Hàng mới về</a></li>
+        <li><a href="#">Thương hiệu</a></li>
+        <li><a href="#">Pagazine chăm Boss</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Today's Sale</a></li>
+    </ul>
+</nav>
+
+
+<!--Body product content-->
+<div id="container">
+        <div id="product_detail">
+            <div class="product-detail-left">
+                <div class="product-thumbnails">
+                    <i class="fa-solid fa-chevron-up"></i>
+                    <img src="assets/img/product1.webp" alt="thumb1">
+                    <img src="assets/img/product2.webp" alt="thumb2">
+                    <img src="assets/img/product3.webp" alt="thumb3">
+                    <img src="assets/img/product4.webp" alt="thumb4">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+
+                <div class="product-main-image">
+                    <img src="assets/img/product1.webp" alt="main product">
+                </div>
+            </div>
+            <div class="product-detail-right">
+                <div class="breadcrumb">
+                    <a href="#">Trang chủ</a> >
+                    <a href="#">Thức ăn cho mèo</a> >
+                    <span>Royal Canin Indoor 36</span>
+                </div>
+
+                <h2>Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</h2>
+
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <span>(1 đánh giá)</span>
+                </div>
+
+                <p class="product-brand">Thương hiệu: <span>Royal Canin</span></p>
+
+                <div class="product-price">132.000₫</div>
+
+                <div class="product-size">
+                    <p>Size:</p>
+                    <div class="size-options">
+                        <button class="active">400g</button>
+                        <button>2kg</button>
+                        <button>4kg</button>
+                        <button>10kg</button>
+                        <button class="disabled">Túi 1kg</button>
+                    </div>
+                </div>
+
+                <div class="product-quantity">
+                    <p>Số lượng:</p>
+                    <div class="quantity-control">
+                        <button class="minus">−</button>
+                        <input type="text" value="1">
+                        <button class="plus">+</button>
+                    </div>
+                </div>
+
+                <div class="product-total">
+                    Tổng số tiền: <span>132.000₫</span>
+                </div>
+
+                <div class="product-buttons">
+                    <button class="add-cart" onclick="addToCart()">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Thêm vào giỏ hàng
+                    </button>
+                    <button class="favorite"><i class="fa-regular fa-heart"></i></button>
+                    <button class="share"><i class="fa-solid fa-share-nodes"></i></button>
+                </div>
+
+                <div class="product-shipping">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <div>
+                        <p><strong>Miễn phí vận chuyển</strong></p>
+                        <p>Tối đa 30k cho đơn hàng từ 500k<br>Hoả tốc 4h trong nội thành HCM</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    <!-- PRODUCT DESCRIPTION -->
+    <div class="product-description">
+        <div class="description-title">
+            <h3>Mô Tả</h3>
+            <div class="underline"></div>
+        </div>
+
+        <h4>Thức Ăn Cho Mèo Con Royal Canin Kitten 36</h4>
+        <p>
+            Thức ăn cho mèo <strong>Royal Canin Kitten</strong> hỗ trợ sức khỏe của mèo con bằng việc cung cấp các chất dinh dưỡng
+            chính xác dựa trên nghiên cứu của các nhà khoa học từ ROYAL CANIN. Trong giai đoạn tăng trưởng, hệ thống tiêu hóa của mèo con chưa phát triển đầy đủ,
+            chính vì vậy Royal Canin Kitten thúc đẩy sự cân bằng hệ vi sinh đường ruột và hỗ trợ sự phát triển khỏe mạnh.
+        </p>
+
+        <h4>Lợi ích:</h4>
+        <ul>
+            <li>Hỗ trợ quá trình tăng trưởng và phát triển toàn diện</li>
+            <li>Thúc đẩy phát triển xương và khớp</li>
+            <li>Giúp hệ tiêu hóa khỏe mạnh</li>
+            <li>Tăng cường sức đề kháng</li>
+            <li>Hạn chế mùi hôi phân</li>
+        </ul>
+        <h4>Thành phần</h4>
+        <ul>
+            <li>Protein gia cầm, gạo, protein thực vật*, chất béo động vật, bột bắp, protein động vật, bột lúa mì, gluten bắp,...</li>
+        </ul>
+        <h4>Hướng dẫn sử dụng</h4>
+        <ul>
+            <li>Chia làm 2-3 bữa/ngày</li>
+            <li>Lượng cho ăn hàng ngày được khuyến nghị (gam mỗi ngày) theo trọng lượng cơ thể (kg) và hình dáng của mèo.</li>
+            <li>Khẩu phần ăn hàng ngày có thể thay đổi liên quan đến nhiệt độ môi trường, lối sống của mèo (trong nhà-ngoài trời), tính khí và hoạt động của mèo.</li>
+        </ul>
+        <div class="review-section">
+
+            <h2 class="review-title">ĐÁNH GIÁ SẢN PHẨM</h2>
+            <!-- SUMMARY BOX -->
+            <div class="review-summary-box">
+                <div class="left-rating">
+                    <div class="avg-score">4 <span>trên 5</span></div>
+
+                    <div class="summary-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="create-comment">
+                        <h4>Tạo bình luận</h4>
+                        <textarea placeholder="Thêm đánh giá của bạn..." rows="4"></textarea>
+                        <button class="submit-comment">Gửi đánh giá</button>
+                    </div>
+                </div>
+                <div class="rating-filters">
+                    <button class="active">Tất Cả</button>
+                    <button>5 Sao ()</button>
+                    <button>4 Sao ()</button>
+                    <button>3 Sao ()</button>
+                    <button>2 Sao ()</button>
+                    <button>1 Sao ()</button>
+                    <button>Có Bình Luận ()</button>
+                    <button>Có Hình Ảnh / Video ()</button>
+                </div>
+            </div>
+            <!-- ONE REVIEW ITEM -->
+            <div class="review-item">
+                <!-- LEFT: Avatar -->
+                <div class="review-avatar">
+                    <span>N</span>
+                </div>
+                <!-- CENTER: content -->
+                <div class="review-body">
+                    <p class="review-username">abc</p>
+                    <!-- Stars -->
+                    <div class="review-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+
+                    <!-- Main review content -->
+                    <p class="review-text">
+                        Sản phẩm này thật sự rất tốt! Chất lượng vượt xa mong đợi, thiết kế đẹp và dùng cực kỳ tiện lợi.
+                        Sau một thời gian sử dụng, mình thấy hiệu quả rõ rệt. Giao hàng nhanh, đóng gói cẩn thận.
+                        Rất hài lòng và chắc chắn sẽ ủng hộ thêm lần nữa!
+                    </p>
+                    <!-- IMAGES -->
+                    <div class="review-images">
+                        <img src="assets/img/fav2.webp" alt="">
+                    </div>
+                    <!-- Likes -->
+                    <div class="review-likes">
+                        <i class="fa-regular fa-thumbs-up"></i> 9
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/Product.js"></script>
+</div>
+</div>
+<!--Footer-->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="ft_container">
+            <h3 class="L1_style">
+                <span class="pix_text">Thành viên Paddiers</span>
+            </h3>
+            <h5 class="L2_style">
+                <span class="pix_text">Đăng ký thành viên ngay hôm nay để nhận email về sản phẩm mới và chương trình khuyến mãi của Paddy</span>
+            </h5>
+            <div class="email_box">
+                <input type="text" placeholder="Email của bạn..." required>
+                <button type="submit" class="btn_signup">Đăng ký</button>
+            </div>
+            <div class="ft_col">
+                <div class="list_col hover_col">
+                    <h4>Shop</h4>
+                    <p>Dành Cho Chó</p>
+                    <p>Dành Cho Mèo</p>
+                    <p>Thương Hiệu</p>
+                    <p>Blogs</p>
+                    <p>Bộ Sưu Tập</p>
+                </div>
+                <div class="list_col hover_col">
+                    <h4>Paddy Pet Shop</h4>
+                    <p>Giới Thiệu</p>
+                    <p>Thành Viên Paddier</p>
+                    <p>Điều Khoản Sử Dụng</p>
+                    <p>Tuyển Dụng</p>
+                </div>
+                <div class="list_col hover_col">
+                    <h4>Hỗ Trợ Khách Hàng</h4>
+                    <p>Chính Sách Đổi Trả Hàng</p>
+                    <p>Phương Thức Vận Chuyển</p>
+                    <p>Chính Sách Bảo Mật</p>
+                    <p>Phương Thức Thanh Toán</p>
+                    <p>Chính Sách Hoàn Tiền</p>
+                </div>
+                <div class="list_col">
+                    <h4>Liên Hệ</h4>
+                    <p>CÔNG TY CỔ PHẦN THƯƠNG MẠI & DỊCH VỤ PADDY</p>
+                    <p>MST: 0316459054</p>
+                    <p>116 Nguyễn Văn Thủ, Phường Tân Định, Thành phố Hồ Chí Minh, Việt Nam</p>
+                    <div class="icon_ft">
+                        <div class="call-item"><i class="fa-solid fa-phone"></i><p>Hotline: 0867677891</p></div>
+                        <div class="email-item"><i class="fa-solid fa-envelope"></i><p>Email: contact@paddy.vn</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon_social">
+                <a href="https://www.facebook.com/PaddyPetShop" class="social_btn">
+                    <img class="small_icon" src="/src/main/webapp/assets/img/fbicon.png" alt>
+                </a>
+                <a href="https://www.instagram.com/paddypetshop/" class="social_btn">
+                    <img class="small_icon" src="/src/main/webapp/assets/img/insicon.png" alt>
+                </a>
+                <a href="https://www.tiktok.com/@paddypetshop" class="social_btn">
+                    <img class="small_icon" src="/src/main/webapp/assets/img/tiktokicon.png" alt>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="ft_container">
+            <div class="f_style">
+                <span class="pix_text">
+                    @2024 Paddy VN. All Rights Reserved.
+                </span>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Reset Successful</title>
+    <link rel="stylesheet" href="success.css">
+    <link rel="stylesheet" href="css/Forget-success.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="success-box">
+    <div class="success-icon">
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <h2>New password confirmed successful</h2>
+    <p class="success-msg">
+        You have successfully confirmed your new password.
+    </p>
+
+    <a href="DangNhap.jsp" class="success-btn">Trở về trang đăng nhập</a>
+</div>
+
+</body>
+</html>
