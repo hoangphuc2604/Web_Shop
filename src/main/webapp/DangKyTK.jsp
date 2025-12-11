@@ -1,0 +1,37 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="css/DangKyTK.css">
+    <script src="js/DangKyTK.js"></script>
+</head>
+<body>
+<div class="register-box">
+    <h2>Đăng ký tài khoản</h2>
+
+    <label for="fullname">Họ và tên</label>
+    <input type="text" id="fullname" placeholder="Nhập họ và tên" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Nhập email" required>
+
+    <label for="username">Tên đăng nhập</label>
+    <input type="text" id="username" placeholder="Nhập tên đăng nhập" required>
+
+    <label for="password">Mật khẩu</label>
+    <input type="password" id="password" placeholder="Tạo mật khẩu" required>
+
+    <label for="confirm">Nhập lại mật khẩu</label>
+    <input type="password" id="confirm" placeholder="Nhập lại mật khẩu" required>
+
+    <a href="DangNhap.jsp" class="btn-register" onclick="registerSuccess()">Đăng ký</a>
+
+
+    <p class="login-link">
+        Đã có tài khoản? <a href="DangNhap.jsp">Đăng nhập</a>
+    </p>
+</div>
+</body>
+</html>
