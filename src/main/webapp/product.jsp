@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Thức Ăn cho thú cưng</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="css/Product_Style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Product_Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 <body>
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="${pageContext.request.contextPath}/index" />
+            <img src="${pageContext.request.contextPath}/assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
@@ -28,17 +29,17 @@
         </div>
         <div class="icons">
             <div class="icons">
-                <a href="wishlist.jsp" class="icon-item">
+                <a href="${pageContext.request.contextPath}/wishlist" class="icon-item">
                     <i class="fa fa-heart"></i>
                     <p>Wishlist</p>
                 </a>
 
-                <a href="DangNhap.jsp" class="icon-item">
+                <a href="${pageContext.request.contextPath}/DangNhap" class="icon-item">
                     <i class="fa fa-user"></i>
                     <p>Tài Khoản</p>
                 </a>
 
-                <a href="Cart.jsp" class="icon-item">
+                <a href="${pageContext.request.contextPath}/Cart" class="icon-item">
                     <i class="fa fa-cart-arrow-down"></i>
                     <p>Giỏ Hàng</p>
                 </a>
@@ -157,25 +158,25 @@
             <div class="product-detail-left">
                 <div class="product-thumbnails">
                     <i class="fa-solid fa-chevron-up"></i>
-                    <img src="assets/img/product1.webp" alt="thumb1">
-                    <img src="assets/img/product2.webp" alt="thumb2">
-                    <img src="assets/img/product3.webp" alt="thumb3">
-                    <img src="assets/img/product4.webp" alt="thumb4">
+                    <img src="${pageContext.request.contextPath}/${product.image}" alt="thumb1">
+                    <img src="${pageContext.request.contextPath}/${product.image}" alt="thumb2">
+                    <img src="${pageContext.request.contextPath}/${product.image}" alt="thumb3">
+                    <img src="${pageContext.request.contextPath}/${product.image}" alt="thumb4">
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
 
                 <div class="product-main-image">
-                    <img src="assets/img/product1.webp" alt="main product">
+                    <img src="${pageContext.request.contextPath}/${product.image} alt="main product">
                 </div>
             </div>
             <div class="product-detail-right">
                 <div class="breadcrumb">
                     <a href="#">Trang chủ</a> >
                     <a href="#">Thức ăn cho mèo</a> >
-                    <span>Royal Canin Indoor 36</span>
+                    <span>${product.name}</span>
                 </div>
 
-                <h2>Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</h2>
+                <h2>${product.name}</h2>
 
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -186,14 +187,14 @@
                     <span>(1 đánh giá)</span>
                 </div>
 
-                <p class="product-brand">Thương hiệu: <span>Royal Canin</span></p>
+                <p class="product-brand">Thương hiệu: <span>${product.brand}</span></p>
 
-                <div class="product-price">132.000₫</div>
+                <div class="product-price">${product.price}₫</div>
 
                 <div class="product-size">
                     <p>Size:</p>
                     <div class="size-options">
-                        <button class="active">400g</button>
+                        <button class="active">${product.weight}</button>
                         <button>2kg</button>
                         <button>4kg</button>
                         <button>10kg</button>
@@ -211,16 +212,33 @@
                 </div>
 
                 <div class="product-total">
-                    Tổng số tiền: <span>132.000₫</span>
+                    Tổng số tiền: <span>${product.price}₫</span>
                 </div>
 
                 <div class="product-buttons">
-                    <button class="add-cart" onclick="addToCart()">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        Thêm vào giỏ hàng
+
+                    <form method="post"
+                          action="${pageContext.request.contextPath}/cart"
+                          class="add-cart-form">
+
+                        <input type="hidden" name="productId" value="${product.id}">
+                        <input type="hidden" name="price" value="${product.price}">
+
+                        <input type="hidden" name="quantity" id="cartQuantity" value="1">
+
+                        <button type="submit" class="add-cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Thêm vào giỏ hàng
+                        </button>
+                    </form>
+
+                    <button class="favorite" type="button">
+                        <i class="fa-regular fa-heart"></i>
                     </button>
-                    <button class="favorite"><i class="fa-regular fa-heart"></i></button>
-                    <button class="share"><i class="fa-solid fa-share-nodes"></i></button>
+
+                    <button class="share" type="button">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
                 </div>
 
                 <div class="product-shipping">
@@ -240,11 +258,9 @@
             <div class="underline"></div>
         </div>
 
-        <h4>Thức Ăn Cho Mèo Con Royal Canin Kitten 36</h4>
+        <h4>${product.name}</h4>
         <p>
-            Thức ăn cho mèo <strong>Royal Canin Kitten</strong> hỗ trợ sức khỏe của mèo con bằng việc cung cấp các chất dinh dưỡng
-            chính xác dựa trên nghiên cứu của các nhà khoa học từ ROYAL CANIN. Trong giai đoạn tăng trưởng, hệ thống tiêu hóa của mèo con chưa phát triển đầy đủ,
-            chính vì vậy Royal Canin Kitten thúc đẩy sự cân bằng hệ vi sinh đường ruột và hỗ trợ sự phát triển khỏe mạnh.
+            ${product.description}
         </p>
 
         <h4>Lợi ích:</h4>
@@ -282,8 +298,18 @@
                     </div>
                     <div class="create-comment">
                         <h4>Tạo bình luận</h4>
-                        <textarea placeholder="Thêm đánh giá của bạn..." rows="4"></textarea>
-                        <button class="submit-comment">Gửi đánh giá</button>
+
+                        <form method="post" action="${pageContext.request.contextPath}/review">
+                            <input type="hidden" name="productId" value="${product.id}">
+
+                            <textarea name="content"
+                                      placeholder="Thêm đánh giá của bạn..."
+                                      rows="4"></textarea>
+
+                            <button type="submit" class="submit-comment">
+                                Gửi đánh giá
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="rating-filters">
@@ -334,7 +360,7 @@
 
         </div>
     </div>
-    <script src="js/Product.js"></script>
+    <script src="${pageContext.request.contextPath}/js/Product.js"></script>
 </div>
 </div>
 <!--Footer-->
