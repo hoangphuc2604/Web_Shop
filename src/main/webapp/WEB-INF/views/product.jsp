@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thức Ăn cho thú cưng</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Product_Style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -166,7 +166,7 @@
                 </div>
 
                 <div class="product-main-image">
-                    <img src="${pageContext.request.contextPath}/${product.image} alt="main product">
+                    <img src="${pageContext.request.contextPath}/assets/img/product1.webp" alt="main product">
                 </div>
             </div>
             <div class="product-detail-right">
@@ -347,9 +347,9 @@
                         Sau một thời gian sử dụng, mình thấy hiệu quả rõ rệt. Giao hàng nhanh, đóng gói cẩn thận.
                         Rất hài lòng và chắc chắn sẽ ủng hộ thêm lần nữa!
                     </p>
-                    <!-- IMAGES -->
+                    <!-- Hinh anh danh gia san pham -->
                     <div class="review-images">
-                        <img src="assets/img/fav2.webp" alt="">
+                        <img src="../../assets/img/fav2.webp" alt="">
                     </div>
                     <!-- Likes -->
                     <div class="review-likes">

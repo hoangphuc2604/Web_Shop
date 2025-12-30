@@ -257,7 +257,7 @@
 
         <div class="dp-slider">
             <div class="dp-wrapper">
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item1.png" alt="">
                         <h4>Nutri Plan</h4>
@@ -268,7 +268,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item2.png" alt="">
                         <h4>Natural Core</h4>
@@ -279,7 +279,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item3.png" alt="">
                         <h4>Ultimates Indulge</h4>
@@ -290,7 +290,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item4.png" alt="">
                         <h4>Royal Canin</h4>
@@ -301,7 +301,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item5.png" alt="">
                         <h4>Bioline</h4>
@@ -312,7 +312,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item6.png" alt="">
                         <h4>Q8</h4>
@@ -323,7 +323,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item7.png" alt="">
                         <h4>Keos</h4>
@@ -334,7 +334,7 @@
                     </div>
                 </a>
 
-                <a href="product.jsp" class="di-link">
+                <a href="WEB-INF/views/product.jsp" class="di-link">
                     <div class="dp-item">
                         <img src="assets/img/discount_item8.png" alt="">
                         <h4>Royal Canin</h4>
