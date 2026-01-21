@@ -208,8 +208,8 @@
                         <img src="assets/img/fav1.webp" alt="product">
                         <i class="fa-regular fa-heart fav-icon" title="Thêm yêu thích"></i>
                     </div>
-                    <a class="brand" href="product.jsp">Royal Canin</a>
-                    <a class="product-name" href="product.jsp">
+                    <a class="brand" href="WEB-INF/views/product.jsp">Royal Canin</a>
+                    <a class="product-name" href="WEB-INF/views/product.jsp">
                         <h3 class="p-title">Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36
                         </h3>
                     </a>
