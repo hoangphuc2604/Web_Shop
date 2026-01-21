@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="css/DangNhap.css">
     <script src="js/DangNhap.js"></script>
@@ -11,18 +11,17 @@
 <div class="login-box">
     <h2>Đăng nhập</h2>
 
-    <label for="username">Tên đăng nhập</label>
-    <input type="text" id="username" placeholder="Nhập tên đăng nhập" required>
+    <label>Tên đăng nhập</label>
+    <input type="text" id="username" placeholder="Nhập tên đăng nhập">
 
-    <label for="password">Mật khẩu</label>
-    <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+    <label>Mật khẩu</label>
+    <input type="password" id="password" placeholder="Nhập mật khẩu">
 
-    <a href="../index.html" class="btn-login" onclick="goToIndex()">Đăng nhập</a>
+    <button class="btn-login" onclick="login()">Đăng nhập</button>
 
-    <p class="login-link">
+    <p>
         Chưa có tài khoản? <a href="DangKyTK.jsp">Đăng ký</a>
     </p>
-    <a href="Forget-password.jsp">Quên mật khẩu</a>
 </div>
 </body>
 </html>
