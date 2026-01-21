@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<c:if test="${empty listDiscount}">
+    <c:redirect url="/index"/>
+</c:if>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -27,17 +33,17 @@
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="./HTML/wishlist.html" class="icon-item">
+            <a href="./wishlist.jsp" class="icon-item">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
 
-            <a href="DangNhap.jsp" class="icon-item">
+            <a href="./DangNhap.jsp" class="icon-item">
                 <i class="fa fa-user"></i>
                 <p>Tài Khoản</p>
             </a>
 
-            <a href="./HTML/Cart.html" class="icon-item">
+            <a href="./Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
                 <p>Giỏ Hàng</p>
             </a>
@@ -51,100 +57,22 @@
     <ul>
         <!-- CHÓ -->
         <li class="has-dropdown">
-            <a href="./HTML/collections.html">Chó</a>
-            <div class="dropdown">
-                <div class="dropdown-container">
-                    <div>
-                        <h4>Thức Ăn Cho Chó</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Hữu Cơ</p>
-                        <p>Thức Ăn Không Ngũ Cốc</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
-                        <p>Vệ Sinh Răng Miệng</p>
-                        <p>Sữa Tắm & Phụ Kiện</p>
-                        <p>Xịt Khử Mùi</p>
-                    </div>
-                    <div>
-                        <h4>Bánh Thưởng</h4>
-                        <p>Bánh Quy</p>
-                        <p>Súp Thưởng</p>
-                        <p>Thịt Sấy Khô</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện</h4>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Nệm - Chuồng Cho Cún</p>
-                        <p>Tã Lót & Khay Vệ Sinh</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khoẻ</h4>
-                        <p>Vitamin</p>
-                        <p>Trị Ve Rận</p>
-                        <p>Thực Phẩm Chức Năng</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
+            <a href="./collections.jsp">Chó</a>
         </li>
 
         <!-- MÈO -->
         <li class="has-dropdown">
-            <a href="./HTML/collections.html">Mèo</a>
-            <div class="dropdown">
-                <div class="dropdown-container dropdown-meo">
-                    <div>
-                        <h4>Thức Ăn Cho Mèo</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Cho Mèo Con</p>
-                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
-                        <p>Cát Vệ Sinh</p>
-                        <p>Khử Mùi</p>
-                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện & Đồ Chơi</h4>
-                        <p>Chuồng & Nệm Mèo</p>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Đồ Chơi Gãi Móng</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Vitamin</p>
-                        <p>Xổ Giun & Ve Rận</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
+            <a href="./collections.jsp">Mèo</a>
         </li>
 
         <!-- THIẾT BỊ THÔNG MINH -->
         <li class="has-dropdown">
-            <a href="./HTML/collections.html">Thiết bị thông minh</a>
-            <div class="dropdown-small">
-                <p>Máy Ăn Uống Tự Động</p>
-                <p>Nhà Vệ Sinh Tự Động</p>
-                <p>Đồ Chơi Tương Tác</p>
-            </div>
+            <a href="./collections.jsp">Thiết bị thông minh</a>
         </li>
 
-        <li><a href="./HTML/collections.html">Hàng mới về</a></li>
+        <li><a href="./collections.jsp">Hàng mới về</a></li>
         <li><a href="#">Thương hiệu</a></li>
-        <li><a href="./HTML/Blog.html">Pagazine chăm Boss</a></li>
+        <li><a href="./collections.jsp">Pagazine chăm Boss</a></li>
         <li><a href="#">News</a></li>
         <li><a href="#">Today's Sale</a></li>
     </ul>
@@ -199,7 +127,7 @@
     <div class="header-title">
         <h2>Mua sắm theo giống thú cưng</h2>
     </div>
-    <a href="./HTML/collections.html">
+    <a href="./collections.jsp">
         <div class="content-item">
             <img src="./assets/img/dog_banner.webp" alt="Cún cưng" class="dog-item">
             <img src="./assets/img/cat_banner.webp" alt="Mèo cưng" class="cat-item">
@@ -210,40 +138,40 @@
 <div id="collections-content">
     <div class="collections-header">
             <h2>Bộ Sưu Tập Cho Mèo Con</h2>
-            <a href="./HTML/collections.html" class="see-all">Xem tất cả</a>
+            <a href="./collections.jsp" class="see-all">Xem tất cả</a>
     </div>
     <div class="collections-item">
-        <a href="./HTML/collections.html">
+        <a href="./collections.jsp">
             <div class="item">
                 <img src="./assets/img/collections_1x.webp" alt="">
                 <p>Pate Mèo Con</p>
             </div>
         </a>
-        <a href="./HTML/collections.html">
+        <a href="./collections.jsp">
             <div class="item">
                 <img src="./assets/img/collections2.webp" alt="">
                 <p>Thức Ăn Cho Mèo Con</p>
             </div>
         </a>
-        <a href="./HTML/collections.html">
+        <a href="./collections.jsp">
             <div class="item">
                 <img src="./assets/img/collections3.webp" alt="">
                 <p>Cát Vệ Sinh Mèo</p>
             </div>
         </a>
-        <a href="./HTML/collections.html">
+        <a href="./collections.jsp">
             <div class="item">
                 <img src="./assets/img/collections4.webp" alt="">
                 <p>Sữa Tắm Cho Mèo Con</p>
             </div>
         </a>
-        <a href="./HTML/collections.html">
+        <a href="./collections.jsp">
             <div class="item">
                 <img src="./assets/img/collections5.webp" alt="">
                 <p>Đồ Chơi Cho Mèo Con</p>
             </div>
         </a>
-        <a href="./HTML/collections.html">
+        <a href="./collections.jsp">
             <div class="item">
                 <img src="./assets/img/collections6.webp" alt="">
                 <p>Nhà Cho Mèo</p>
@@ -256,99 +184,23 @@
     <div class="dp_container">
         <div class="dp_header">
             <h2>Sản phẩm giảm giá</h2>
-            <a href="./HTML/collections.html" class="dp_see_all">Xem tất cả</a>
+            <a href="./collections.jsp" class="dp_see_all">Xem tất cả</a>
         </div>
 
         <div class="dp-slider">
             <div class="dp-wrapper">
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item1.png" alt="">
-                        <h4>Nutri Plan</h4>
-                        <p>Pate Cho Mèo Trưởng Thành Nutri Plan Chăm Sóc Sức Khỏe</p>
-                        <span class="price1">25.000₫</span>
-                        <span class="price2">14.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item2.png" alt="">
-                        <h4>Natural Core</h4>
-                        <p>Bánh Thưởng Cho Chó Thịt Sấy Cứng Natural Core</p>
-                        <span class="price1">45.000₫</span>
-                        <span class="price2">35.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item3.png" alt="">
-                        <h4>Ultimates Indulge</h4>
-                        <p>Pate Mèo Ultimates Indulge Water Nhiều Vị 85g</p>
-                        <span class="price1">27.000₫</span>
-                        <span class="price2">21.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item4.png" alt="">
-                        <h4>Royal Canin</h4>
-                        <p>Pate Cho Mèo Mẹ & Mèo Con Royal Canin Mother & Babycat Lon 195g</p>
-                        <span class="price1">95.000₫</span>
-                        <span class="price2">58.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item5.png" alt="">
-                        <h4>Bioline</h4>
-                        <p>Xúc Xích Cho Chó Mèo Bioline Nhiều Vị (Túi 30 Cây)</p>
-                        <span class="price1">85.000₫</span>
-                        <span class="price2">75.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item6.png" alt="">
-                        <h4>Q8</h4>
-                        <p>Viên Dầu Cá Hồi Omega Cho Chó Mèo (Hộp 60 viên)</p>
-                        <span class="price1">100.000₫</span>
-                        <span class="price2">80.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item7.png" alt="">
-                        <h4>Keos</h4>
-                        <p>Hạt Cho Chó Trưởng Thành Keos+</p>
-                        <span class="price1">169.000₫</span>
-                        <span class="price2">89.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
-                <a href="./HTML/product.html" class="di-link">
-                    <div class="dp-item">
-                        <img src="./assets/img/discount_item8.png" alt="">
-                        <h4>Royal Canin</h4>
-                        <p>Thức Ăn Hạt Cho Mèo Tiêu Búi Lông Royal Canin Hairball</p>
-                        <span class="price1">565.000₫</span>
-                        <span class="price2">149.000₫</span>
-                        <i class="fa-regular fa-heart dp-icon"></i>
-                    </div>
-                </a>
-
+                <c:forEach items="${listDiscount}" var="p">
+                    <a href="product?id=${p.id}" class="di-link">
+                        <div class="dp-item">
+                            <img src="${p.image}" alt="${p.name}">
+                            <h4>${p.categoryName}</h4>
+                            <p>${p.name}</p>
+                            <span class="price1">${p.formattedOriginalPrice}</span>
+                            <span class="price2">${p.formattedPrice}</span>
+                            <i class="fa-regular fa-heart dp-icon"></i>
+                        </div>
+                    </a>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -358,97 +210,34 @@
     <div class="deal_container">
         <div class="deal_header">
             <h2>Sản phẩm đề xuất</h2>
-            <a href="./HTML/collections.html" class="deal_see_all">Xem tất cả</a>
+            <a href="./collections.jsp" class="deal_see_all">Xem tất cả</a>
         </div>
 
             <div class="deal-slider">
                 <div class="deal-wrapper">
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/deal1.png" alt="">
-                            <h4>Silver Spoon</h4>
-                            <p>Súp Thưởng Cho Mèo Silver Spoon (Túi 8 tuýp*6g)</p>
-                            <span class="price">27.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon "></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/deal2.png" alt="">
-                            <h4>Silver Spoon</h4>
-                            <p>Pate Cho Mèo Silver Spoon Dạng Thạch & Sốt 60g</p>
-                            <span class="price">16.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/deal3.png" alt="">
-                            <h4>Silver Spoon</h4>
-                            <p>Súp Thưởng Cho Mèo Silver Spoon Dạng Thìa 10g</p>
-                            <span class="price">27.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/deal4.png" alt="">
-                            <h4>Silver Spoon</h4>
-                            <p>Thức Ăn Hạt Cho Mèo Trưởng Thành Silver Spoon 1kg</p>
-                            <span class="price1">189.000₫</span>
-                            <span class="price2">150.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/fav1.webp" alt="">
-                            <h4>Royal Canin</h4>
-                            <p>Thức Ăn Hạt Cho Mèo Trưởng Thành Nuôi Trong Nhà Royal Canin Indoor 27</p>
-                            <span class="price">132.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/fav2.webp" alt="">
-                            <h4>Royal Canin</h4>
-                            <p>Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</p>
-                            <span class="price">132.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/fav3.webp" alt="">
-                            <h4>Royal Canin</h4>
-                            <p>Thức Ăn Hạt Cho Mèo Sỏi Thận Royal Canin Urinary S/O</p>
-                            <span class="price">185.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
-
-                    <a href="./HTML/product.html" class="di-link">
-                        <div class="deal-item">
-                            <img src="./assets/img/fav4.webp" alt="">
-                            <h4>Royal Canin</h4>
-                            <p>Pate Cho Mèo Con Royal Canin Kitten Instinctive 85g</p>
-                            <span class="price">30.000₫</span>
-                            <i class="fa-regular fa-heart deal-icon"></i>
-                        </div>
-                    </a>
+                    <c:forEach items="${listRecommend}" var="p">
+                        <a href="product?id=${p.id}" class="di-link">
+                            <div class="deal-item">
+                                <img src="${p.image}" alt="${p.name}">
+                                <h4>${p.categoryName}</h4>
+                                <p>${p.name}</p>
+                                <c:choose>
+                                    <c:when test="${p.salePrice < p.price}">
+                                        <span class="price1">${p.formattedOriginalPrice}</span>
+                                        <span class="price2">${p.formattedPrice}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="price">${p.formattedPrice}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                                <i class="fa-regular fa-heart deal-icon"></i>
+                            </div>
+                        </a>
+                    </c:forEach>
                 </div>
             </div>
 <!--        <a href="./HTML/product.jsp">-->
 <!--        </a>-->
-
-
     </div>
     <script src="./js/main.js"></script>
 </div>
@@ -520,7 +309,7 @@
         </div>
         <div class="store-item">
             <div class="store-img">
-                <img src="/src/main/webapp/assets/img/cuahang1.webp" alt="Paddy Pet Shop - Trường Sa">
+                <img src="./assets/img/cuahang1.webp" alt="Paddy Pet Shop - Trường Sa">
             </div>
             <h3>Paddy Pet Shop - Trường Sa</h3>
             <p>168 Trường Sa, P. Gia Định, Tp. HCM (Phường 1, Q. Bình Thạnh cũ)</p>
@@ -528,7 +317,7 @@
         </div>
         <div class="store-item">
             <div class="store-img">
-                <img src="/src/main/webapp/assets/img/cuahang2.webp" alt="Paddy Pet Shop - Nơ Trang Long">
+                <img src="./assets/img/cuahang2.webp" alt="Paddy Pet Shop - Nơ Trang Long">
             </div>
             <h3>Paddy Pet Shop - Nơ Trang Long</h3>
             <p>412/3 Nơ Trang Long, P. Bình Lợi Trung, Tp. HCM (Phường 13, Q.Bình Thạnh cũ)</p>
@@ -536,7 +325,7 @@
         </div>
         <div class="store-item">
             <div class="store-img">
-                <img src="/src/main/webapp/assets/img/cuahang3.webp" alt="Paddy Pet Shop - Trần Não">
+                <img src="./assets/img/cuahang3.webp" alt="Paddy Pet Shop - Trần Não">
             </div>
             <h3>Paddy Pet Shop - Trần Não</h3>
             <p>91B Trần Não, P. An Khánh, Tp. HCM (Quận 2 cũ)</p>
@@ -544,7 +333,7 @@
         </div>
         <div class="store-item">
             <div class="store-img">
-                <img src="/src/main/webapp/assets/img/cuahang4.webp" alt="Paddy Pet Shop - Nguyễn Thị Thập">
+                <img src="./assets/img/cuahang4.webp" alt="Paddy Pet Shop - Nguyễn Thị Thập">
             </div>
             <h3>Paddy Pet Shop - Nguyễn Thị Thập</h3>
             <p>406 Nguyễn Thị Thập, P. Tân Hưng, Tp. HCM (P. Tân Quy, Q.7 cũ)</p>
