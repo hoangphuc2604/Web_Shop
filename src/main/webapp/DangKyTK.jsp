@@ -2,36 +2,44 @@
 <!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Đăng ký</title>
-    <link rel="stylesheet" href="css/DangKyTK.css">
-    <script src="js/DangKyTK.js"></script>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/DangKyTK.css">
 </head>
 <body>
+
 <div class="register-box">
     <h2>Đăng ký tài khoản</h2>
 
-    <label for="fullname">Họ và tên</label>
-    <input type="text" id="fullname" placeholder="Nhập họ và tên" required>
+    <label>Họ và tên</label>
+    <input type="text" id="fullname" placeholder="Nhập họ và tên">
+    <small class="error" id="err-fullname"></small>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Nhập email" required>
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Nhập email">
+    <small class="error" id="err-email"></small>
 
-    <label for="username">Tên đăng nhập</label>
-    <input type="text" id="username" placeholder="Nhập tên đăng nhập" required>
+    <label>Tên đăng nhập</label>
+    <input type="text" id="username" placeholder="Nhập tên đăng nhập">
+    <small class="error" id="err-username"></small>
 
-    <label for="password">Mật khẩu</label>
-    <input type="password" id="password" placeholder="Tạo mật khẩu" required>
+    <label>Mật khẩu</label>
+    <input type="password" id="password" placeholder="Tạo mật khẩu">
+    <small class="error" id="err-password"></small>
 
-    <label for="confirm">Nhập lại mật khẩu</label>
-    <input type="password" id="confirm" placeholder="Nhập lại mật khẩu" required>
+    <label>Nhập lại mật khẩu</label>
+    <input type="password" id="confirm" placeholder="Nhập lại mật khẩu">
+    <small class="error" id="err-confirm"></small>
 
-    <a href="DangNhap.jsp" class="btn-register" onclick="registerSuccess()">Đăng ký</a>
+    <button type="button" class="btn-register" onclick="register()">Đăng ký</button>
 
 
-    <p class="login-link">
+    <p>
         Đã có tài khoản? <a href="DangNhap.jsp">Đăng nhập</a>
     </p>
 </div>
+
+<script src="<%= request.getContextPath() %>/js/DangKyTK.js"></script>
+
 </body>
 </html>

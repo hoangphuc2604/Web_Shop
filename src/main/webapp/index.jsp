@@ -32,7 +32,7 @@
                 <p>Wishlist</p>
             </a>
 
-            <a href="./HTML/DangNhap.html" class="icon-item">
+            <a href="DangNhap.jsp" class="icon-item">
                 <i class="fa fa-user"></i>
                 <p>Tài Khoản</p>
             </a>
