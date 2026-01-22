@@ -8,22 +8,31 @@
 
 </head>
 <body>
+
 <div class="login-box">
     <h2>Đăng nhập</h2>
 
-    <label>Tài khoản</label>
-    <input type="text" id="email" placeholder="Nhập tài khoản">
-    <small class="error" id="err-email"></small>
+    <form action="<%= request.getContextPath() %>/login" method="post">
 
-    <label>Mật khẩu</label>
-    <input type="password" id="password" placeholder="Nhập mật khẩu">
-    <small class="error" id="err-password"></small>
+        <label>Tài khoản (Email hoặc Username)</label>
+        <input type="text" name="login" required>
 
-    <button type="button" class="btn-login" onclick="login()">Đăng nhập</button>
+        <label>Mật khẩu</label>
+        <input type="password" name="password" required>
 
-    <p>
-        Chưa có tài khoản? <a href="DangKyTK.jsp">Đăng ký</a>
-    </p>
+        <button type="submit" class="btn-login">Đăng nhập</button>
+    </form>
+
+    <p>Chưa có tài khoản? <a href="DangKyTK.jsp">Đăng ký</a></p>
+
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+    <p style="color:red;text-align:center;"><%= error %></p>
+    <%
+        }
+    %>
 </div>
 <script src="<%= request.getContextPath() %>/js/DangNhap.js"></script>
 
