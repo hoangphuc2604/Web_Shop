@@ -52,10 +52,10 @@ public class ProductHomeDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product pro = new Product(
-                        rs.getInt("id"),          // INT
+                        rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getDouble("price"),      // Giá gốc
-                        rs.getDouble("sale_price"), // Giá bán
+                        rs.getDouble("price"),
+                        rs.getDouble("sale_price"),
                         rs.getString("image_url"),
                         rs.getString("desc"),
                         rs.getString("category_name")

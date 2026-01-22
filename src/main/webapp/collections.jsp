@@ -1,17 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Pate cho mèo con</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/collections_Style.css">
 </head>
 <body>
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="./index.jsp"><img src="assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
@@ -26,17 +28,17 @@
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="wishlist.jsp" class="icon-item">
+            <a href="./wishlist.jsp" class="icon-item">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
 
-            <a href="DangNhap.jsp" class="icon-item">
+            <a href="./DangNhap.jsp" class="icon-item">
                 <i class="fa fa-user"></i>
                 <p>Tài Khoản</p>
             </a>
 
-            <a href="Cart.jsp" class="icon-item">
+            <a href="./Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
                 <p>Giỏ Hàng</p>
             </a>
@@ -50,94 +52,16 @@
         <!--Dog-->
         <li class="has-dropdown">
             <a href="#">Chó</a>
-            <div class="dropdown">
-                <div class="dropdown-container">
-                    <div>
-                        <h4>Thức Ăn Cho Chó</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Hữu Cơ</p>
-                        <p>Thức Ăn Không Ngũ Cốc</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
-                        <p>Vệ Sinh Răng Miệng</p>
-                        <p>Sữa Tắm & Phụ Kiện</p>
-                        <p>Xịt Khử Mùi</p>
-                    </div>
-                    <div>
-                        <h4>Bánh Thưởng</h4>
-                        <p>Bánh Quy</p>
-                        <p>Súp Thưởng</p>
-                        <p>Thịt Sấy Khô</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện</h4>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Nệm - Chuồng Cho Cún</p>
-                        <p>Tã Lót & Khay Vệ Sinh</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khoẻ</h4>
-                        <p>Vitamin</p>
-                        <p>Trị Ve Rận</p>
-                        <p>Thực Phẩm Chức Năng</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
         </li>
 
         <!--Cat-->
         <li class="has-dropdown">
             <a href="#">Mèo</a>
-            <div class="dropdown">
-                <div class="dropdown-container dropdown-meo">
-                    <div>
-                        <h4>Thức Ăn Cho Mèo</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Cho Mèo Con</p>
-                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
-                        <p>Cát Vệ Sinh</p>
-                        <p>Khử Mùi</p>
-                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện & Đồ Chơi</h4>
-                        <p>Chuồng & Nệm Mèo</p>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Đồ Chơi Gãi Móng</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Vitamin</p>
-                        <p>Xổ Giun & Ve Rận</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
         </li>
 
         <!--Thiết bị thông minh-->
         <li class="has-dropdown">
             <a href="#">Thiết bị thông minh</a>
-            <div class="dropdown-small">
-                <p>Máy Ăn Uống Tự Động</p>
-                <p>Nhà Vệ Sinh Tự Động</p>
-                <p>Đồ Chơi Tương Tác</p>
-            </div>
         </li>
 
         <li><a href="#">Hàng mới về</a></li>
@@ -150,225 +74,104 @@
 <!--Collections-->
 <div class="collections-shop">
     <div class="cs-header">
-        <a href="../index.html">Paddy Pet Shop</a> >
+        <a href="./index.jsp">Paddy Pet Shop</a> >
         <a href="#">Collections</a> >
-        <span>Pate cho Mèo Con</span>
+        <span>${categoryName}</span>
     </div>
     <div class="cs-container">
         <div class="cs-title-header">
-            <h2>Pate cho Mèo Con</h2>
+            <h2>${categoryName}</h2>
         </div>
         <hr>
         <div class="cs-layout">
-            <div class="cs-sidebar">
-                <div class="filter-box">
-                    <h3>Loại Sản Phẩm</h3>
-                    <div class="filter-list">
-                        <label>
-                            <input type="checkbox" name="category">
-                            <span>Thức Ăn Ướt (48)</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="category">
-                            <span>Thức Ăn Khô (28)</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="category">
-                            <span>Pate Mèo (35)</span>
-                        </label>
-                        <label>
-                            <input type="checkbox" name="category">
-                            <span>Pate Chó (2)</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
             <div class="cs-main">
                 <div class="cs-softbox">
                     <span class="sb-label">SẮP XẾP THEO</span>
-                    <select class="soft-select">
-                        <option value="alpha-asc">Thứ tự bảng chữ cái (từ A-Z)</option>
-                        <option value="alpha-desc">Thứ tự bảng chữ cái (từ Z-A)</option>
-                        <option value="price-asc">Giá giảm dần </option>
-                        <option value="price-desc">Giá tăng dần</option>
+                    <select class="soft-select" onchange="window.location.href='collections?cid=${cid}&page=1&sort='+this.value">
+                        <option value="alpha-asc" ${sort == 'alpha-asc' ? 'selected' : ''}>Thứ tự bảng chữ cái (từ A-Z)</option>
+                        <option value="alpha-desc" ${sort == 'alpha-desc' ? 'selected' : ''}>Thứ tự bảng chữ cái (từ Z-A)</option>
+                        <option value="price-desc" ${sort == 'price-desc' ? 'selected' : ''}>Giá giảm dần</option>
+                        <option value="price-asc" ${sort == 'price-asc' ? 'selected' : ''}>Giá tăng dần</option>
                     </select>
                 </div>
                 <div class="cs-slider">
                     <div class="cs-wrapper">
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat1.png" alt="">
-                            <h4>The Cat</h4>
-                            <p>Pate TƯƠI The Pet Cho Chó Mèo Biếng Ăn (1kg) - Ship Now/Grab 2H</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(6 đánh giá)</span>
-                            </div>
-                            <span class="price1">120.000₫</span>
-                            <span class="price2">85.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat2.png" alt="">
-                            <h4>Nekko</h4>
-                            <p>Pate Mèo Dạng Thạch Nekko Jelly 70g</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1 đánh giá)</span>
-                            </div>
-                            <span class="price1">20.000₫</span>
-                            <span class="price2">15.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat3.png" alt="">
-                            <h4>Nekko</h4>
-                            <p>Pate Mèo Dạng Sốt Nekko Gravy 70g</p>
-                            <span class="price">15.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat4.png" alt="">
-                            <h4>Snappy Tom</h4>
-                            <p>Pate Mèo Snappy Tom Real Fish - Lon 400g</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(4 đánh giá)</span>
-                            </div>
-                            <span class="price1">45.000₫</span>
-                            <span class="price2">27.500₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat5.png" alt="">
-                            <h4>CattyMan</h4>
-                            <p>Pate Mèo Joyneco CattyMan Cá Tươi 60g</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <span>(1 đánh giá)</span>
-                            </div>
-                            <span class="price">11.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat6.png" alt="">
-                            <h4>Wanpy</h4>
-                            <p>Pate Mèo Wanpy Súp Thịt Tươi 80g</p>
-                            <span class="price">11.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat7.png" alt="">
-                            <h4>Catchy</h4>
-                            <p>Pate Mèo Catchy Nhiều Vị Lon 400g</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <span>(2 đánh giá)</span>
-                            </div>
-                            <span class="price">27.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat8.png" alt="">
-                            <h4>Kings Pet</h4>
-                            <p>Pate Cho Chó Mèo Mọi Lứa Tuổi Thịt Tươi Kings Pet (Lon 380g)</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(1 đánh giá)</span>
-                            </div>
-                            <span class="price1">45.000₫</span>
-                            <span class="price2">40.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat9.png" alt="">
-                            <h4>Snappy Tom</h4>
-                            <p>Pate Mèo Snappy Tom Real Fish Nhiều Vị 85g</p>
-                            <div class="cs-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(2 đánh giá)</span>
-                            </div>
-                            <span class="price">11.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-                        <div class="cs-item">
-                            <img src="assets/img/pate_cat10.png" alt="">
-                            <h4>MeoWow</h4>
-                            <p>Pate Cho Mèo Meowow Súp Cá Ngừ Trắng Nguyên Miếng Lon 80g</p>
-                            <span class="price">24.000₫</span>
-                            <i class="fa-regular fa-heart cs-icon"></i>
-                        </div>
-
+                        <c:forEach items="${listProduct}" var="p">
+                            <a href="product?id=${p.id}" style="display: contents;">
+                                <div class="cs-item">
+                                    <img src="${p.image}" alt="${p.name}">
+                                    <h4>${p.categoryName}</h4>
+                                    <p>${p.name}</p>
+                                    <div class="cs-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>(5 đánh giá)</span>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="${p.salePrice < p.price}">
+                                            <span class="price1">${p.formattedOriginalPrice}</span>
+                                            <span class="price2">${p.formattedPrice}</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="price">${p.formattedPrice}</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <i class="fa-regular fa-heart cs-icon"></i>
+                                </div>
+                            </a>
+                        </c:forEach>
+                        <c:if test="${empty listProduct}">
+                            <p style="margin: 20px;">Đang cập nhật sản phẩm cho danh mục này...</p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="cs-see-more">
-                    <span class="sm-span">Trang 1/10</span>
-                    <button class="sm-btn">Xem thêm</button>
+                    <div class="pagination-wrapper" style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                        <c:choose>
+                            <c:when test="${tag > 1}">
+                                <a href="collections?cid=${cid}&page=${tag - 1}&sort=${sort}" class="page-btn">
+                                    <i class="fa-solid fa-circle-chevron-left"></i>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="page-btn disabled">
+                                    <i class="fa-solid fa-circle-chevron-left"></i>
+                                </span>
+                            </c:otherwise>
+                        </c:choose>
+                        <span class="page-info" style="font-weight: bold; font-size: 16px; color: #333;">
+                            Trang ${tag} / ${endPage}
+                        </span>
+                        <c:choose>
+                            <c:when test="${tag < endPage}">
+                                <a href="collections?cid=${cid}&page=${tag + 1}&sort=${sort}" class="page-btn">
+                                    <i class="fa-solid fa-circle-chevron-right"></i>
+                                </a>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="page-btn disabled">
+                                    <i class="fa-solid fa-circle-chevron-right"></i>
+                                </span>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </div>
             </div>
         </div>
         <hr>
         <div class="cs-description">
-            <h3>Recently Viewed Products</h3>
+            <h3>Thông tin danh mục</h3>
             <div class="cs-des-container">
-                <h2>PATE CHO MÈO CON</h2>
-                <h2>Pate Cho Mèo Con | Wet Food For Kitten</h2>
-                <br>
-                <p>Pate cho mèo con là thức ăn ướt dành cho mèo con được làm từ thịt, cá, gan xay nhuyễn và kết hợp
-                    với khoáng chất, vitamin cùng các chất cần thiết để bổ sung hàm lượng dinh dưỡng cho mèo.
-                    Pate sẽ có dạng ướt, lỏng, có mùi thơm kích thích vị giác của mèo.
-                    Cùng <strong>Paddy</strong> giới thiệu về các vai trò của pate dành cho mèo con trong quá trình chăm sóc "Hoàng Thượng" nhé
-                </p>
-                <br>
-                <ul>
-                    <li><h2>Tại sao nên sử dụng pate cho mèo?</h2></li>
-                    <br>
-                    <p>Pate cho mèo cực kỳ phù hợp đối với những bé mèo lười uống nước, vì 70% thành phần trong pate là nước.
-                        Loại thức ăn này có công thức hàm lượng chất dinh dưỡng cân bằng,
-                        giúp bé mèo nhà bạn phát triển toàn diện hơn.</p>
-                    <br>
-                    <p>Nếu như hạt khô không thể mang đủ các dưỡng chất cần thiết thì các loại pate cho mèo sẽ hỗ trợ điều đó.
-                        Đặc biệt đối với những chú mèo con, hoặc mèo đang gặp vấn đề về sức khỏe thì kết cấu mềm
-                        của pate sẽ là sự lựa chọn hợp lý, giúp chúng dễ tiêu hóa.</p>
-                    <br>
-                    <p>Việc bổ sung hàm lượng dinh dưỡng cần thiết từ pate sẽ giúp các bé tăng được sức đề kháng,
-                        không bị các bệnh vặt và hệ miễn dịch luôn được bảo vệ.</p>
-                    <br>
-                    <li>Các Hãng Pate Dành Cho Mèo Con đang Hot trên thị trường
-                        như <strong>Pate Nekko</strong> , <strong>Pate Whiskas</strong>, <strong>Pate Snappy Tom</strong>
-                        hay <strong>Pate Aatas</strong> , <strong>Pate Royal Canin Mother & Babycat</strong> , <strong>Pate Ciao</strong>. </li>
-                </ul>
+                <c:if test="${not empty categoryDesc}">
+                    <c:out value="${categoryDesc}" escapeXml="false" />
+                </c:if>
+
+                <c:if test="${empty categoryDesc}">
+                    <p>Hiện chưa có mô tả cho danh mục này.</p>
+                </c:if>
             </div>
         </div>
     </div>
@@ -426,13 +229,13 @@
             </div>
             <div class="icon_social">
                 <a href="https://www.facebook.com/PaddyPetShop" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/fbicon.png" alt>
+                    <img class="small_icon" src="./assets/img/fbicon.png" alt>
                 </a>
                 <a href="https://www.instagram.com/paddypetshop/" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/insicon.png" alt>
+                    <img class="small_icon" src="./assets/img/insicon.png" alt>
                 </a>
                 <a href="https://www.tiktok.com/@paddypetshop" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/tiktokicon.png" alt>
+                    <img class="small_icon" src="./assets/img/tiktokicon.png" alt>
                 </a>
             </div>
         </div>
