@@ -3,52 +3,9 @@
     gap: 30px;
     margin-top: 20px;
 }
-
-.cs-sidebar {
-    width: 250px;
-    flex-shrink: 0;
-    border-right: 1px solid #000000;
-    padding-right: 30px;
-}
-
-.filter-box {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-}
-
-.filter-box h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.filter-box h3 span {
-    color: #999;
-    font-size: 18px;
-}
-
-.filter-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.filter-list label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-}
-
-.filter-list input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-}
 .cs-main{
     flex: 1;
+    width: 100%;
 }
 .cs-container{
     width: 1380px;
@@ -122,6 +79,7 @@
     font-size: 14px;
     min-height: 40px;
     font-family: sans-serif;
+    color: #000000;
 }
 .cs-item:hover{
     transform: translateY(-5px);
@@ -138,6 +96,7 @@
     top: 20px;
     right: 10px;
     cursor: pointer;
+    color: #000000;
 }
 .cs-icon:hover{
     color: red;
@@ -157,7 +116,7 @@
 }
 .cs-see-more{
     text-align: center;
-    margin: 30px 0;
+    margin: 40px 0;
 }
 .sm-span{
     display: block;
@@ -196,10 +155,39 @@
 }
 .cs-des-container{
     max-width: 1230px;
-    margin-left: 85px;
-    margin-right: 270px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
 }
 .cs-header a{
     text-decoration: none;
     color: inherit;
+}
+.cs-header a:hover {
+    color: #234BBB;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.cs-item .price, .cs-item .price1 {
+    color: #000000;
+}
+.page-btn i {
+    font-size: 35px;
+    color: #ffa70c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.page-btn:not(.disabled) i:hover {
+    color: #234BBB;
+    transform: scale(1.1);
+}
+.page-btn.disabled i {
+    color: #e0e0e0;
+    cursor: not-allowed;
+    transform: none;
+}
+.page-info {
+    font-family: sans-serif;
+    min-width: 100px;
+    text-align: center;
 }
