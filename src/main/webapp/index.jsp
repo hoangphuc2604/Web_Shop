@@ -123,54 +123,57 @@
     <div class="header-title">
         <h2>Mua sắm theo giống thú cưng</h2>
     </div>
-    <a href="./collections.jsp">
-        <div class="content-item">
-            <img src="./assets/img/dog_banner.webp" alt="Cún cưng" class="dog-item">
-            <img src="./assets/img/cat_banner.webp" alt="Mèo cưng" class="cat-item">
-        </div>
-    </a>
+    <div class="content-item">
+        <a href="collections?cid=1" style="flex: 1;">
+            <img src="./assets/img/dog_banner.webp" alt="Cún cưng" class="dog-item" style="width: 100%;">
+        </a>
+
+        <a href="collections?cid=2" style="flex: 1;">
+            <img src="./assets/img/cat_banner.webp" alt="Mèo cưng" class="cat-item" style="width: 100%;">
+        </a>
+    </div>
 </div>
 <!-- Collections-container -->
 <div id="collections-content">
     <div class="collections-header">
-            <h2>Bộ Sưu Tập Cho Mèo Con</h2>
+            <h2>Bộ Sưu Tập Cho Thú Cưng</h2>
             <a href="./collections.jsp" class="see-all">Xem tất cả</a>
     </div>
     <div class="collections-item">
-        <a href="./collections.jsp">
+        <a href="collections?cid=3">
             <div class="item">
                 <img src="./assets/img/collections_1x.webp" alt="">
-                <p>Pate Mèo Con</p>
+                <p>Pate Cho Thú Cưng</p>
             </div>
         </a>
-        <a href="./collections.jsp">
+        <a href="collections?cid=4">
             <div class="item">
                 <img src="./assets/img/collections2.webp" alt="">
-                <p>Thức Ăn Cho Mèo Con</p>
+                <p>Thức Ăn Cho Thú Cưng</p>
             </div>
         </a>
-        <a href="./collections.jsp">
+        <a href="collections?cid=5">
             <div class="item">
                 <img src="./assets/img/collections3.webp" alt="">
                 <p>Cát Vệ Sinh Mèo</p>
             </div>
         </a>
-        <a href="./collections.jsp">
+        <a href="collections?cid=6">
             <div class="item">
                 <img src="./assets/img/collections4.webp" alt="">
-                <p>Sữa Tắm Cho Mèo Con</p>
+                <p>Sữa Tắm Cho Thú Cưng</p>
             </div>
         </a>
-        <a href="./collections.jsp">
+        <a href="collections?cid=7">
             <div class="item">
                 <img src="./assets/img/collections5.webp" alt="">
-                <p>Đồ Chơi Cho Mèo Con</p>
+                <p>Đồ Chơi Cho Thú Cưng</p>
             </div>
         </a>
-        <a href="./collections.jsp">
+        <a href="collections?cid=8">
             <div class="item">
                 <img src="./assets/img/collections6.webp" alt="">
-                <p>Nhà Cho Mèo</p>
+                <p>Nhà Cho Thú Cưng</p>
             </div>
         </a>
     </div>
