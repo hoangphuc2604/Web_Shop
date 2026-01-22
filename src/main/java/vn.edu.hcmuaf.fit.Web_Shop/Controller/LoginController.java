@@ -1,17 +1,21 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Controller;
 
+import vn.edu.hcmuaf.fit.Web_Shop.Model.Product;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
+import vn.edu.hcmuaf.fit.Web_Shop.Service.ProductService;
 import vn.edu.hcmuaf.fit.Web_Shop.Service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 
     UserService userService = new UserService();
+    ProductService productService = new ProductService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -31,6 +35,10 @@ public class LoginController extends HttpServlet {
             if ("ADMIN".equals(user.getRole())) {
                 response.sendRedirect("admin/index.jsp");
             } else {
+                List<Product> listDiscount = productService.getTopDiscountProducts(8);
+                List<Product> listRecommend = productService.getTopRecommendProducts(8);
+                session.setAttribute("listDiscount", listDiscount);
+                session.setAttribute("listRecommend", listRecommend);
                 response.sendRedirect("index.jsp");
             }
         } else {

@@ -17,19 +17,19 @@
 
         <label>Họ và tên</label>
         <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên">
-        <small class="error" id="err-fullname"></small>
+        <small class="error" id="err-fullname" style="color: red;"></small>
 
         <label>Email (tài khoản đăng nhập)</label>
         <input type="email" id="email" name="email" placeholder="Nhập email">
-        <small class="error" id="err-email"></small>
+        <small class="error" id="err-email" style="color: red;"></small>
 
         <label>Mật khẩu</label>
         <input type="password" id="password" name="password" placeholder="Tạo mật khẩu">
-        <small class="error" id="err-password"></small>
+        <small class="error" id="err-password" style="color: red;"></small>
 
         <label>Nhập lại mật khẩu</label>
         <input type="password" id="confirm" name="confirm" placeholder="Nhập lại mật khẩu">
-        <small class="error" id="err-confirm"></small>
+        <small class="error" id="err-confirm" style="color: red;"></small>
 
         <button type="submit" class="btn-register">Đăng ký</button>
     </form>

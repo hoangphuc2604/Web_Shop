@@ -35,10 +35,19 @@
                     <p>Wishlist</p>
                 </a>
 
-                <a href="./DangNhap.jsp" class="icon-item">
-                    <i class="fa fa-user"></i>
-                    <p>Tài Khoản</p>
-                </a>
+                <c:if test="${not empty sessionScope.user}">
+                    <a href="Thongtintaikhoan.jsp" class="icon-item">
+                        <i class="fa fa-user"></i>
+                        <p>${sessionScope.user.username}</p>
+                    </a>
+                </c:if>
+
+                <c:if test="${empty sessionScope.user}">
+                    <a href="DangNhap.jsp" class="icon-item">
+                        <i class="fa fa-user"></i>
+                        <p>Tài khoản</p>
+                    </a>
+                </c:if>
 
                 <a href="./Cart.jsp" class="icon-item">
                     <i class="fa fa-cart-arrow-down"></i>
