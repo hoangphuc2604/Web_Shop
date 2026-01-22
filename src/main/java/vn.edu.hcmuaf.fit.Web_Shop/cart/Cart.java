@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.Web_Shop.cart;
 
 import vn.edu.hcmuaf.fit.Web_Shop.Model.Product;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Cart implements Serializable {
     Map<Integer, CartItem> data;
+    private User user;
     public Cart(){
         data = new HashMap<>();
     }
@@ -43,7 +45,7 @@ public class Cart implements Serializable {
     private CartItem get(int id) {
          return data.get(id);
     }
-    public int totalQuantity(){
+    public int getTotalQuantity(){
         AtomicInteger total = new AtomicInteger();
         getItems().forEach(item -> {
             total.addAndGet(item.getQuantity());});
@@ -55,5 +57,8 @@ public class Cart implements Serializable {
             total.updateAndGet(v -> v.doubleValue() + (item.getQuantity() * item.getPrice()));
         });
         return total.get();
+    }
+    public void updateCustomerInfo(User user){
+        this.user = user;
     }
 }
