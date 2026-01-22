@@ -21,7 +21,7 @@ public class UserDao {
     // ================= REGISTER =================
     public void insert(User user) {
         String sql = """
-            INSERT INTO users(email, username, password, lock, role)
+            INSERT INTO users(email, username, password, `lock`, role)
             VALUES (?, ?, ?, ?, ?)
         """;
 
@@ -59,8 +59,8 @@ public class UserDao {
                     u.setEmail(rs.getString("email"));
                     u.setUsername(rs.getString("username"));
                     u.setPassword(rs.getString("password"));
+                    u.setLocked(rs.getInt("lock"));
                     u.setRole(rs.getString("role"));
-                    u.setLocked(rs.getInt("locked"));
                     return u;
                 }
             }

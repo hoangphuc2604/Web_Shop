@@ -18,7 +18,7 @@ public class RegisterController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String email = request.getParameter("email");
-        String username = request.getParameter("username");
+        String username = request.getParameter("fullname");
         String password = request.getParameter("password");
 
         userService.register(email, username, password);

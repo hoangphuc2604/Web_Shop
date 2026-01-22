@@ -1,12 +1,15 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Service;
 
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.ProductDao;
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.ProductHomeDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.Product;
 
 import java.util.List;
 
 public class ProductService {
     private ProductDao productDao = new ProductDao();
+    private ProductHomeDao productHomeDao = new ProductHomeDao();
+
     public Product getDetailProduct(int id){
         return productDao.getProductByID(id);
     }
@@ -25,5 +28,11 @@ public class ProductService {
     }
     public Product getProduct(int productId) {
         return productDao.getProductByID(productId);
+    }
+    public List<Product> getTopDiscountProducts(int limit) {
+        return productHomeDao.getDiscountProducts(limit);
+    }
+    public List<Product> getTopRecommendProducts(int limit) {
+        return productHomeDao.getRecommendedProducts(limit);
     }
 }
