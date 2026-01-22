@@ -1,10 +1,8 @@
 function fillDemo() {
     document.getElementById("fullname").value = "Nguyễn Văn A";
     document.getElementById("email").value = "user@gmail.com";
-    document.getElementById("username").value = "user1";
-    document.getElementById("password").value = "123456";
-    document.getElementById("confirm").value = "123456";
-
+    document.getElementById("password").value = "abc12345";
+    document.getElementById("confirm").value = "abc12345";
     clearErrors();
 }
 
@@ -18,9 +16,11 @@ function register() {
 
     const fullname = document.getElementById("fullname").value.trim();
     const email = document.getElementById("email").value.trim();
-    const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
     const confirm = document.getElementById("confirm").value;
+
+    // mật khẩu: ít nhất 8 ký tự, có chữ ,số
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
 
     if (!fullname) {
         document.getElementById("err-fullname").innerText =
@@ -32,17 +32,19 @@ function register() {
         document.getElementById("err-email").innerText =
             "Vui lòng nhập email";
         valid = false;
-    }
-
-    if (!username) {
-        document.getElementById("err-username").innerText =
-            "Vui lòng nhập tên đăng nhập";
+    } else if (!email.includes("@")) {
+        document.getElementById("err-email").innerText =
+            "Email không hợp lệ";
         valid = false;
     }
 
     if (!password) {
         document.getElementById("err-password").innerText =
             "Vui lòng nhập mật khẩu";
+        valid = false;
+    } else if (!passwordRegex.test(password)) {
+        document.getElementById("err-password").innerText =
+            "Mật khẩu phải từ 8–32 ký tự, gồm chữ và số";
         valid = false;
     }
 
@@ -56,9 +58,6 @@ function register() {
         valid = false;
     }
 
-    if (!valid) return;
 
-    // ✅ Thành công
-    alert("Đăng ký thành công!");
-    window.location.href = "DangNhap.jsp";
+    return valid;
 }

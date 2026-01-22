@@ -11,35 +11,43 @@
 <div class="register-box">
     <h2>Đăng ký tài khoản</h2>
 
-    <label>Họ và tên</label>
-    <input type="text" id="fullname" placeholder="Nhập họ và tên">
-    <small class="error" id="err-fullname"></small>
+    <form action="<%= request.getContextPath() %>/register"
+          method="post"
+          onsubmit="return register();">
 
-    <label>Email</label>
-    <input type="email" id="email" placeholder="Nhập email">
-    <small class="error" id="err-email"></small>
+        <label>Họ và tên</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên">
+        <small class="error" id="err-fullname"></small>
 
-    <label>Tên đăng nhập</label>
-    <input type="text" id="username" placeholder="Nhập tên đăng nhập">
-    <small class="error" id="err-username"></small>
+        <label>Email (tài khoản đăng nhập)</label>
+        <input type="email" id="email" name="email" placeholder="Nhập email">
+        <small class="error" id="err-email"></small>
 
-    <label>Mật khẩu</label>
-    <input type="password" id="password" placeholder="Tạo mật khẩu">
-    <small class="error" id="err-password"></small>
+        <label>Mật khẩu</label>
+        <input type="password" id="password" name="password" placeholder="Tạo mật khẩu">
+        <small class="error" id="err-password"></small>
 
-    <label>Nhập lại mật khẩu</label>
-    <input type="password" id="confirm" placeholder="Nhập lại mật khẩu">
-    <small class="error" id="err-confirm"></small>
+        <label>Nhập lại mật khẩu</label>
+        <input type="password" id="confirm" name="confirm" placeholder="Nhập lại mật khẩu">
+        <small class="error" id="err-confirm"></small>
 
-    <button type="button" class="btn-register" onclick="register()">Đăng ký</button>
-
+        <button type="submit" class="btn-register">Đăng ký</button>
+    </form>
 
     <p>
         Đã có tài khoản? <a href="DangNhap.jsp">Đăng nhập</a>
     </p>
+
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+    <p style="color:red; text-align:center;"><%= error %></p>
+    <%
+        }
+    %>
 </div>
 
 <script src="<%= request.getContextPath() %>/js/DangKyTK.js"></script>
-
 </body>
 </html>
