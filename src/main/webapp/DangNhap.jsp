@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/DangNhap.css">
+
 </head>
 <body>
 
@@ -33,6 +34,7 @@
         }
     %>
 </div>
+<script src="<%= request.getContextPath() %>/js/DangNhap.js"></script>
 
 </body>
 </html>

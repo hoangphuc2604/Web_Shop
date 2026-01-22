@@ -22,6 +22,7 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
 
         userService.register(email, username, password);
+
         response.sendRedirect("DangNhap.jsp");
     }
 }

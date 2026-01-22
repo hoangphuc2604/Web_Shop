@@ -3,6 +3,9 @@ package vn.edu.hcmuaf.fit.Web_Shop.Dao;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 public class UserDao {
 
@@ -18,7 +21,7 @@ public class UserDao {
     // ================= REGISTER =================
     public void insert(User user) {
         String sql = """
-            INSERT INTO users(email, username, password, role, locked)
+            INSERT INTO users(email, username, password, lock, role)
             VALUES (?, ?, ?, ?, ?)
         """;
 
@@ -28,8 +31,9 @@ public class UserDao {
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getUsername());
             ps.setString(3, user.getPassword());
-            ps.setString(4, user.getRole());
-            ps.setInt(5, user.getLocked());
+            ps.setInt(4, user.getLocked());
+            ps.setString(5, user.getRole());
+            
 
             ps.executeUpdate();
 
