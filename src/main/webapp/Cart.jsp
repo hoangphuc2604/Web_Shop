@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet-Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="css/Cart_style.css">
 
 </head>
@@ -14,7 +17,7 @@
 <!-- Header trên -->
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="index.jsp"><img src="assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
@@ -39,7 +42,7 @@
                 <p>Tài Khoản</p>
             </a>
 
-            <a href="../HTML/Cart.jsp" class="icon-item">
+            <a href="Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
                 <p>Giỏ Hàng</p>
             </a>
@@ -169,26 +172,45 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="cart-item">
-                        <td class="product-info">
-                            <img src="assets/img/fav4.webp" alt="Royal Canin" class="product-img">
-                            <div>
-                                <p class="product-name">Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</p>
-                                <p class="product-weight">400g</p>
-                                <p class="product-brand">Royal Canin</p>
-                            </div>
-                        </td>
-                        <td class="product-price">135.000đ</td>
-                        <td class="product-qty">
-                            <button class="qty-btn decrease">−</button>
-                            <input type="text" value="1" class="qty-input" readonly>
-                            <button class="qty-btn increase">+</button>
-                        </td>
-                        <td class="product-total">135.000đ</td>
-                        <td class="remove-cell">
-                            <i class="fa-solid fa-x remove-item"></i>
-                        </td>
-                    </tr>
+                    <c:if test="${sessionScope.cart == null || sessionScope.cart.totalQuantity() == 0}">
+                        <tr>
+                            <td colspan="5" style="text-align:center; padding: 20px;">Giỏ hàng trống</td>
+                        </tr>
+                    </c:if>
+
+                    <c:forEach items="${sessionScope.cart.items}" var="item">
+                        <tr class="cart-item">
+                            <td class="product-info">
+                                <img src="${item.product.image}" alt="${item.product.name}" class="product-img">
+                                <div>
+                                    <p class="product-name">${item.product.name}</p>
+                                    <p class="product-brand">ID: ${item.product.id}</p>
+                                </div>
+                            </td>
+
+                            <td class="product-price">
+                                <fmt:formatNumber value="${item.price}" type="currency"/>
+                            </td>
+
+                            <td class="product-qty">
+                                <a href="update-cart?id=${item.product.id}&action=dec" class="qty-btn decrease" style="text-decoration: none; display: inline-block; text-align: center;">−</a>
+
+                                <input type="text" value="${item.quantity}" class="qty-input" readonly>
+
+                                <a href="update-cart?id=${item.product.id}&action=inc" class="qty-btn increase" style="text-decoration: none; display: inline-block; text-align: center;">+</a>
+                            </td>
+
+                            <td class="product-total">
+                                <fmt:formatNumber value="${item.price * item.quantity}" type="currency"/>
+                            </td>
+
+                            <td class="remove-cell">
+                                <a href="remove-cart?id=${item.product.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                    <i class="fa-solid fa-x remove-item"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
 
@@ -199,9 +221,17 @@
             <div class="cart-right">
                 <h2>TỔNG SỐ TIỀN</h2>
                 <div class="cart-summary">
+
                     <div class="summary-item">
                         <p>Tổng số tiền:</p>
-                        <p class="summary-value">135000đ</p>
+                        <p class="summary-value">
+                            <c:choose>
+                                <c:when test="${sessionScope.cart != null}">
+                                    <fmt:formatNumber value="${sessionScope.cart.total()}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                </c:when>
+                                <c:otherwise>0 đ</c:otherwise>
+                            </c:choose>
+                        </p>
                     </div>
 
                     <div class="promo-code">
@@ -211,12 +241,21 @@
 
                     <div class="summary-item total">
                         <p>TỔNG</p>
-                        <p class="summary-value">135.000đ</p>
+                        <p class="summary-value">
+                            <c:choose>
+                                <c:when test="${sessionScope.cart != null}">
+                                    <fmt:formatNumber value="${sessionScope.cart.total()}" type="currency" currencySymbol="đ" maxFractionDigits="0"/>
+                                </c:when>
+                                <c:otherwise>0 đ</c:otherwise>
+                            </c:choose>
+                        </p>
                     </div>
+
                     <a href="Payment.jsp">
                         <button class="checkout-btn">Đi Đến Trang Thanh Toán</button>
                     </a>
-                    <a href="../index.html">
+
+                    <a href="index.jsp">
                         <button class="continue-btn">Tiếp Tục Mua Sắm</button>
                     </a>
 

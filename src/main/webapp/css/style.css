@@ -945,3 +945,48 @@ body {
 }
 
 /* End footer */
+/*Thêm css cho hover sản phẩm*/
+.info-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.add-to-cart-btn {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #f57224;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease-in-out;
+    z-index: 10;
+    opacity: 0;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #d85f1c;
+    color: white;
+}
+
+.img-container:hover .add-to-cart-btn {
+    bottom: 20px;
+    opacity: 1;
+}
+
+.img-container img {
+    transition: transform 0.3s ease;
+}
+.img-container:hover img {
+    transform: scale(1.05);
+    filter: brightness(90%);
+}

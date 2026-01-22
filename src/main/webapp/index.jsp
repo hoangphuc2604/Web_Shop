@@ -189,16 +189,23 @@
         <div class="dp-slider">
             <div class="dp-wrapper">
                 <c:forEach items="${listDiscount}" var="p">
-                    <a href="product?id=${p.id}" class="di-link">
-                        <div class="dp-item">
-                            <img src="${p.image}" alt="${p.name}">
+                    <div class="dp-item">
+                        <div class="img-container" style="position: relative; overflow: hidden;">
+                            <a href="product?id=${p.id}">
+                                <img src="${p.image}" alt="${p.name}" style="width: 100%; display: block;">
+                            </a>
+                            <a href="add-to-cart?id=${p.id}&quantity=1" class="add-to-cart-btn">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </a>
+                        </div>
+                        <a href="product?id=${p.id}" class="info-link">
                             <h4>${p.categoryName}</h4>
                             <p>${p.name}</p>
                             <span class="price1">${p.formattedOriginalPrice}</span>
                             <span class="price2">${p.formattedPrice}</span>
-                            <i class="fa-regular fa-heart dp-icon"></i>
-                        </div>
-                    </a>
+                        </a>
+                        <i class="fa-regular fa-heart dp-icon"></i>
+                    </div>
                 </c:forEach>
             </div>
         </div>
@@ -215,9 +222,18 @@
             <div class="deal-slider">
                 <div class="deal-wrapper">
                     <c:forEach items="${listRecommend}" var="p">
-                        <a href="product?id=${p.id}" class="di-link">
-                            <div class="deal-item">
-                                <img src="${p.image}" alt="${p.name}">
+                        <div class="deal-item">
+                            <div class="img-container" style="position: relative; overflow: hidden;">
+                                <a href="product?id=${p.id}">
+                                    <img src="${p.image}" alt="${p.name}" style="width: 100%; display: block;">
+                                </a>
+
+                                <a href="add-to-cart?id=${p.id}&quantity=1" class="add-to-cart-btn">
+                                    <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                                </a>
+                            </div>
+
+                            <a href="product?id=${p.id}" class="info-link">
                                 <h4>${p.categoryName}</h4>
                                 <p>${p.name}</p>
                                 <c:choose>
@@ -229,9 +245,9 @@
                                         <span class="price">${p.formattedPrice}</span>
                                     </c:otherwise>
                                 </c:choose>
-                                <i class="fa-regular fa-heart deal-icon"></i>
-                            </div>
-                        </a>
+                            </a>
+                            <i class="fa-regular fa-heart deal-icon"></i>
+                        </div>
                     </c:forEach>
                 </div>
             </div>

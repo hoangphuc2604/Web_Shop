@@ -23,4 +23,7 @@ public class ProductService {
     public List<Product> getProductsByCategory(int cid, String sortType, int index) {
         return productDao.getProductsByCategory(cid, sortType, index);
     }
+    public Product getProduct(int productId) {
+        return productDao.getProductByID(productId);
+    }
 }
