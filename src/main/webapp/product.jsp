@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,14 +77,15 @@
         <div class="product-detail-left">
             <div class="product-thumbnails">
                 <i class="fa-solid fa-chevron-up"></i>
-                <img src="${detail.image}" alt="thumb1">
-                <img src="${detail.image}" alt="thumb2">
-                <img src="${detail.image}" alt="thumb3">
+                <img src="${proDetail.image}" alt="thumb">
+                <img src="${proDetail.image}" alt="thumb">
+                <img src="${proDetail.image}" alt="thumb">
+                <img src="${proDetail.image}" alt="thumb">
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
 
             <div class="product-main-image">
-                <img src="${detail.image}" alt="${detail.name}">
+                <img src="${proDetail.image}" alt="${proDetail.name}">
             </div>
         </div>
 
@@ -90,10 +93,10 @@
             <div class="breadcrumb">
                 <a href="./index.jsp">Trang chủ</a> >
                 <a href="./collections">Sản phẩm</a> >
-                <span>${detail.name}</span>
+                <span>${proDetail.name}</span>
             </div>
 
-            <h2>${detail.name}</h2>
+            <h2>${proDetail.name}</h2>
 
             <div class="rating">
                 <i class="fa-solid fa-star"></i>
@@ -101,19 +104,19 @@
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
-                <span>(5 đánh giá)</span>
+                <span>(Xem đánh giá ở bên dưới)</span>
             </div>
 
-            <p class="product-brand">Thương hiệu: <span>${detail.brand}</span></p>
+            <p class="product-brand">Thương hiệu: <span>${proDetail.categoryName}</span></p>
 
-            <div class="product-price" data-price="${detail.price}">
-                ${detail.formattedPrice}
+            <div class="product-price" data-price="${proDetail.salePrice}">
+                ${proDetail.formattedPrice}
             </div>
 
             <div class="product-size">
                 <p>Khối lượng:</p>
                 <div class="size-options">
-                    <button class="active">${detail.weight}</button>
+                    <button class="active">Tiêu chuẩn</button>
                 </div>
             </div>
 
@@ -127,11 +130,11 @@
             </div>
 
             <div class="product-total">
-                Tổng số tiền: <span>${detail.formattedPrice}</span>
+                Tổng số tiền: <span>${proDetail.formattedPrice}</span>
             </div>
 
             <div class="product-buttons">
-                <button class="add-cart" onclick="window.location.href='add-to-cart?id=${detail.id}'">
+                <button class="add-cart" onclick="window.location.href='add-to-cart?id=${proDetail.id}'">
                     <i class="fa-solid fa-cart-shopping"></i>
                     Thêm vào giỏ hàng
                 </button>
@@ -156,7 +159,7 @@
         </div>
 
         <h4>Chi tiết sản phẩm</h4>
-        <p>${detail.description}</p>
+        <p>${proDetail.description}</p>
 
         <div class="review-section">
             <h2 class="review-title">ĐÁNH GIÁ SẢN PHẨM</h2>
