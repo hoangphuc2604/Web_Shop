@@ -1,21 +1,31 @@
+function clearErrors() {
+    document.querySelectorAll(".error").forEach(e => e.innerText = "");
+}
+
 function login() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    clearErrors();
+    let valid = true;
 
-    let userData = localStorage.getItem("user_" + username);
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-    if (!userData) {
-        alert("Tài khoản không tồn tại");
-        return;
+    if (!email) {
+        document.getElementById("err-email").innerText = "Vui lòng nhập tài khoản";
+        valid = false;
     }
 
-    let user = JSON.parse(userData);
-
-    if (user.password !== password) {
-        alert("Sai mật khẩu");
-        return;
+    if (!password) {
+        document.getElementById("err-password").innerText = "Vui lòng nhập mật khẩu";
+        valid = false;
     }
 
-    alert("Đăng nhập thành công!");
-    window.location.href = "../index.html"; // đổi nếu cần
+    if (!valid) return;
+
+
+    if (email === "admin@gmail.com" && password === "a123456") {
+        alert("Đăng nhập thành công!");
+        window.location.href = "../index.jsp";
+    } else {
+        document.getElementById("err-email").innerText = "Tài khoản hoặc mật khẩu không chính xác";
+    }
 }

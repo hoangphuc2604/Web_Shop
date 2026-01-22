@@ -72,3 +72,10 @@ input {
 .login-link a:hover {
     text-decoration: underline;
 }
+.error {
+    color: red !important;
+    display: block;
+    font-size: 13px;
+    margin-top: 5px;
+    min-height: 15px;
+}
