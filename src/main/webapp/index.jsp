@@ -23,13 +23,17 @@
         <button><i class="fa fa-search"></i></button>
     </div>
 
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
     <div class="right-info">
         <div class="hotline">
             <p>Hotline</p>
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="./wishlist.jsp" class="icon-item">
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
@@ -212,7 +216,20 @@
                             <span class="price1">${p.formattedOriginalPrice}</span>
                             <span class="price2">${p.formattedPrice}</span>
                         </a>
-                        <i class="fa-regular fa-heart dp-icon"></i>
+                        <c:choose>
+                            <c:when test="${sessionScope.wishlistIds.contains(p.id)}">
+                                <i class="fa-solid fa-heart dp-icon liked"
+                                   style="cursor: pointer; color: red;"
+                                   onclick="event.preventDefault(); toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                                </i>
+                            </c:when>
+                            <c:otherwise>
+                                <i class="fa-regular fa-heart dp-icon"
+                                   style="cursor: pointer;"
+                                   onclick="event.preventDefault(); toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                                </i>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </c:forEach>
             </div>
@@ -254,7 +271,20 @@
                                     </c:otherwise>
                                 </c:choose>
                             </a>
-                            <i class="fa-regular fa-heart deal-icon"></i>
+                            <c:choose>
+                                <c:when test="${sessionScope.wishlistIds.contains(p.id)}">
+                                    <i class="fa-solid fa-heart deal-icon liked"
+                                       style="cursor: pointer; color: red;"
+                                       onclick="event.preventDefault(); toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                                    </i>
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="fa-regular fa-heart deal-icon"
+                                       style="cursor: pointer;"
+                                       onclick="event.preventDefault(); toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                                    </i>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </c:forEach>
                 </div>
@@ -263,6 +293,7 @@
 <!--        </a>-->
     </div>
     <script src="./js/main.js"></script>
+    <script src="./js/wishlist.js"></script>
 </div>
 <!--Trademark list-->
 <div class="trademark_list">

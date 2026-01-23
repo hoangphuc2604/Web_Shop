@@ -23,6 +23,10 @@
         <button><i class="fa fa-search"></i></button>
     </div>
 
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
     <div class="right-info">
         <div class="hotline">
             <p>Hotline</p>
@@ -30,7 +34,7 @@
         </div>
         <div class="icons">
             <div class="icons">
-                <a href="./wishlist.jsp" class="icon-item">
+                <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                     <i class="fa fa-heart"></i>
                     <p>Wishlist</p>
                 </a>
@@ -147,7 +151,21 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     Thêm vào giỏ hàng
                 </button>
-                <button class="favorite"><i class="fa-regular fa-heart"></i></button>
+                <c:choose>
+                    <c:when test="${sessionScope.wishlistIds.contains(proDetail.id)}">
+                        <i class="fa-solid fa-heart"
+                           style="cursor: pointer; font-size: 24px; color: red;"
+                           class="liked"
+                           onclick="toggleWishlist(this, ${proDetail.id}, isUserLoggedIn)">
+                        </i>
+                    </c:when>
+                    <c:otherwise>
+                        <i class="fa-regular fa-heart"
+                           style="cursor: pointer; font-size: 24px;"
+                           onclick="toggleWishlist(this, ${proDetail.id}, isUserLoggedIn)">
+                        </i>
+                    </c:otherwise>
+                </c:choose>
                 <button class="share"><i class="fa-solid fa-share-nodes"></i></button>
             </div>
 
@@ -182,6 +200,7 @@
             </div>
         </div>
     </div>
+    <script src="js/wishlist.js"></script>
 </div>
 
 <!--Footer-->

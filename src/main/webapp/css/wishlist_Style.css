@@ -64,3 +64,24 @@
     color: red;
     cursor: pointer;
 }
+.dp-item {
+    transition: box-shadow 0.3s ease;
+}
+
+.dp-item:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.dp-item:hover .add-to-cart-btn {
+    bottom: 0 !important;
+}
+
+.add-to-cart-btn {
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0.9;
+}
+.add-to-cart-btn:hover {
+    opacity: 1;
+    background: #0056b3 !important;
+}
