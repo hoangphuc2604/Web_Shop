@@ -14,7 +14,7 @@
 <!-- Header trên -->
 <header class="header-top">
     <div class="logo">
-        <a href="./index.jsp"><img src="./assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="index"><img src="./assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
@@ -54,6 +54,11 @@
 
             <a href="./Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span style="position: absolute; top: -5px; right: 15px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: bold;">
+                        ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
                 <p>Giỏ Hàng</p>
             </a>
         </div>

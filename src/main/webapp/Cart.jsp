@@ -17,7 +17,7 @@
 <!-- Header trên -->
 <header class="header-top">
     <div class="logo">
-        <a href="index.jsp"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="index"><img src="assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
@@ -184,7 +184,6 @@
                                 <img src="${item.product.image}" alt="${item.product.name}" class="product-img">
                                 <div>
                                     <p class="product-name">${item.product.name}</p>
-                                    <p class="product-brand">ID: ${item.product.id}</p>
                                 </div>
                             </td>
 
@@ -193,11 +192,29 @@
                             </td>
 
                             <td class="product-qty">
-                                <a href="update-cart?id=${item.product.id}&action=dec" class="qty-btn decrease" style="text-decoration: none; display: inline-block; text-align: center;">−</a>
+                                <form action="update-cart" method="post" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin: 0;">
+                                    <input type="hidden" name="productId" value="${item.product.id}">
 
-                                <input type="text" value="${item.quantity}" class="qty-input" readonly>
+                                    <button type="button"
+                                            onclick="var qty = this.nextElementSibling; qty.value = parseInt(qty.value) - 1; this.form.submit();"
+                                            class="qty-btn decrease"
+                                            style="border: none; background: none; cursor: pointer; font-size: 1.2rem; padding: 0 10px;">
+                                        −
+                                    </button>
 
-                                <a href="update-cart?id=${item.product.id}&action=inc" class="qty-btn increase" style="text-decoration: none; display: inline-block; text-align: center;">+</a>
+                                    <input type="number" name="quantity" value="${item.quantity}"
+                                           onchange="this.form.submit()"
+                                           class="qty-input"
+                                           min="1"
+                                           style="width: 60px; text-align: center; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+
+                                    <button type="button"
+                                            onclick="var qty = this.previousElementSibling; qty.value = parseInt(qty.value) + 1; this.form.submit();"
+                                            class="qty-btn increase"
+                                            style="border: none; background: none; cursor: pointer; font-size: 1.2rem; padding: 0 10px;">
+                                        +
+                                    </button>
+                                </form>
                             </td>
 
                             <td class="product-total">
@@ -205,9 +222,14 @@
                             </td>
 
                             <td class="remove-cell">
-                                <a href="remove-item?id=${item.product.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
-                                    <i class="fa-solid fa-x remove-item"></i>
-                                </a>
+                                <form action="remove-item" method="post" style="display: inline-block;">
+                                    <input type="hidden" name="productId" value="${item.product.id}">
+
+                                    <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"
+                                            style="border: none; background: none; cursor: pointer; padding: 0;">
+                                        <i class="fa-solid fa-x remove-item"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
@@ -255,7 +277,7 @@
                         <button class="checkout-btn">Đi Đến Trang Thanh Toán</button>
                     </a>
 
-                    <a href="index.jsp">
+                    <a href="index">
                         <button class="continue-btn">Tiếp Tục Mua Sắm</button>
                     </a>
 
@@ -265,7 +287,7 @@
         </div>
     </div>
 
-    <script src="js/Cart.js"></script>
+<%--    <script src="js/Cart.js"></script>--%>
 </div>
 
 <!--Footer-->
