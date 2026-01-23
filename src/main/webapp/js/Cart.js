@@ -70,12 +70,12 @@ document.querySelectorAll('.cart-item').forEach(item => {
         }
     });
 
-    removeBtn.addEventListener("click", () => {
-        if (confirm("Bạn có chắc muốn xóa sản phẩm này?")) {
-            // item.remove();
-            // updateCartTotal();
-        }
-    });
+    // removeBtn.addEventListener("click", () => {
+    //     if (confirm("Bạn có chắc muốn xóa sản phẩm này?")) {
+    //         // item.remove();
+    //         // updateCartTotal();
+    //     }
+    // });
 
     updateItemTotal();
 });
