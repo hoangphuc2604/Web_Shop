@@ -45,4 +45,23 @@ public class UserService {
         }
         return null;
     }
+    // CHANGE PASSWORD
+    public boolean changePassword(int userId, String oldPassword, String newPassword, String confirmPassword) {
+
+        if (!newPassword.equals(confirmPassword)) return false;
+
+        User user = userDao.findById(userId);
+        if (user == null) return false;
+
+        String oldHashed = hashPassword(oldPassword);
+
+        // kiểm tra mật khẩu cũ
+        if (!oldHashed.equals(user.getPassword())) {
+            return false;
+        }
+
+        String newHashed = hashPassword(newPassword);
+        return userDao.updatePassword(userId, newHashed);
+    }
+
 }

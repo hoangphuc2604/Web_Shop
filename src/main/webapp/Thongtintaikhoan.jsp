@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/Thongtintaikhoan.css">
     <link rel="stylesheet" href="../style.css">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 </head>
 
@@ -149,23 +150,60 @@
 
         </div>
 
-        <!-- Đổi Mật Khẩu -->
+        <!--  ĐỔI MẬT KHẨU  -->
         <div id="password" class="section">
             <h2>Đổi Mật Khẩu</h2>
-            <div class="form-group">
-                <label>Mật khẩu hiện tại</label>
-                <input type="password">
-            </div>
-            <div class="form-group">
-                <label>Mật khẩu mới</label>
-                <input type="password">
-            </div>
-            <div class="form-group">
-                <label>Nhập lại mật khẩu</label>
-                <input type="password">
-            </div>
-            <button class="save-btn">Lưu thay đổi</button>
+            <p>Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác.</p>
+
+            <form action="change-password" method="post">
+
+                <div class="form-group">
+                    <label for="oldPassword">Mật khẩu hiện tại</label>
+                    <input type="password"
+                           id="oldPassword"
+                           name="oldPassword"
+                           placeholder="Nhập mật khẩu hiện tại"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">Mật khẩu mới</label>
+                    <input type="password"
+                           id="newPassword"
+                           name="newPassword"
+                           placeholder="Nhập mật khẩu mới"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Nhập lại mật khẩu mới</label>
+                    <input type="password"
+                           id="confirmPassword"
+                           name="confirmPassword"
+                           placeholder="Nhập lại mật khẩu mới"
+                           required>
+                </div>
+
+                <button type="submit" class="save-btn">
+                    Lưu thay đổi
+                </button>
+            </form>
+
+            <!-- HIỂN THỊ LỖI -->
+            <c:if test="${not empty error}">
+                <p style="color:red; margin-top:10px;">
+                        ${error}
+                </p>
+            </c:if>
+
+            <!-- HIỂN THỊ THÀNH CÔNG -->
+            <c:if test="${not empty success}">
+                <p style="color:green; margin-top:10px;">
+                        ${success}
+                </p>
+            </c:if>
         </div>
+
 
         <!-- Đơn Hàng -->
         <div id="orders" class="section">
