@@ -22,13 +22,17 @@
         <button><i class="fa fa-search"></i></button>
     </div>
 
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
     <div class="right-info">
         <div class="hotline">
             <p>Hotline</p>
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="./wishlist.jsp" class="icon-item">
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
@@ -128,7 +132,19 @@
                                             <span class="price">${p.formattedPrice}</span>
                                         </c:otherwise>
                                     </c:choose>
-                                    <i class="fa-regular fa-heart cs-icon"></i>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.wishlistIds.contains(p.id)}">
+                                            <i class="fa-solid fa-heart cs-icon liked"
+                                               style="color: red;"
+                                               onclick="event.preventDefault(); toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                                            </i>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="fa-regular fa-heart cs-icon"
+                                               onclick="event.preventDefault(); toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                                            </i>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </a>
                         </c:forEach>
@@ -185,6 +201,7 @@
         </div>
     </div>
     <script src="js/Collections.js"></script>
+    <script src="./js/wishlist.js"></script>
 </div>
 
 <!--Footer-->

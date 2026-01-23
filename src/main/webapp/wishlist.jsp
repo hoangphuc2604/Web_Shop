@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Danh sách sản phẩm yêu thích</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/wishlist_Style.css">
 
@@ -12,7 +14,7 @@
 <body>
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="./index.jsp"><img src="assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
@@ -21,28 +23,40 @@
         <button><i class="fa fa-search"></i></button>
     </div>
 
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
     <div class="right-info">
         <div class="hotline">
             <p>Hotline</p>
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="../HTML/wishlist.jsp" class="icon-item">
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
 
-            <a href="DangNhap.jsp" class="icon-item">
-                <i class="fa fa-user"></i>
-                <p>Đăng Nhập</p>
-            </a>
+            <c:if test="${not empty sessionScope.user}">
+                <a href="Thongtintaikhoan.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>${sessionScope.user.username}</p>
+                </a>
+            </c:if>
+
+            <c:if test="${empty sessionScope.user}">
+                <a href="./DangNhap.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>Tài Khoản</p>
+                </a>
+            </c:if>
 
             <a href="Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
                 <p>Giỏ Hàng</p>
             </a>
         </div>
-
     </div>
 </header>
 
@@ -51,94 +65,16 @@
         <!--Dog-->
         <li class="has-dropdown">
             <a href="#">Chó</a>
-            <div class="dropdown">
-                <div class="dropdown-container">
-                    <div>
-                        <h4>Thức Ăn Cho Chó</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Hữu Cơ</p>
-                        <p>Thức Ăn Không Ngũ Cốc</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
-                        <p>Vệ Sinh Răng Miệng</p>
-                        <p>Sữa Tắm & Phụ Kiện</p>
-                        <p>Xịt Khử Mùi</p>
-                    </div>
-                    <div>
-                        <h4>Bánh Thưởng</h4>
-                        <p>Bánh Quy</p>
-                        <p>Súp Thưởng</p>
-                        <p>Thịt Sấy Khô</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện</h4>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Nệm - Chuồng Cho Cún</p>
-                        <p>Tã Lót & Khay Vệ Sinh</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khoẻ</h4>
-                        <p>Vitamin</p>
-                        <p>Trị Ve Rận</p>
-                        <p>Thực Phẩm Chức Năng</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
         </li>
 
         <!--Cat-->
         <li class="has-dropdown">
             <a href="#">Mèo</a>
-            <div class="dropdown">
-                <div class="dropdown-container dropdown-meo">
-                    <div>
-                        <h4>Thức Ăn Cho Mèo</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Cho Mèo Con</p>
-                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
-                        <p>Cát Vệ Sinh</p>
-                        <p>Khử Mùi</p>
-                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện & Đồ Chơi</h4>
-                        <p>Chuồng & Nệm Mèo</p>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Đồ Chơi Gãi Móng</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Vitamin</p>
-                        <p>Xổ Giun & Ve Rận</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
         </li>
 
         <!--Thiết bị thông minh-->
         <li class="has-dropdown">
             <a href="#">Thiết bị thông minh</a>
-            <div class="dropdown-small">
-                <p>Máy Ăn Uống Tự Động</p>
-                <p>Nhà Vệ Sinh Tự Động</p>
-                <p>Đồ Chơi Tương Tác</p>
-            </div>
         </li>
 
         <li><a href="#">Hàng mới về</a></li>
@@ -155,55 +91,50 @@
             <h2>Danh sách sản phẩm yêu thích</h2>
         </div>
         <div class="wl-slider">
-            <div class="wl-wrapper">
-                <div class="wl-item">
-                    <img src="assets/img/deal1.png" alt="">
-                    <h4>Silver Spoon</h4>
-                    <p>Súp Thưởng Cho Mèo Silver Spoon (Túi 8 tuýp*6g)</p>
-                    <span class="price">27.000₫</span>
-                    <i class="fa-solid fa-heart wl-icon"></i>
-                </div>
+            <div class="wl-wrapper" style="display: flex; flex-wrap: wrap; gap: 25px; justify-content: flex-start;">
 
-                <div class="wl-item">
-                    <img src="assets/img/deal2.png" alt="">
-                    <h4>Silver Spoon</h4>
-                    <p>Pate Cho Mèo Silver Spoon Dạng Thạch & Sốt 60g</p>
-                    <span class="price">16.000₫</span>
-                    <i class="fa-solid fa-heart wl-icon"></i>
-                </div>
+                <c:if test="${empty wishlists}">
+                    <div style="width: 100%; text-align: center; margin-top: 50px;">
+                        <p>Bạn chưa có sản phẩm yêu thích nào.</p>
+                        <a href="index.jsp" style="color: blue; text-decoration: underline;">Quay lại mua sắm</a>
+                    </div>
+                </c:if>
 
-                <div class="wl-item">
-                    <img src="assets/img/deal3.png" alt="">
-                    <h4>Silver Spoon</h4>
-                    <p>Súp Thưởng Cho Mèo Silver Spoon Dạng Thìa 10g</p>
-                    <span class="price">27.000₫</span>
-                    <i class="fa-solid fa-heart wl-icon"></i>
-                </div>
+                <c:forEach items="${wishlists}" var="p">
 
-                <div class="wl-item">
-                    <img src="assets/img/deal4.png" alt="">
-                    <h4>Silver Spoon</h4>
-                    <p>Thức Ăn Hạt Cho Mèo Trưởng Thành Silver Spoon 1kg</p>
-                    <span class="price1">189.000₫</span>
-                    <span class="price2">150.000₫</span>
-                    <i class="fa-solid fa-heart wl-icon"></i>
-                </div>
-                <div class="wl-item">
-                    <img src="assets/img/fav1.webp" alt="">
-                    <h4>Royal Canin</h4>
-                    <p>Thức Ăn Hạt Cho Mèo Trưởng Thành Nuôi Trong Nhà Royal Canin Indoor 27</p>
-                    <span class="price">132.000₫</span>
-                    <i class="fa-solid fa-heart wl-icon"></i>
-                </div>
+                    <div class="dp-item" style="margin: 0;">
 
-                <div class="wl-item">
-                    <img src="assets/img/fav2.webp" alt="">
-                    <h4>Royal Canin</h4>
-                    <p>Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</p>
-                    <span class="price">135.000₫</span>
-                    <i class="fa-solid fa-heart wl-icon"></i>
-                </div>
+                        <div class="img-container" style="position: relative; overflow: hidden; border-radius: 10px;">
+                            <a href="product?id=${p.id}">
+                                <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 330px; object-fit: contain; display: block;">
+                            </a>
 
+                            <a href="add-to-cart?id=${p.id}&quantity=1" class="add-to-cart-btn">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </a>
+                        </div>
+
+                        <a href="product?id=${p.id}" class="info-link">
+                            <h4>${p.categoryName}</h4>
+                            <p>${p.name}</p>
+
+                            <c:choose>
+                                <c:when test="${p.salePrice < p.price}">
+                                    <span class="price1">${p.formattedOriginalPrice}</span>
+                                    <span class="price2">${p.formattedPrice}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="price2" style="color: red;">${p.formattedPrice}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </a>
+
+                        <i class="fa-solid fa-heart dp-icon liked"
+                           style="color: red; opacity: 1;"
+                           onclick="toggleWishlist(this, ${p.id}, isUserLoggedIn)">
+                        </i>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -260,13 +191,13 @@
             </div>
             <div class="icon_social">
                 <a href="https://www.facebook.com/PaddyPetShop" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/fbicon.png" alt>
+                    <img class="small_icon" src="./assets/img/fbicon.png" alt>
                 </a>
                 <a href="https://www.instagram.com/paddypetshop/" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/insicon.png" alt>
+                    <img class="small_icon" src="./assets/img/insicon.png" alt>
                 </a>
                 <a href="https://www.tiktok.com/@paddypetshop" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/tiktokicon.png" alt>
+                    <img class="small_icon" src="./assets/img/tiktokicon.png" alt>
                 </a>
             </div>
         </div>

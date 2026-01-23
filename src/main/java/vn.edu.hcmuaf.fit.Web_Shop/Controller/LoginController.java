@@ -7,6 +7,7 @@ import vn.edu.hcmuaf.fit.Web_Shop.Service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import vn.edu.hcmuaf.fit.Web_Shop.Service.WishlistService;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,6 +17,7 @@ public class LoginController extends HttpServlet {
 
     UserService userService = new UserService();
     ProductService productService = new ProductService();
+    WishlistService wishlistService = new WishlistService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,8 +39,10 @@ public class LoginController extends HttpServlet {
             } else {
                 List<Product> listDiscount = productService.getTopDiscountProducts(8);
                 List<Product> listRecommend = productService.getTopRecommendProducts(8);
+                List<Integer> wishlistIds = wishlistService.getWishlistIds(user.getId());
                 session.setAttribute("listDiscount", listDiscount);
                 session.setAttribute("listRecommend", listRecommend);
+                session.setAttribute("wishlistIds", wishlistIds);
                 response.sendRedirect("index.jsp");
             }
         } else {
