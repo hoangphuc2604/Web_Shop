@@ -19,8 +19,10 @@ function register() {
     const password = document.getElementById("password").value;
     const confirm = document.getElementById("confirm").value;
 
-    // mật khẩu: ít nhất 8 ký tự, có chữ ,số
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$/;
+    // mật khẩu: ít nhất 8 ký tự, có chữ ,số,chữ hoa, ký tự đặc biệt
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#()_\-+=\[{\]};:'",.<>\/\\|~`])[A-Za-z\d@$!%*?&^#()_\-+=\[{\]};:'",.<>\/\\|~`]{8,32}$/;
+
 
     if (!fullname) {
         document.getElementById("err-fullname").innerText =
@@ -44,7 +46,7 @@ function register() {
         valid = false;
     } else if (!passwordRegex.test(password)) {
         document.getElementById("err-password").innerText =
-            "Mật khẩu phải từ 8–32 ký tự, gồm chữ và số";
+            "Mật khẩu phải từ 8–32 ký tự, gồm chữ thường, số chữ Hoa, ký tự đặc biệt";
         valid = false;
     }
 

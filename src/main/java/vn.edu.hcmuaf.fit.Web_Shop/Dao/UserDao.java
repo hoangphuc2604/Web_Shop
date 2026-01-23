@@ -18,7 +18,7 @@ public class UserDao {
         );
     }
 
-    // ================= REGISTER =================
+    //  REGISTER
     public void insert(User user) {
         String sql = """
             INSERT INTO users(email, username, password, `lock`, role)
@@ -42,7 +42,7 @@ public class UserDao {
         }
     }
 
-    // ================= LOGIN =================
+    //  LOGIN
     public User findByUsernameOrEmail(String input) {
         String sql = "SELECT * FROM users WHERE username=? OR email=?";
 
@@ -70,4 +70,48 @@ public class UserDao {
         }
         return null;
     }
+    //  CHANGE PASSWORD
+    public boolean updatePassword(int userId, String newHashedPassword) {
+        String sql = "UPDATE users SET password=? WHERE id=?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, newHashedPassword);
+            ps.setInt(2, userId);
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public User findById(int id) {
+        String sql = "SELECT * FROM users WHERE id=?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setEmail(rs.getString("email"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setRole(rs.getString("role"));
+                u.setLocked(rs.getInt("lock"));
+                return u;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
