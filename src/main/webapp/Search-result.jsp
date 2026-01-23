@@ -1,50 +1,65 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet-Shop</title>
+    <title>Kết quả tìm kiếm - Pet Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/Blog.css">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Search-result.css">
 </head>
 <body>
 <!-- Header trên -->
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
-        </a>
+        <a href="index"><img src="assets/img/logo.avif" alt="Paddy.vn" /></a>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-        <button><i class="fa fa-search"></i></button>
-    </div>
+    <form action="search" method="get" class="search-bar">
+        <input type="text" name="txt" placeholder="Tìm kiếm sản phẩm..." value="${txtS}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    <script>
+        // Biến kiểm tra đăng nhập cho Wishlist.js dùng
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
 
     <div class="right-info">
         <div class="hotline">
-            <p>Hotline</p>
-            <strong>086 767 7891</strong>
+            <p>Hotline</p><strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="wishlist.jsp" class="icon-item">
-                <i class="fa fa-heart"></i>
-                <p>Wishlist</p>
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
+                <i class="fa fa-heart"></i><p>Wishlist</p>
             </a>
 
-            <a href="DangNhap.jsp" class="icon-item">
-                <i class="fa fa-user"></i>
-                <p>Tài Khoản</p>
-            </a>
+            <c:if test="${not empty sessionScope.user}">
+                <a href="Thongtintaikhoan.jsp" class="icon-item">
+                    <i class="fa fa-user"></i><p>${sessionScope.user.username}</p>
+                </a>
+            </c:if>
+            <c:if test="${empty sessionScope.user}">
+                <a href="DangNhap.jsp" class="icon-item">
+                    <i class="fa fa-user"></i><p>Tài Khoản</p>
+                </a>
+            </c:if>
 
             <a href="Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span style="position: absolute; top: -5px; right: 15px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: bold;">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
                 <p>Giỏ Hàng</p>
             </a>
         </div>
-
     </div>
 </header>
 
@@ -53,100 +68,22 @@
     <ul>
         <!-- CHÓ -->
         <li class="has-dropdown">
-            <a href="#">Chó</a>
-            <div class="dropdown">
-                <div class="dropdown-container">
-                    <div>
-                        <h4>Thức Ăn Cho Chó</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Hữu Cơ</p>
-                        <p>Thức Ăn Không Ngũ Cốc</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
-                        <p>Vệ Sinh Răng Miệng</p>
-                        <p>Sữa Tắm & Phụ Kiện</p>
-                        <p>Xịt Khử Mùi</p>
-                    </div>
-                    <div>
-                        <h4>Bánh Thưởng</h4>
-                        <p>Bánh Quy</p>
-                        <p>Súp Thưởng</p>
-                        <p>Thịt Sấy Khô</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện</h4>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Nệm - Chuồng Cho Cún</p>
-                        <p>Tã Lót & Khay Vệ Sinh</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khoẻ</h4>
-                        <p>Vitamin</p>
-                        <p>Trị Ve Rận</p>
-                        <p>Thực Phẩm Chức Năng</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
+            <a href="./collections.jsp">Chó</a>
         </li>
 
         <!-- MÈO -->
         <li class="has-dropdown">
-            <a href="#">Mèo</a>
-            <div class="dropdown">
-                <div class="dropdown-container dropdown-meo">
-                    <div>
-                        <h4>Thức Ăn Cho Mèo</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Cho Mèo Con</p>
-                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
-                        <p>Cát Vệ Sinh</p>
-                        <p>Khử Mùi</p>
-                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện & Đồ Chơi</h4>
-                        <p>Chuồng & Nệm Mèo</p>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Đồ Chơi Gãi Móng</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Vitamin</p>
-                        <p>Xổ Giun & Ve Rận</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
+            <a href="./collections.jsp">Mèo</a>
         </li>
 
         <!-- THIẾT BỊ THÔNG MINH -->
         <li class="has-dropdown">
-            <a href="#">Thiết bị thông minh</a>
-            <div class="dropdown-small">
-                <p>Máy Ăn Uống Tự Động</p>
-                <p>Nhà Vệ Sinh Tự Động</p>
-                <p>Đồ Chơi Tương Tác</p>
-            </div>
+            <a href="./collections.jsp">Thiết bị thông minh</a>
         </li>
 
-        <li><a href="#">Hàng mới về</a></li>
+        <li><a href="./collections.jsp">Hàng mới về</a></li>
         <li><a href="#">Thương hiệu</a></li>
-        <li><a href="#">Pagazine chăm Boss</a></li>
+        <li><a href="./collections.jsp">Pagazine chăm Boss</a></li>
         <li><a href="#">News</a></li>
         <li><a href="#">Today's Sale</a></li>
     </ul>
@@ -155,130 +92,76 @@
 <!--Body-->
 <div class="search-container">
     <div class="search-top">
-        <h1>TÌM THẤY <span id="result-count">4</span> KẾT QUẢ CHO “<span id="query-text">ROYAL-CANIN</span>”</h1>
+        <h1>TÌM THẤY <span id="result-count" style="color: #234BBB;">${resultCount}</span> KẾT QUẢ CHO “<span id="query-text">${txtS}</span>”</h1>
     </div>
 
     <div class="search-layout">
-        <!-- Left -->
         <div class="search-sidebar">
             <div class="side-section">
-                <h3>CATEGORIES</h3>
+                <h3>DANH MỤC</h3>
                 <div class="line"></div>
                 <ul class="side-list">
-                    <li>Chó</li>
-                    <li>Mèo</li>
-                    <li>Thiết bị thông minh</li>
-                    <li>Hàng mới về</li>
-                    <li>Thương hiệu</li>
-                    <li>Pagazine chăm Boss</li>
-                    <li>News</li>
-                    <li>Khuyến Mãi Mới Nhất</li>
+                    <li><a href="collections.jsp?cid=1" style="text-decoration: none; color: inherit;">Chó</a></li>
+                    <li><a href="collections.jsp?cid=2" style="text-decoration: none; color: inherit;">Mèo</a></li>
+                    <li><a href="collections.jsp" style="text-decoration: none; color: inherit;">Xem tất cả</a></li>
                 </ul>
-            </div>
-
-            <div class="side-section">
-                <h3>LOẠI SẢN PHẨM</h3>
-                <div class="line"></div>
-                <div class="filter-list">
-                    <label><input type="checkbox"> Thức Ăn Ướt (48)</label>
-                    <label><input type="checkbox"> Thức Ăn Khô (28)</label>
-                    <label><input type="checkbox"> Pate Mèo (35)</label>
-                    <label><input type="checkbox"> Pate Chó (2)</label>
-                </div>
             </div>
         </div>
 
         <main class="search-main">
-            <div class="search-controls">
-                <div class="sort-left">
-                    <label class="label-results">Sắp xếp theo:</label>
-                    <select id="sort-select" class="sort-select">
-                        <option value="relevance">Phù hợp nhất</option>
-                        <option value="price-asc">Giá: thấp → cao</option>
-                        <option value="price-desc">Giá: cao → thấp</option>
-                        <option value="rating">Đánh giá</option>
-                    </select>
-                </div>
+            <div class="product-grid" id="product-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <c:forEach items="${listSearch}" var="p">
+                    <div class="dp-item" style="width: 100%; margin: 0; background: #fff; border-radius: 10px; padding: 10px; position: relative; transition: 0.3s;">
+
+                        <div class="img-container" style="position: relative; overflow: hidden; border-radius: 8px;">
+                            <a href="product?id=${p.id}">
+                                <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 250px; object-fit: contain; display: block;">
+                            </a>
+                            <a href="add-cart?productId=${p.id}&quantity=1" class="add-to-cart-btn">
+                                <i class="fa fa-cart-plus"></i> Thêm vào giỏ
+                            </a>
+                        </div>
+
+                        <a href="product?id=${p.id}" class="info-link" style="margin-top: 10px;">
+                            <h4 style="color: #234BBB; font-size: 14px; margin-bottom: 5px;">${p.categoryName}</h4>
+                            <p style="color: #000000; font-size: 16px; font-weight: 500; height: 40px; overflow: hidden;">${p.name}</p>
+                            <div style="margin-top: 5px;">
+                                <c:choose>
+                                    <c:when test="${p.salePrice < p.price}">
+                                        <span class="price1" style="text-decoration: line-through; color: #000000; margin-right: 5px; font-size: 14px;">${p.formattedOriginalPrice}</span>
+                                        <span class="price2" style="color: red; font-weight: bold; font-size: 16px;">${p.formattedPrice}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="price" style="color: #333; font-weight: bold; font-size: 16px;">${p.formattedPrice}</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
+                        </a>
+                        <c:choose>
+                            <c:when test="${sessionScope.wishlistIds.contains(p.id)}">
+                                <i class="fa-solid fa-heart dp-icon liked"
+                                   style="color: red; position: absolute; top: 20px; right: 15px; cursor: pointer;"
+                                   onclick="toggleWishlist(this, ${p.id}, isUserLoggedIn)"></i>
+                            </c:when>
+                            <c:otherwise>
+                                <i class="fa-regular fa-heart dp-icon"
+                                   style="color: #888; position: absolute; top: 20px; right: 15px; cursor: pointer;"
+                                   onclick="toggleWishlist(this, ${p.id}, isUserLoggedIn)"></i>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </c:forEach>
 
             </div>
 
-            <div class="product-grid" id="product-grid">
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/img/fav1.webp" alt="product">
-                        <i class="fa-regular fa-heart fav-icon" title="Thêm yêu thích"></i>
-                    </div>
-                    <a class="brand" href="WEB-INF/views/product.jsp">Royal Canin</a>
-                    <a class="product-name" href="WEB-INF/views/product.jsp">
-                        <h3 class="p-title">Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36
-                        </h3>
-                    </a>
-
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                        <span class="rating-count">2 đánh giá</span>
-                    </div>
-                    <div class="price">135.000₫</div>
+            <c:if test="${empty listSearch}">
+                <div style="text-align: center; margin-top: 50px; width: 100%;">
+                    <p>Không tìm thấy sản phẩm nào phù hợp.</p>
+                    <a href="index" style="color: blue; text-decoration: underline;">Quay lại trang chủ</a>
                 </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/img/fav1.webp" alt="product">
-                        <i class="fa-regular fa-heart fav-icon" title="Thêm yêu thích"></i>
-                    </div>
-                    <a class="brand" href="#">Royal Canin</a>
-                    <h3 class="p-title">Thức Ăn Hạt Cho Mèo Sỏi Thận Royal Canin Urinary S/O</h3>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        <span class="rating-count">5 đánh giá</span>
-                    </div>
-                    <div class="price">185.000₫</div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/img/fav1.webp" alt="product">
-                        <i class="fa-regular fa-heart fav-icon" title="Thêm yêu thích"></i>
-                    </div>
-                    <a class="brand" href="#">Royal Canin</a>
-                    <h3 class="p-title">Thức Ăn Hạt Cho Mèo Trưởng Thành Royal Canin Indoor</h3>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        <span class="rating-count">5 đánh giá</span>
-                    </div>
-                    <div class="price">132.000₫</div>
-                </div>
-
-                <div class="product-card">
-                    <div class="img-wrap">
-                        <img src="assets/img/fav1.webp" alt="product">
-                        <i class="fa-regular fa-heart fav-icon" title="Thêm yêu thích"></i>
-                    </div>
-                    <a class="brand" href="#">Royal Canin</a>
-                    <h3 class="p-title">Thức Ăn Hạt Cho Chó Con Poodle Royal Canin Puppy</h3>
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                        <span class="rating-count">1 đánh giá</span>
-                    </div>
-                    <div class="price">189.000₫</div>
-                </div>
-
-            </div>
-
-            <div class="pagination">
-                <button class="page-btn"><</button>
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <button class="page-btn">></button>
-            </div>
+            </c:if>
 
         </main>
-
     </div>
 </div>
 
@@ -354,5 +237,6 @@
         </div>
     </div>
 </footer>
+<script src="js/wishlist.js"></script>
 </body>
 </html>
