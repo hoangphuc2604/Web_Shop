@@ -172,7 +172,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:if test="${sessionScope.cart == null || sessionScope.cart.totalQuantity() == 0}">
+                    <c:if test="${sessionScope.cart == null || sessionScope.cart.totalQuantity == 0}">
                         <tr>
                             <td colspan="5" style="text-align:center; padding: 20px;">Giỏ hàng trống</td>
                         </tr>
@@ -205,7 +205,7 @@
                             </td>
 
                             <td class="remove-cell">
-                                <a href="remove-cart?id=${item.product.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                <a href="remove-item?id=${item.product.id}" onclick="return confirm('Bạn có chắc chắn muốn xóa?');">
                                     <i class="fa-solid fa-x remove-item"></i>
                                 </a>
                             </td>

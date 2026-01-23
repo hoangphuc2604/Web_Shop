@@ -202,7 +202,7 @@
                             <a href="product?id=${p.id}">
                                 <img src="${p.image}" alt="${p.name}" style="width: 100%; display: block;">
                             </a>
-                            <a href="add-to-cart?id=${p.id}&quantity=1" class="add-to-cart-btn">
+                            <a href="add-cart?productId=${p.id}&quantity=1" class="add-to-cart-btn">
                                 <i class="fa fa-cart-plus"></i> Thêm vào giỏ
                             </a>
                         </div>
@@ -236,7 +236,7 @@
                                     <img src="${p.image}" alt="${p.name}" style="width: 100%; display: block;">
                                 </a>
 
-                                <a href="add-to-cart?id=${p.id}&quantity=1" class="add-to-cart-btn">
+                                <a href="add-cart?productId=${p.id}&quantity=1" class="add-to-cart-btn">
                                     <i class="fa fa-cart-plus"></i> Thêm vào giỏ
                                 </a>
                             </div>
