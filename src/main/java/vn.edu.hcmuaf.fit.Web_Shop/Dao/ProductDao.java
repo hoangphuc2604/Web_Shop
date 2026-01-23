@@ -143,4 +143,33 @@ public class ProductDao {
         }
         return list;
     }
+    //Tìm kiếm sản phẩm theo tên
+    public List<Product> searchByName(String txtSearch) {
+        List<Product> list = new ArrayList<>();
+        String query = "SELECT p.id, p.name, p.price, p.sale_price, pi.image_url, p.`desc`, c.category_name " +
+                "FROM Products p " +
+                "LEFT JOIN P_category c ON p.category_id = c.id " +
+                "LEFT JOIN Product_Images pi ON p.id = pi.product_id AND pi.is_main = 1 " +
+                "WHERE p.name LIKE ?";
+        try (Connection conn = new DBConnect().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, "%" + txtSearch + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product p = new Product(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getDouble("price"),
+                            rs.getDouble("sale_price"),
+                            rs.getString("image_url"),
+                            rs.getString("desc"),
+                            rs.getString("category_name"));
+                    list.add(p);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

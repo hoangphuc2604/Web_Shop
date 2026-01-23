@@ -21,10 +21,10 @@
         </a>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-        <button><i class="fa fa-search"></i></button>
-    </div>
+    <form action="search" method="get" class="search-bar">
+        <input type="text" name="txt" placeholder="Tìm kiếm sản phẩm..." value="${txtS}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
 
     <div class="right-info">
         <div class="hotline">

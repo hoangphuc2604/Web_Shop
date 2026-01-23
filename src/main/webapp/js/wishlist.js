@@ -41,14 +41,14 @@ function toggleWishlist(element, productId, isLoggedIn) {
             else if (response === "removed") {
                 alert("Đã xoá sản phẩm khỏi danh sách yêu thích");
                 // Kiểm tra đang ở trang nào?
-                // Nếu đang ở trang wishlist, sp nằm trong khối .wl-item
-                const wishlistItemBox = element.closest('.wl-item');
+                // Nếu đang ở trang wishlist, sp nằm trong khối
+                const wishlistItemBox = element.closest('.dp-item');
                 if (wishlistItemBox) {
                     //Đang ở wishlist: Xóa luôn sp đó
                     wishlistItemBox.remove();
 
                     //Nếu xóa hết sạch thì hiện thông báo trống
-                    const remainingItems = document.querySelectorAll('.wl-item');
+                    const remainingItems = document.querySelectorAll('.dp-item');
                     if (remainingItems.length === 0) {
                         const container = document.querySelector('.wl-wrapper');
                         if (container) {

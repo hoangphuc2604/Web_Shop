@@ -18,10 +18,10 @@
         </a>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-        <button><i class="fa fa-search"></i></button>
-    </div>
+    <form action="search" method="get" class="search-bar">
+        <input type="text" name="txt" placeholder="Tìm kiếm sản phẩm..." value="${txtS}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
 
     <script>
         // Kiểm tra xem user có tồn tại trong session không
@@ -124,7 +124,7 @@
                                     <span class="price2">${p.formattedPrice}</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <span class="price2" style="color: red;">${p.formattedPrice}</span>
+                                    <span class="price2" style="color: #000000;">${p.formattedPrice}</span>
                                 </c:otherwise>
                             </c:choose>
                         </a>
