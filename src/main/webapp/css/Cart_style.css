@@ -32,7 +32,11 @@
     border-collapse: collapse;
     margin-bottom: 20px;
 }
-
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 .cart-table th {
     text-align: left;
     border-bottom: 2px solid #ddd;
@@ -80,7 +84,7 @@
 }
 .qty-btn:hover {
     background: #f57224;
-    color: #fff;
+    color: #000000;
 }
 
 .qty-input {
