@@ -460,3 +460,26 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+#container #product_detail .size-options .variant-btn {
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+    outline: none;
+}
+
+#container #product_detail .size-options .variant-btn:hover {
+    border-color: #234BBB;
+    color: #234BBB;
+}
+
+#container #product_detail .size-options .variant-btn.active {
+    border-color: #234BBB;
+    color: #234BBB;
+    background-color: #eef4ff;
+    font-weight: bold;
+}
