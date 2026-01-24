@@ -1,6 +1,8 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Dao;
 
 import vn.edu.hcmuaf.fit.Web_Shop.Model.Product;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.ProductVariant;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -171,5 +173,47 @@ public class ProductDao {
             e.printStackTrace();
         }
         return list;
+    }
+    //Lấy khối lượng sp
+    public List<ProductVariant> getVariantsByProductId(int productId) {
+        List<ProductVariant> list = new ArrayList<>();
+        // Lấy ID, weight và price_adjustment
+        String query = "SELECT id, product_id, weight, price_adjustment " +
+                "FROM Product_variants WHERE product_id = ? ORDER BY weight ASC";
+        try (Connection conn = new DBConnect().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ProductVariant(
+                        rs.getInt("id"),
+                        rs.getInt("product_id"),
+                        rs.getDouble("weight"),
+                        rs.getDouble("price_adjustment")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    // Lấy thông tin 1 biến thể cụ thể theo ID biến thể
+    public ProductVariant getVariantById(int variantId) {
+        String query = "SELECT id, product_id, weight, price_adjustment FROM Product_variants WHERE id = ?";
+        try (Connection conn = new DBConnect().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, variantId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return new ProductVariant(
+                        rs.getInt("id"),
+                        rs.getInt("product_id"),
+                        rs.getDouble("weight"),
+                        rs.getDouble("price_adjustment")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

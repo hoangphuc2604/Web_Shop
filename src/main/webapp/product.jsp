@@ -122,48 +122,63 @@
 
             <p class="product-brand">Thương hiệu: <span>${proDetail.categoryName}</span></p>
 
-            <div class="product-price" data-price="${proDetail.salePrice}">
-                ${proDetail.formattedPrice}
+            <div class="product-price" id="display-price">
+                <c:choose>
+                    <c:when test="${not empty variants}">${variants[0].formattedPrice}</c:when>
+                    <c:otherwise>${proDetail.formattedPrice}</c:otherwise>
+                </c:choose>
             </div>
 
             <div class="product-size">
                 <p>Khối lượng:</p>
                 <div class="size-options">
-                    <button class="active">Tiêu chuẩn</button>
+                    <c:if test="${not empty variants}">
+                        <c:forEach items="${variants}" var="v" varStatus="status">
+                            <button type="button" class="variant-btn ${status.first ? 'active' : ''}"
+                                    data-price="${v.formattedPrice}"
+                                    data-id="${v.id}">
+                                    ${v.formattedWeight}
+                            </button>
+                        </c:forEach>
+                        <input type="hidden" id="selectedVariantId" value="${variants[0].id}">
+                    </c:if>
+
+                    <c:if test="${empty variants}">
+                        <button class="active">Tiêu chuẩn</button>
+                        <input type="hidden" id="selectedVariantId" value="">
+                    </c:if>
                 </div>
             </div>
 
             <div class="product-quantity">
                 <p>Số lượng:</p>
                 <div class="quantity-control">
-                    <button class="minus">−</button>
-                    <input type="text" value="1">
-                    <button class="plus">+</button>
+                    <button class="minus" type="button">−</button>
+                    <input type="text" id="quantityInput" value="1" readonly>
+                    <button class="plus" type="button">+</button>
                 </div>
             </div>
 
             <div class="product-total">
-                Tổng số tiền: <span>${proDetail.formattedPrice}</span>
+                Tổng số tiền: <span id="total-calc">
+                    <c:choose>
+                        <c:when test="${not empty variants}">${variants[0].formattedPrice}</c:when>
+                        <c:otherwise>${proDetail.formattedPrice}</c:otherwise>
+                    </c:choose>
+                </span>
             </div>
 
             <div class="product-buttons">
-                <button class="add-cart" onclick="window.location.href='add-to-cart?id=${proDetail.id}'">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    Thêm vào giỏ hàng
+                <button class="add-cart" id="addToCartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng
                 </button>
+
                 <c:choose>
                     <c:when test="${sessionScope.wishlistIds.contains(proDetail.id)}">
-                        <i class="fa-solid fa-heart"
-                           style="cursor: pointer; font-size: 24px; color: red;"
-                           class="liked"
-                           onclick="toggleWishlist(this, ${proDetail.id}, isUserLoggedIn)">
-                        </i>
+                        <i class="fa-solid fa-heart" style="cursor: pointer; font-size: 24px; color: red;" onclick="toggleWishlist(this, ${proDetail.id}, isUserLoggedIn)"></i>
                     </c:when>
                     <c:otherwise>
-                        <i class="fa-regular fa-heart"
-                           style="cursor: pointer; font-size: 24px;"
-                           onclick="toggleWishlist(this, ${proDetail.id}, isUserLoggedIn)">
-                        </i>
+                        <i class="fa-regular fa-heart" style="cursor: pointer; font-size: 24px;" onclick="toggleWishlist(this, ${proDetail.id}, isUserLoggedIn)"></i>
                     </c:otherwise>
                 </c:choose>
                 <button class="share"><i class="fa-solid fa-share-nodes"></i></button>
@@ -275,6 +290,9 @@
         </div>
     </div>
 </footer>
-<script src="./js/Product.js"></script>
+<script>
+    const currentProductId = ${proDetail.id};
+</script>
+<script src="./js/Product.js?v=1"></script>
 </body>
 </html>
