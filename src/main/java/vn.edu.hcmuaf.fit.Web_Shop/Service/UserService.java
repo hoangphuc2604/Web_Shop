@@ -1,13 +1,16 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Service;
 
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserDao;
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserInfoDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
 
 import java.security.MessageDigest;
 
 public class UserService {
 
-    UserDao userDao = new UserDao();
+    private UserDao userDao = new UserDao();
+    private UserInfoDao userInfoDao = new UserInfoDao();
 
     //  HASH PASSWORD
     private String hashPassword(String password) {
@@ -26,7 +29,7 @@ public class UserService {
         }
     }
 
-    // REGISTER
+    //  REGISTER
     public void register(String email, String username, String password) {
         String hashedPassword = hashPassword(password);
         User user = new User(email, username, hashedPassword);
@@ -38,30 +41,45 @@ public class UserService {
         User user = userDao.findByUsernameOrEmail(login);
         if (user == null) return null;
 
-        String hashedInputPassword = hashPassword(password);
-
-        if (hashedInputPassword.equals(user.getPassword())) {
+        if (hashPassword(password).equals(user.getPassword())) {
             return user;
         }
         return null;
     }
-    // CHANGE PASSWORD
+
+    //  CHANGE PASSWORD
     public boolean changePassword(int userId, String oldPassword, String newPassword, String confirmPassword) {
 
-        if (!newPassword.equals(confirmPassword)) return false;
+        if (newPassword == null || !newPassword.equals(confirmPassword)) {
+            return false;
+        }
 
         User user = userDao.findById(userId);
         if (user == null) return false;
 
-        String oldHashed = hashPassword(oldPassword);
-
-        // kiểm tra mật khẩu cũ
-        if (!oldHashed.equals(user.getPassword())) {
+        if (!hashPassword(oldPassword).equals(user.getPassword())) {
             return false;
         }
 
-        String newHashed = hashPassword(newPassword);
-        return userDao.updatePassword(userId, newHashed);
+        return userDao.updatePassword(userId, hashPassword(newPassword));
+    }
+
+    // PROFILE
+    public UserInfo getUserInfo(int userId) {
+        return userInfoDao.findByUserId(userId);
+    }
+
+    public void saveUserInfo(UserInfo info) {
+        UserInfo exist = userInfoDao.findByUserId(info.getUserId());
+
+        if (exist == null) {
+            userInfoDao.insert(info);
+        } else {
+            userInfoDao.update(info);
+        }
+    }
+    public void updateUser(User user) {
+        userDao.updateUser(user);
     }
 
 }
