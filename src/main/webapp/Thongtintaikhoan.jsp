@@ -91,7 +91,6 @@
             <summary class="menu-title">Tài Khoản Của Tôi</summary>
             <ul class="menu-list">
                 <li class="menu-item"><a href="#profile" class="tab-link active">Hồ Sơ</a></li>
-                <li class="menu-item"><a href="#address" class="tab-link">Địa Chỉ</a></li>
                 <li class="menu-item"><a href="#password" class="tab-link">Đổi Mật Khẩu</a></li>
             </ul>
         </details>
@@ -126,52 +125,95 @@
             <h2>Hồ Sơ Của Tôi</h2>
             <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
 
-            <div class="profile-wrapper">
+            <form action="account" method="post" class="profile-wrapper">
                 <div class="left-form">
+
+
+                    <!-- Username -->
                     <div class="form-group">
                         <div class="form-label">Tên đăng nhập</div>
                         <div class="form-input">
-                            <input type="text" readonly>
-                            <p class="note">Tên đăng nhập chỉ được đổi một lần.</p>
+                            <input type="text"
+                                   name="username"
+                                   value="${sessionScope.user.username}">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="form-label">Tên</div>
-                        <div class="form-input"><input type="text"></div>
-                    </div>
+
+                    <!-- Email -->
                     <div class="form-group">
                         <div class="form-label">Email</div>
-                        <div class="form-input"><input type="text" value="@gmail.com" readonly></div>
+                        <div class="form-input">
+                            <input type="email"
+                                   name="email"
+                                   value="${sessionScope.user.email}">
+                        </div>
                     </div>
+
+
+                    <!-- SĐT -->
                     <div class="form-group">
                         <div class="form-label">Số điện thoại</div>
-                        <div class="form-input"><input type="text" readonly></div>
+                        <div class="form-input">
+                            <input type="text"
+                                   name="phone"
+                                   value="${userInfo.phone}"
+                                   placeholder="Nhập số điện thoại">
+                        </div>
                     </div>
+
+                    <!-- Giới tính -->
                     <div class="form-group">
                         <div class="form-label">Giới tính</div>
                         <div class="gender-box">
-                            <input type="radio" name="gender"> Nam
-                            <input type="radio" name="gender"> Nữ
-                            <input type="radio" name="gender"> Khác
+                            <label>
+                                <input type="radio" name="gender" value="NAM"
+                                       <c:if test="${userInfo.gender == 'NAM'}">checked</c:if>> Nam
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender" value="NU"
+                                       <c:if test="${userInfo.gender == 'NU'}">checked</c:if>> Nữ
+                            </label>
+
+                            <label>
+                                <input type="radio" name="gender" value="KHAC"
+                                       <c:if test="${userInfo.gender == 'KHAC'}">checked</c:if>> Khác
+                            </label>
                         </div>
                     </div>
+
+
+                    <!-- Ngày sinh -->
                     <div class="form-group">
                         <div class="form-label">Ngày sinh</div>
-                        <div class="form-input"><input type="text" readonly></div>
+                        <div class="form-input">
+                            <input type="date"
+                                   name="birthday"
+                                   value="${userInfo.birthday}">
+                        </div>
                     </div>
-                    <button class="save-btn">Lưu</button>
+
+                    <!-- Địa chỉ -->
+                    <div class="form-group">
+                        <div class="form-label">Địa chỉ</div>
+                        <div class="form-input">
+                    <textarea name="address"
+                              placeholder="Nhập địa chỉ">${userInfo.address}</textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="save-btn">Lưu</button>
+
+                    <c:if test="${not empty success}">
+                        <p style="color:green;margin-top:10px">${success}</p>
+                    </c:if>
+
                 </div>
-            </div>
+            </form>
         </div>
 
-        <!-- Địa Chỉ -->
-        <div id="address" class="section">
-            <h2>Địa Chỉ</h2>
-            <p><strong>Nguyễn văn a</strong> — 190010097</p>
-            <p>Số 3 Yên Lãng<br>Quận Tây Hồ, Hà Nội</p>
-            <button class="btn-default">Mặc định</button>
 
-        </div>
+
 
         <!--  ĐỔI MẬT KHẨU  -->
         <div id="password" class="section">
@@ -241,7 +283,6 @@
                 <input type="text" placeholder="Bạn có thể tìm theo tên Shop, ID đơn hàng hoặc Tên sản phẩm">
             </div>
             <div class="order-empty">
-                <img src="https://cf.shopee.vn/file/e5fafff459d8e7f0c1e2f7d0e9e2c3d4" class="empty-img">
                 <p>Chưa có đơn hàng</p>
             </div>
         </div>
