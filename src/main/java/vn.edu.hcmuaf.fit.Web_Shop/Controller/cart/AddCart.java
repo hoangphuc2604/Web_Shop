@@ -25,11 +25,11 @@ public class AddCart extends HttpServlet {
         if(product != null){
             cart.addItem(product, quantity);
             session.setAttribute("cart", cart);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index");
             return;
         }
         request.setAttribute("msg", "Product not found");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("index").forward(request, response);
     }
 
     @Override
