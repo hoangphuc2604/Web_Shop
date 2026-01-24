@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="vn.edu.hcmuaf.fit.Web_Shop.cart.Cart" %>
+<%@ page import="vn.edu.hcmuaf.fit.Web_Shop.cart.CartItem" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +14,19 @@
     <script src="js/Payment.js"></script>
 </head>
 <body>
+<%
+    // Lấy giỏ hàng từ session
+    Cart cart = (Cart) session.getAttribute("cart");
+
+    // Tạo công cụ định dạng tiền tệ Việt Nam (VNĐ)
+    Locale localeVN = new Locale("vi", "VN");
+    NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+
+    // Tính toán số liệu để dùng ở dưới
+    double totalAmount = (cart != null) ? cart.total() : 0;
+    double shippingFee = 25000; // Phí ship mặc định
+    double finalTotal = totalAmount + shippingFee;
+%>
 <header>
     <div class="pay-header">
         <div class="payment-container">
@@ -22,164 +40,117 @@
     </div>
 </header>
 <hr>
-<div class="payment-page">
-    <div class="payment-container">
-        <div class="payment-left">
-            <div class="pay-inf">
-                <h2>Thông tin người nhận hàng</h2>
-                <input type="text" placeholder="Số điện thoại" required>
-                <div class="checkbox-group">
-                    <input type="checkbox" class="checkbox-news">
-                    <span>Gửi cho tôi tin tức và ưu đãi qua email</span>
+<form action="payment" method="post">
+    <div class="payment-page">
+        <div class="payment-container">
+
+            <div class="payment-left">
+                <div class="pay-inf">
+                    <h2>Thông tin người nhận hàng</h2>
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="text" name="phone" placeholder="Số điện thoại" required>
                 </div>
-            </div>
-            <div class="ship-inf">
-                <h2>Giao hàng</h2>
-                <div class="radio-shipping">
-                    <div class="radio-item">
-                        <input type="radio" class="radio-delivery" name="delivery" checked>
-                        <span>Giao đến địa chỉ của bạn</span>
-                    </div>
-                    <div class="radio-item">
-                        <input type="radio" class="radio-store" name="delivery">
-                        <span>Nhận tại cửa hàng</span>
-                    </div>
-                </div>
-                <div class="shipping-form">
-                    <div class="form-group">
-                        <span class="label">Quốc gia</span>
-                        <select class="input">
-                            <option>Việt Nam</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <input type="text" class="input half" placeholder="Họ">
-                        <input type="text" class="input half" placeholder="Tên">
-                    </div>
 
-                    <div class="form-group">
-                        <input type="text" class="input" placeholder="Địa chỉ (Tên đường, Phường/Xã, Quận/Huyện, Tỉnh/Thành phố)">
-                    </div>
+                <div class="ship-inf">
+                    <div class="shipping-form">
+                        <div class="form-group">
+                            <input type="text" name="fullname" class="input" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="address" class="input" placeholder="Địa chỉ" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="note" class="input" placeholder="Ghi chú (tùy chọn)">
+                        </div>
 
-                    <div class="form-group">
-                        <input type="text" class="input" placeholder="Căn hộ, phòng, v.v. (không bắt buộc)">
-                    </div>
-
-                    <div class="form-row">
-                        <input type="text" class="input half" placeholder="Thành phố">
-                        <input type="text" class="input half" placeholder="Mã bưu chính (không bắt buộc)">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" class="input" placeholder="Điện thoại">
-                    </div>
-
-                    <div class="form-group checkbox-row">
-                        <input type="checkbox" class="save-info">
-                        <span>Lưu lại thông tin cho lần sau</span>
-                    </div>
-
-                    <div class="shipping-method">
-                        <h4>Phương thức vận chuyển</h4>
-                        <span>Lưu ý</span>
-                        <br>
-                        <div class="radio-method-shipping">
-                            <div class="radio-item">
-                                <input type="radio" class="ship-option" name="ship" checked>
-                                <span>Vận Chuyển Nhanh (HCM) 1-3 ngày</span>
-                                <span class="ship-price">25.000₫</span>
-                            </div>
-
-                            <div class="radio-item">
-                                <input type="radio" class="ship-option" name="ship">
-                                <span>Hoả Tốc Nội Thành HCM (< Dưới 10km từ Q1)</span>
-                                <span class="ship-price">30.000₫</span>
-                            </div>
-
-                            <div class="radio-item">
-                                <input type="radio" class="ship-option" name="ship">
-                                <span>Vận Chuyển Nhanh Tỉnh Miền Nam (1-3 ngày)</span>
-                                <span class="ship-price">30.000₫</span>
-                            </div>
-
-                            <div class="radio-item">
-                                <input type="radio" class="ship-option" name="ship">
-                                <span>Vận Chuyển Nhanh Tỉnh (Miền Bắc 3-5 ngày)</span>
-                                <span class="ship-price">45.000₫</span>
-                            </div>
-
-                            <div class="radio-item">
-                                <input type="radio" class="ship-option" name="ship">
-                                <span>Hoả Tốc Ngoại Thành (Trên 10km từ Quận 1 HCM)</span>
-                                <span class="ship-price">49.000₫</span>
+                        <div class="shipping-method">
+                            <h4>Phương thức vận chuyển</h4>
+                            <div class="radio-method-shipping">
+                                <div class="radio-item">
+                                    <input type="radio" name="ship" value="25000" checked>
+                                    <span>Vận Chuyển Nhanh (HCM)</span>
+                                    <span class="ship-price">25.000₫</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="payment-method">
-                <h2>Thanh toán</h2>
-                <span>Toàn bộ các giao dịch được bảo mật và mã hóa.</span>
-                <br>
-                <div class="radio-payment-method">
-                    <div class="radio-item">
-                        <input type="radio" class="payment-option" name="payment" checked>
-                        <span>OnePAY - Credit/ATM card/QR</span>
-                    </div>
 
-                    <div class="radio-item">
-                        <input type="radio" class="payment-option" name="payment">
-                        <span>Thanh toán khi nhận hàng (COD)</span>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" class="payment-option" name="payment">
-                        <span>Chuyển Khoản Ngân Hàng</span>
+                <div class="payment-method">
+                    <h2>Thanh toán</h2>
+                    <div class="radio-payment-method">
+                        <div class="radio-item">
+                            <input type="radio" name="payment" value="OnePAY" checked>
+                            <span>OnePAY</span>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="payment" value="COD">
+                            <span>Thanh toán khi nhận hàng (COD)</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="location-payment">
-                <h2>Địa chỉ thanh toán</h2>
-                <div class="radio-location-payment">
-                    <div class="radio-item">
-                        <input type="radio" class="location-option" name="location" checked>
-                        <span>Giống địa chỉ vận chuyển</span>
-                    </div>
 
-                    <div class="radio-item">
-                        <input type="radio" class="location-option" name="location">
-                        <span>Sử dụng địa chỉ thanh toán khác</span>
-                    </div>
-                </div>
-            </div>
-            <div class="bt-success">
-                <a href="NotifyPayment.jsp">
-                    <button class="complete-order-btn">Hoàn tất đơn hàng</button>
-                </a>
-            </div>
-        </div>
-        <div class="payment-right">
-            <div class="product-summary">
-                <img src="/src/main/webapp/assets/img/fav4.webp" alt="Sản phẩm">
-                <div class="product-info">
-                    <p class="product-name">Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</p>
-                    <p class="product-price">135.000đ</p>
+                <div class="bt-success">
+                    <button type="submit" class="complete-order-btn">Hoàn tất đơn hàng</button>
                 </div>
             </div>
 
-            <div class="discount">
-                <input type="text" placeholder="Mã giảm giá">
-                <button>Áp dụng</button>
-            </div>
+            <div class="payment-right">
 
-            <div class="summary">
-                <p>Tổng sản phẩm: <span>135.000đ</span></p>
-                <p>Phí vận chuyển: <span>25.000đ</span></p>
-                <p>Giảm giá: <span>0đ</span></p>
-                <p class="total">Tổng cộng: <span>160.000đ</span></p>
+                <div class="product-list-container">
+                    <%
+                        // Kiểm tra giỏ hàng có rỗng không
+                        if (cart != null && cart.getTotalQuantity() > 0) {
+                            List<CartItem> items = cart.getItems(); // Lấy list items từ Cart.java
+                            for (CartItem item : items) {
+                    %>
+                    <div class="product-summary">
+                        <img src="<%= item.getProduct().getImage() %>"
+                             alt="<%= item.getProduct().getName() %>"
+                             onerror="this.src='assets/img/no-image.png'">
+
+                        <div class="product-info">
+                            <p class="product-name"><%= item.getProduct().getName() %></p>
+                            <p class="product-quantity">Số lượng: <%= item.getQuantity() %></p>
+                            <p class="product-price">
+                                <%= currencyVN.format(item.getPrice()) %>
+                            </p>
+                        </div>
+                    </div>
+                    <%
+                        }
+                    } else {
+                    %>
+                    <p style="text-align: center; color: #666; padding: 20px;">
+                        Giỏ hàng trống
+                    </p>
+                    <%
+                        }
+                    %>
+                </div>
+
+                <div class="discount">
+                    <input type="text" placeholder="Mã giảm giá">
+                    <button type="button">Áp dụng</button>
+                </div>
+
+                <div class="summary">
+                    <p>Tổng sản phẩm:
+                        <span><%= currencyVN.format(totalAmount) %></span>
+                    </p>
+                    <p>Phí vận chuyển:
+                        <span><%= currencyVN.format(shippingFee) %></span>
+                    </p>
+                    <p>Giảm giá: <span>0₫</span></p>
+
+                    <p class="total">Tổng cộng:
+                        <span><%= currencyVN.format(finalTotal) %></span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+
 </body>
 </html>
