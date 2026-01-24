@@ -96,18 +96,6 @@
     </div>
 
     <div class="search-layout">
-        <div class="search-sidebar">
-            <div class="side-section">
-                <h3>DANH MỤC</h3>
-                <div class="line"></div>
-                <ul class="side-list">
-                    <li><a href="collections.jsp?cid=1" style="text-decoration: none; color: inherit;">Chó</a></li>
-                    <li><a href="collections.jsp?cid=2" style="text-decoration: none; color: inherit;">Mèo</a></li>
-                    <li><a href="collections.jsp" style="text-decoration: none; color: inherit;">Xem tất cả</a></li>
-                </ul>
-            </div>
-        </div>
-
         <main class="search-main">
             <div class="product-grid" id="product-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
                 <c:forEach items="${listSearch}" var="p">
