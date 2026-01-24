@@ -112,6 +112,20 @@ public class UserDao {
         }
         return null;
     }
+    public void updateUser(User user) {
+        String sql = "UPDATE users SET username=?, email=? WHERE id=?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getEmail());
+            ps.setInt(3, user.getId());
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
