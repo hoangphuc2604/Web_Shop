@@ -990,3 +990,45 @@ body {
     transform: scale(1.05);
     filter: brightness(90%);
 }
+
+.cart-icon-container {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.cart-badge {
+    position: absolute;
+    /* Dùng số âm để đẩy badge lệch ra ngoài icon một chút */
+    top: -8px;
+    right: -10px;
+
+    background-color: #f57224;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;       /* Tăng kích thước xíu cho dễ nhìn số */
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+    font-weight: bold;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.cart-icon-container i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+.cart-icon-container p {
+    margin: 0;
+    font-size: 12px;
+}
