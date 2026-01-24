@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -7,8 +8,7 @@
     <title>Pet-Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/Thongtintaikhoan.css">
-    <link rel="stylesheet" href="../style.css">
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -16,13 +16,18 @@
 <!-- Header -->
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn"/></a>
+        <a href="index"><img src="assets/img/logo.avif" alt="Paddy.vn"/></a>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-        <button><i class="fa fa-search"></i></button>
-    </div>
+    <form action="search" method="get" class="search-bar">
+        <input type="text" name="txt" placeholder="Tìm kiếm sản phẩm..." value="${txtS}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
 
     <div class="right-info">
         <div class="hotline">
@@ -30,18 +35,32 @@
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="wishlist.jsp" class="icon-item">
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
 
-            <a href="../HTML/Thongtintaikhoan.jsp" class="icon-item">
-                <i class="fa fa-user"></i>
-                <p>Thông tin tài khoản</p>
-            </a>
+            <c:if test="${not empty sessionScope.user}">
+                <a href="Thongtintaikhoan.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>${sessionScope.user.username}</p>
+                </a>
+            </c:if>
 
-            <a href="Cart.jsp" class="icon-item">
+            <c:if test="${empty sessionScope.user}">
+                <a href="./DangNhap.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>Tài Khoản</p>
+                </a>
+            </c:if>
+
+            <a href="./Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span style="position: absolute; top: -5px; right: 15px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: bold;">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
                 <p>Giỏ Hàng</p>
             </a>
         </div>
@@ -62,7 +81,6 @@
     </ul>
 </nav>
 
-<!-- ==== GIAO DIỆN TÀI KHOẢN ==== -->
 <div class="account-container">
 
     <!-- Sidebar -->
@@ -80,7 +98,12 @@
         <!-- Đơn hàng -->
         <ul class="menu-list">
             <li class="menu-item">
-                <a href="#orders" class="tab-link">Đơn Hàng</a>
+                <a href="#orders" class="tab-link">Đơn Hàng (Cũ)</a>
+            </li>
+            <li class="menu-item">
+                <a href="order-history" style="color: #000000; font-weight: bold; text-decoration: none; display: block;">
+                    Theo dõi đơn hàng
+                </a>
             </li>
         </ul>
 

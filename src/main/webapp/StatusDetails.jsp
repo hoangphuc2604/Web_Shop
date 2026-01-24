@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<fmt:setLocale value="vi_VN"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết trạng thái đơn hàng</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/SDetail_Style.css">
 </head>
@@ -12,33 +15,51 @@
 <!-- Header trên -->
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="index"><img src="./assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-        <button><i class="fa fa-search"></i></button>
-    </div>
+    <form action="search" method="get" class="search-bar">
+        <input type="text" name="txt" placeholder="Tìm kiếm sản phẩm..." value="${txtS}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
 
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
     <div class="right-info">
         <div class="hotline">
             <p>Hotline</p>
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="wishlist.jsp" class="icon-item">
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
 
-            <a href="DangNhap.jsp" class="icon-item">
-                <i class="fa fa-user"></i>
-                <p>Tài Khoản</p>
-            </a>
+            <c:if test="${not empty sessionScope.user}">
+                <a href="Thongtintaikhoan.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>${sessionScope.user.username}</p>
+                </a>
+            </c:if>
 
-            <a href="Cart.jsp" class="icon-item">
+            <c:if test="${empty sessionScope.user}">
+                <a href="./DangNhap.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>Tài Khoản</p>
+                </a>
+            </c:if>
+
+            <a href="./Cart.jsp" class="icon-item">
                 <i class="fa fa-cart-arrow-down"></i>
+                <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                    <span style="position: absolute; top: -5px; right: 15px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: bold;">
+                            ${sessionScope.cart.totalQuantity}
+                    </span>
+                </c:if>
                 <p>Giỏ Hàng</p>
             </a>
         </div>
@@ -49,102 +70,12 @@
 <!-- MENU GIỮ NGUYÊN CẤU TRÚC CŨ -->
 <nav class="menu">
     <ul>
-        <!-- CHÓ -->
-        <li class="has-dropdown">
-            <a href="collections.jsp">Chó</a>
-            <div class="dropdown">
-                <div class="dropdown-container">
-                    <div>
-                        <h4>Thức Ăn Cho Chó</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Hữu Cơ</p>
-                        <p>Thức Ăn Không Ngũ Cốc</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
-                        <p>Vệ Sinh Răng Miệng</p>
-                        <p>Sữa Tắm & Phụ Kiện</p>
-                        <p>Xịt Khử Mùi</p>
-                    </div>
-                    <div>
-                        <h4>Bánh Thưởng</h4>
-                        <p>Bánh Quy</p>
-                        <p>Súp Thưởng</p>
-                        <p>Thịt Sấy Khô</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện</h4>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Nệm - Chuồng Cho Cún</p>
-                        <p>Tã Lót & Khay Vệ Sinh</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khoẻ</h4>
-                        <p>Vitamin</p>
-                        <p>Trị Ve Rận</p>
-                        <p>Thực Phẩm Chức Năng</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <!-- MÈO -->
-        <li class="has-dropdown">
-            <a href="collections.jsp">Mèo</a>
-            <div class="dropdown">
-                <div class="dropdown-container dropdown-meo">
-                    <div>
-                        <h4>Thức Ăn Cho Mèo</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Cho Mèo Con</p>
-                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
-                        <p>Cát Vệ Sinh</p>
-                        <p>Khử Mùi</p>
-                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện & Đồ Chơi</h4>
-                        <p>Chuồng & Nệm Mèo</p>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Đồ Chơi Gãi Móng</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Vitamin</p>
-                        <p>Xổ Giun & Ve Rận</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <!-- THIẾT BỊ THÔNG MINH -->
-        <li class="has-dropdown">
-            <a href="collections.jsp">Thiết bị thông minh</a>
-            <div class="dropdown-small">
-                <p>Máy Ăn Uống Tự Động</p>
-                <p>Nhà Vệ Sinh Tự Động</p>
-                <p>Đồ Chơi Tương Tác</p>
-            </div>
-        </li>
-
-        <li><a href="collections.jsp">Hàng mới về</a></li>
+        <li><a href="#">Chó</a></li>
+        <li><a href="#">Mèo</a></li>
+        <li><a href="#">Thiết bị thông minh</a></li>
+        <li><a href="#">Hàng mới về</a></li>
         <li><a href="#">Thương hiệu</a></li>
-        <li><a href="Blog.jsp">Pagazine chăm Boss</a></li>
+        <li><a href="#">Pagazine chăm Boss</a></li>
         <li><a href="#">News</a></li>
         <li><a href="#">Today's Sale</a></li>
     </ul>
@@ -156,35 +87,46 @@
             <h2>Chi tiết trạng thái đơn hàng</h2>
         </div>
         <div class="sd-content">
-            <div class="sd-info">
-                <img src="assets/img/fav4.webp" alt="" class="sd-img">
-                <div class="sd-item">
-                    <p class="sd-name">Thức Ăn Hạt Cho Mèo Con Royal Canin Kitten 36</p>
-                    <p class="sd-weight">400g</p>
-                    <p class="sd-brand">Royal Canin</p>
-                    <p class="sd-price">Giá: <span class="sd-price-detail">135.000đ</span></p>
+            <c:forEach items="${order.items}" var="item">
+                <div class="sd-info" style="border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;">
+                    <img src="${item.product.image}" alt="" class="sd-img">
+                    <div class="sd-item">
+                        <p class="sd-name">${item.product.name}</p>
+                        <p class="sd-weight">Số lượng: x${item.quantity}</p>
+                        <p class="sd-price">Đơn giá: <fmt:formatNumber value="${item.unitPrice}" type="currency" currencySymbol="đ"/></p>
+                    </div>
                 </div>
-            </div>
-            <div class="sd-line">
-                <i class="bi bi-dot active"></i>
-                <div class="line-between active"></div>
-                <i class="bi bi-dot active"></i>
-                <div class="line-between active"></div>
-                <i class="bi bi-dot active"></i>
-                <div class="line-between"></div>
-                <i class="bi bi-dot"></i>
+            </c:forEach>
+
+            <div style="text-align: right; font-weight: bold; font-size: 20px; margin: 20px 0; color: #d0011b;">
+                TỔNG CỘNG: ${order.formattedTotal}
             </div>
 
-            <div class="sd-labels">
-                <span class="label active">Đã đặt hàng</span>
-                <span class="label active">Đang đóng gói</span>
-                <span class="label active">Đang vận chuyển</span>
-                <span class="label">Đã giao</span>
-            </div>
+            <c:choose>
+                <c:when test="${order.status == 'Cancelled'}">
+                    <h3 style="color:red; text-align:center; border: 2px solid red; padding: 10px; margin: 20px;">ĐƠN HÀNG ĐÃ BỊ HỦY</h3>
+                </c:when>
+                <c:otherwise>
+                    <div class="sd-line">
+                        <i class="bi bi-dot active"></i>
+                        <div class="line-between ${order.status == 'Packing' || order.status == 'Shipping' || order.status == 'Delivered' ? 'active' : ''}"></div>
+                        <i class="bi bi-dot ${order.status == 'Packing' || order.status == 'Shipping' || order.status == 'Delivered' ? 'active' : ''}"></i>
+                        <div class="line-between ${order.status == 'Shipping' || order.status == 'Delivered' ? 'active' : ''}"></div>
+                        <i class="bi bi-dot ${order.status == 'Shipping' || order.status == 'Delivered' ? 'active' : ''}"></i>
+                        <div class="line-between ${order.status == 'Delivered' ? 'active' : ''}"></div>
+                        <i class="bi bi-dot ${order.status == 'Delivered' ? 'active' : ''}"></i>
+                    </div>
+                    <div class="sd-labels">
+                        <span class="label active">Đã đặt</span>
+                        <span class="label ${order.status == 'Packing' || order.status == 'Shipping' || order.status == 'Delivered' ? 'active' : ''}">Đóng gói</span>
+                        <span class="label ${order.status == 'Shipping' || order.status == 'Delivered' ? 'active' : ''}">Vận chuyển</span>
+                        <span class="label ${order.status == 'Delivered' ? 'active' : ''}">Đã giao</span>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
             <div class="sd-return">
-                <a href="ProductStatus.jsp">
-                    <button class="bt-return">Trở lại trang "Trạng thái đơn hàng"</button>
-                </a>
+                <a href="order-history"><button class="bt-return">Quay lại</button></a>
             </div>
         </div>
     </div>
@@ -240,13 +182,13 @@
             </div>
             <div class="icon_social">
                 <a href="https://www.facebook.com/PaddyPetShop" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/fbicon.png" alt>
+                    <img class="small_icon" src="./assets/img/fbicon.png" alt>
                 </a>
                 <a href="https://www.instagram.com/paddypetshop/" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/insicon.png" alt>
+                    <img class="small_icon" src="./assets/img/insicon.png" alt>
                 </a>
                 <a href="https://www.tiktok.com/@paddypetshop" class="social_btn">
-                    <img class="small_icon" src="/src/main/webapp/assets/img/tiktokicon.png" alt>
+                    <img class="small_icon" src="./assets/img/tiktokicon.png" alt>
                 </a>
             </div>
         </div>

@@ -4,13 +4,17 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Product {
-    private int id;              // SỬA: Đổi String thành int
+    private int id;
     private String name;
-    private double price;        // Giá gốc (cột price trong DB)
-    private double salePrice;    // Giá bán (cột sale_price trong DB)
-    private String image;        // Lấy từ bảng Product_Images
+    private double price;
+    private double salePrice;
+    private String image;
     private String description;
-    private String categoryName; // Lấy từ bảng P_category (dùng làm Thương hiệu/Loại)
+    private String categoryName;
+
+    public Product() {
+
+    }
 
     public Product(int id, String name, double price, double salePrice, String image, String description, String categoryName) {
         this.id = id;
@@ -22,7 +26,6 @@ public class Product {
         this.categoryName = categoryName;
     }
 
-    // Getters
     public int getId() { return id; }
     public String getName() { return name; }
     public double getPrice() { return price; }
@@ -30,6 +33,34 @@ public class Product {
     public String getImage() { return image; }
     public String getDescription() { return description; }
     public String getCategoryName() { return categoryName; }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
 
     // Định dạng tiền
     public String getFormattedPrice() {

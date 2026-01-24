@@ -1,47 +1,54 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Model;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
 
-public class Order implements Serializable {
+public class Order {
     private int id;
     private int userId;
-    private String fullName;
-    private String email;
-    private String phone;
-    private String address;
-    private String note;
+    private String status;
     private double totalAmount;
-    private Date orderDate;
+    private List<OrderItem> items;
 
-    // Constructor rỗng
-    public Order() {}
+    public Order() {
 
-    // Getter và Setter (Bắt buộc phải có để JSP/Servlet truy xuất)
+    }
+
+    public Order(int id, int userId, String status, double totalAmount) {
+        this.id = id;
+        this.userId = userId;
+        this.status = status;
+        this.totalAmount = totalAmount;
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
 
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
-
-    public String getNote() { return note; }
-    public void setNote(String note) { this.note = note; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
     public double getTotalAmount() { return totalAmount; }
     public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
 
-    public Date getOrderDate() { return orderDate; }
-    public void setOrderDate(Date orderDate) { this.orderDate = orderDate; }
+    public List<OrderItem> getItems() { return items; }
+    public void setItems(List<OrderItem> items) { this.items = items; }
+
+    public String getFormattedTotal() {
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
+        return currencyVN.format(totalAmount);
+    }
+
+    public String getStatusVN() {
+        if ("Pending".equalsIgnoreCase(status)) return "Đang xử lý";
+        if ("Packing".equalsIgnoreCase(status)) return "Đang đóng gói";
+        if ("Shipping".equalsIgnoreCase(status)) return "Đang vận chuyển";
+        if ("Delivered".equalsIgnoreCase(status)) return "Đã giao";
+        if ("Cancelled".equalsIgnoreCase(status)) return "Đã hủy";
+        return status;
+    }
 }
