@@ -54,7 +54,14 @@
                 </c:if>
 
                 <a href="./Cart.jsp" class="icon-item">
-                    <i class="fa fa-cart-arrow-down"></i>
+                    <div style="position: relative; display: inline-block;">
+                        <i class="fa fa-cart-arrow-down"></i>
+                        <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                        <span class="cart-badge">
+                                ${sessionScope.cart.totalQuantity}
+                        </span>
+                        </c:if>
+                    </div>
                     <p>Giỏ Hàng</p>
                 </a>
             </div>
