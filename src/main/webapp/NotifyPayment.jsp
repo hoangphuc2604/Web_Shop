@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thông báo thanh toán thành công</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/NPayment_Style.css">
 </head>
@@ -12,143 +12,60 @@
 <!-- Header trên -->
 <header class="header-top">
     <div class="logo">
-        <a href="../index.html"><img src="assets/img/logo.avif" alt="Paddy.vn" />
+        <a href="index"><img src="./assets/img/logo.avif" alt="Paddy.vn" />
         </a>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-        <button><i class="fa fa-search"></i></button>
-    </div>
+    <form action="search" method="get" class="search-bar">
+        <input type="text" name="txt" placeholder="Tìm kiếm sản phẩm..." value="${txtS}">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
 
+    <script>
+        // Kiểm tra xem user có tồn tại trong session không
+        var isUserLoggedIn = ${not empty sessionScope.user};
+    </script>
     <div class="right-info">
         <div class="hotline">
             <p>Hotline</p>
             <strong>086 767 7891</strong>
         </div>
         <div class="icons">
-            <a href="wishlist.jsp" class="icon-item">
+            <a href="wishlist" class="icon-item" onclick="checkLoginForWishlist(event, isUserLoggedIn)">
                 <i class="fa fa-heart"></i>
                 <p>Wishlist</p>
             </a>
 
-            <a href="DangNhap.jsp" class="icon-item">
-                <i class="fa fa-user"></i>
-                <p>Tài Khoản</p>
-            </a>
+            <c:if test="${not empty sessionScope.user}">
+                <a href="Thongtintaikhoan.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>${sessionScope.user.username}</p>
+                </a>
+            </c:if>
 
-            <a href="Cart.jsp" class="icon-item">
-                <i class="fa fa-cart-arrow-down"></i>
+            <c:if test="${empty sessionScope.user}">
+                <a href="./DangNhap.jsp" class="icon-item">
+                    <i class="fa fa-user"></i>
+                    <p>Tài Khoản</p>
+                </a>
+            </c:if>
+
+            <a href="./Cart.jsp" class="icon-item">
+                <div style="position: relative; display: inline-block;">
+                    <i class="fa fa-cart-arrow-down"></i>
+                    <c:if test="${sessionScope.cart != null && sessionScope.cart.totalQuantity > 0}">
+                        <span class="cart-badge">
+                                ${sessionScope.cart.totalQuantity}
+                        </span>
+                    </c:if>
+                </div>
                 <p>Giỏ Hàng</p>
+
             </a>
         </div>
 
     </div>
 </header>
-
-<!-- MENU GIỮ NGUYÊN CẤU TRÚC CŨ -->
-<nav class="menu">
-    <ul>
-        <!-- CHÓ -->
-        <li class="has-dropdown">
-            <a href="collections.jsp">Chó</a>
-            <div class="dropdown">
-                <div class="dropdown-container">
-                    <div>
-                        <h4>Thức Ăn Cho Chó</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Hữu Cơ</p>
-                        <p>Thức Ăn Không Ngũ Cốc</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Cún</h4>
-                        <p>Vệ Sinh Răng Miệng</p>
-                        <p>Sữa Tắm & Phụ Kiện</p>
-                        <p>Xịt Khử Mùi</p>
-                    </div>
-                    <div>
-                        <h4>Bánh Thưởng</h4>
-                        <p>Bánh Quy</p>
-                        <p>Súp Thưởng</p>
-                        <p>Thịt Sấy Khô</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện</h4>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Nệm - Chuồng Cho Cún</p>
-                        <p>Tã Lót & Khay Vệ Sinh</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khoẻ</h4>
-                        <p>Vitamin</p>
-                        <p>Trị Ve Rận</p>
-                        <p>Thực Phẩm Chức Năng</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <!-- MÈO -->
-        <li class="has-dropdown">
-            <a href="collections.jsp">Mèo</a>
-            <div class="dropdown">
-                <div class="dropdown-container dropdown-meo">
-                    <div>
-                        <h4>Thức Ăn Cho Mèo</h4>
-                        <p>Thức Ăn Hạt</p>
-                        <p>Thức Ăn Ướt</p>
-                        <p>Thức Ăn Cho Mèo Con</p>
-                        <p>Thức Ăn Cho Mèo Trưởng Thành</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Vệ Sinh Mèo</h4>
-                        <p>Cát Vệ Sinh</p>
-                        <p>Khử Mùi</p>
-                        <p>Sữa Tắm & Dụng Cụ Tắm</p>
-                    </div>
-                    <div>
-                        <h4>Phụ Kiện & Đồ Chơi</h4>
-                        <p>Chuồng & Nệm Mèo</p>
-                        <p>Vòng Cổ & Dây Dắt</p>
-                        <p>Đồ Chơi Gãi Móng</p>
-                    </div>
-                    <div>
-                        <h4>Chăm Sóc Sức Khỏe</h4>
-                        <p>Vitamin</p>
-                        <p>Xổ Giun & Ve Rận</p>
-                    </div>
-                    <div>
-                        <h4>Vận Chuyển</h4>
-                        <p>Balo & Túi Vận Chuyển</p>
-                        <p>Lồng Vận Chuyển</p>
-                    </div>
-                </div>
-            </div>
-        </li>
-
-        <!-- THIẾT BỊ THÔNG MINH -->
-        <li class="has-dropdown">
-            <a href="collections.jsp">Thiết bị thông minh</a>
-            <div class="dropdown-small">
-                <p>Máy Ăn Uống Tự Động</p>
-                <p>Nhà Vệ Sinh Tự Động</p>
-                <p>Đồ Chơi Tương Tác</p>
-            </div>
-        </li>
-
-        <li><a href="collections.jsp">Hàng mới về</a></li>
-        <li><a href="#">Thương hiệu</a></li>
-        <li><a href="Blog.jsp">Pagazine chăm Boss</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Today's Sale</a></li>
-    </ul>
-</nav>
 <div class="notify-payment">
     <div class="np-container">
         <div class="np-content">
@@ -160,7 +77,7 @@
             </div>
         </div>
         <div class="np-button">
-            <a href="../index.html">
+            <a href="index">
                 <button class="bt-index">Quay lại trang chủ</button>
             </a>
         </div>
