@@ -272,18 +272,54 @@
 
         <!-- Đơn Hàng -->
         <div id="orders" class="section">
-            <h2>Đơn Hàng</h2>
+            <h2>Đơn Hàng Của Tôi</h2>
+
             <div class="order-tabs">
                 <button class="order-tab active">Tất cả</button>
+                <button class="order-tab">Đang xử lý</button>
                 <button class="order-tab">Hoàn thành</button>
                 <button class="order-tab">Đã hủy</button>
-                <button class="order-tab">Trả hàng/Hoàn tiền</button>
             </div>
-            <div class="order-search">
-                <input type="text" placeholder="Bạn có thể tìm theo tên Shop, ID đơn hàng hoặc Tên sản phẩm">
-            </div>
-            <div class="order-empty">
-                <p>Chưa có đơn hàng</p>
+
+            <div class="order-content" style="margin-top: 20px;">
+                <c:choose>
+                    <c:when test="${not empty listOrders}">
+                        <table style="width: 100%; border-collapse: collapse; background: white;">
+                            <thead>
+                            <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                <th style="padding: 12px; text-align: left;">Mã đơn</th>
+                                <th style="padding: 12px; text-align: left;">Ngày đặt</th>
+                                <th style="padding: 12px; text-align: left;">Trạng thái</th>
+                                <th style="padding: 12px; text-align: right;">Tổng tiền</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <c:forEach items="${listOrders}" var="o">
+                                <tr style="border-bottom: 1px solid #eee;">
+                                    <td style="padding: 12px; font-weight: bold;">#${o.id}</td>
+                                    <td style="padding: 12px;">${o.orderDate}</td>
+                                    <td style="padding: 12px;">
+                                    <span style="padding: 4px 8px; border-radius: 4px; font-size: 12px; background: #e3f2fd; color: #0d47a1;">
+                                            ${o.status}
+                                    </span>
+                                    </td>
+                                    <td style="padding: 12px; text-align: right; color: #ee4d2d; font-weight: bold;">
+                                            ${o.totalPrice}đ
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="order-empty" style="text-align: center; padding: 40px;">
+                            <i class="fa-solid fa-box-open" style="font-size: 50px; color: #ccc;"></i>
+                            <p style="margin-top: 15px; color: #666;">Bạn chưa có đơn hàng nào.</p>
+                            <a href="index" style="color: #ee4d2d; text-decoration: none; font-weight: bold;">Mua sắm ngay</a>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
 
