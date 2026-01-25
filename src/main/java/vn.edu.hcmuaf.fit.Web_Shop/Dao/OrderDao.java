@@ -18,7 +18,12 @@ public class OrderDao {
             conn.setAutoCommit(false);
             try {
                 PreparedStatement ps = conn.prepareStatement(sqlOrder, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1, userId);
+                //Nếu là khách không đăng nhập thì sẽ đưa id về null
+                if (userId <= 0) {
+                    ps.setNull(1, java.sql.Types.INTEGER);
+                } else {
+                    ps.setInt(1, userId);
+                }
                 ps.setDouble(2, cart.total());
                 ps.setDouble(3, cart.total());
                 ps.executeUpdate();
