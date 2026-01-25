@@ -47,20 +47,24 @@
             <div class="payment-left">
                 <div class="pay-inf">
                     <h2>Thông tin người nhận hàng</h2>
-                    <input type="text" name="email" placeholder="Email" required>
-                    <input type="text" name="phone" placeholder="Số điện thoại" required>
+                    <input type="text" name="email" placeholder="Email" required
+                           value="${requestScope.preEmail != null ? requestScope.preEmail : ''}">
+                    <input type="text" name="phone" placeholder="Số điện thoại" required
+                           value="${requestScope.prePhone != null ? requestScope.prePhone : ''}">
                 </div>
 
                 <div class="ship-inf">
                     <div class="shipping-form">
                         <div class="form-group">
-                            <input type="text" name="fullname" class="input" placeholder="Họ và tên" required>
+                            <input type="text" name="fullname" class="input" placeholder="Họ và tên đầy đủ" required
+                                   value="${requestScope.preName != null ? requestScope.preName : ''}">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="address" class="input" placeholder="Địa chỉ" required>
+                            <input type="text" name="address" class="input" placeholder="Địa chỉ (Số nhà, Tên đường, Phường/Xã...)" required
+                                   value="${requestScope.preAddress != null ? requestScope.preAddress : ''}">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="note" class="input" placeholder="Ghi chú (tùy chọn)">
+                            <input type="text" name="note" class="input" placeholder="Ghi chú đơn hàng (không bắt buộc)">
                         </div>
 
                         <div class="shipping-method">

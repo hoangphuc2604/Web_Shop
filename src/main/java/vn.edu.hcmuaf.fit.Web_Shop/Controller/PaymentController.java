@@ -4,8 +4,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.OrderDao;
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserInfoDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.Order;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
 
 import java.io.IOException;
@@ -22,9 +24,20 @@ public class PaymentController extends HttpServlet {
             response.sendRedirect("Cart.jsp");
             return;
         }
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            request.setAttribute("preEmail", user.getEmail());
+            request.setAttribute("preName", user.getUsername());
+            UserInfoDao userInfoDao = new UserInfoDao();
+            UserInfo info = userInfoDao.findByUserId(user.getId());
+            if (info != null) {
+                request.setAttribute("prePhone", info.getPhone());
+                request.setAttribute("preAddress", info.getAddress());
+            }
+        }
+
         request.getRequestDispatcher("Payment.jsp").forward(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
