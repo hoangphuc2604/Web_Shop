@@ -11,30 +11,26 @@ import java.io.IOException;
 
 @WebServlet("/account")
 public class AccountController extends HttpServlet {
-
     UserService userService = new UserService();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws IOException, ServletException {
 
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect("DangNhap.jsp");
-            return;
+            HttpSession session = request.getSession(false);
+            if (session == null || session.getAttribute("user") == null) {
+                response.sendRedirect("DangNhap.jsp");
+                return;
+            }
+
+            User user = (User) session.getAttribute("user");
+            UserInfo info = userService.getUserInfo(user.getId());
+
+            if (info == null) { info = new UserInfo(); }
+
+            request.setAttribute("userInfo", info);
+            request.getRequestDispatcher("Thongtintaikhoan.jsp").forward(request, response);
         }
-
-        User user = (User) session.getAttribute("user");
-        UserInfo info = userService.getUserInfo(user.getId());
-
-        if (info == null) {
-            info = new UserInfo();
-        }
-
-        request.setAttribute("userInfo", info);
-        request.getRequestDispatcher("Thongtintaikhoan.jsp")
-                .forward(request, response);
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
