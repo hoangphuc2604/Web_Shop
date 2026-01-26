@@ -15,8 +15,8 @@
           method="post"
           onsubmit="return register();">
 
-        <label>Họ và tên</label>
-        <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên">
+        <label>Tên đăng nhâp</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Nhập tên đăng nhập">
         <small class="error" id="err-fullname" style="color: red;"></small>
 
         <label>Email (tài khoản đăng nhập)</label>

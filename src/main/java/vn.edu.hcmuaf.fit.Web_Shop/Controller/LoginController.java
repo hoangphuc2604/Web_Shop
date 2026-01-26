@@ -35,7 +35,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("user", user);
 
             if ("ADMIN".equals(user.getRole())) {
-                response.sendRedirect("admin/index.jsp");
+                response.sendRedirect("admin.jsp");
             } else {
                 List<Product> listDiscount = productService.getTopDiscountProducts(8);
                 List<Product> listRecommend = productService.getTopRecommendProducts(8);
