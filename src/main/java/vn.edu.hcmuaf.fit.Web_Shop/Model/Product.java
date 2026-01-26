@@ -11,6 +11,7 @@ public class Product {
     private String image;
     private String description;
     private String categoryName;
+    private int categoryId;
 
     public Product() {
 
@@ -33,7 +34,13 @@ public class Product {
     public String getImage() { return image; }
     public String getDescription() { return description; }
     public String getCategoryName() { return categoryName; }
+    public int getCategoryId() {
+        return categoryId;
+    }
 
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
     public void setId(int id) {
         this.id = id;
     }
