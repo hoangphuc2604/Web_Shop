@@ -27,7 +27,10 @@
        href="${pageContext.request.contextPath}/admin-user">
         Người dùng
     </a>
-    <a class="tab-link" href="#don-hang">Đơn hàng</a>
+    <a class="${activeTab == 'don-hang' ? 'tab-link active' : 'tab-link'}"
+       href="${pageContext.request.contextPath}/admin-order">
+        Đơn hàng
+    </a>
     <a class="tab-link" href="#thanh-toan">Thanh toán</a>
     <a class="tab-link" href="#doanh-thu">Doanh thu</a>
     <a class="tab-link" href="#logout">Đăng xuất</a>
