@@ -51,7 +51,7 @@ public class OrderDao {
             e.printStackTrace();
         }
     }
-    //Lấy ds đơn hàng
+
     public List<Order> getOrdersByUser(int userId) {
         List<Order> list = new ArrayList<>();
         String sql = "SELECT * FROM Orders WHERE user_id = ? ORDER BY id DESC";
@@ -73,7 +73,7 @@ public class OrderDao {
         }
         return list;
     }
-    //Lấy ra chi tiết đơn hàng
+
     public Order getOrderById(int orderId) {
         Order o = null;
         String sql = "SELECT * FROM Orders WHERE id = ?";
@@ -94,7 +94,7 @@ public class OrderDao {
         }
         return o;
     }
-    //Lấy items trong đơn
+
     public List<OrderItem> getOrderItems(int orderId) {
         List<OrderItem> list = new ArrayList<>();
         String sql = "SELECT oi.*, p.name, pi.image_url " +
@@ -124,4 +124,31 @@ public class OrderDao {
         }
         return list;
     }
+    public List<Order> getAllOrders() {
+        List<Order> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM Orders ORDER BY id DESC";
+
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Order o = new Order(
+                        rs.getInt("id"),
+                        rs.getInt("user_id"),
+                        rs.getString("order_status"),
+                        rs.getDouble("total_amount")
+                );
+
+                o.setItems(getOrderItems(o.getId()));
+
+                list.add(o);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

@@ -42,4 +42,9 @@ function deleteProduct(id) {
         document.body.appendChild(form);
         form.submit();
     }
+    function toggleOrderDetail(id) {
+        const row = document.getElementById("order-detail-" + id);
+        row.style.display = row.style.display === "none" ? "table-row" : "none";
+    }
+
 }
