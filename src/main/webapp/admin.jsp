@@ -152,7 +152,91 @@
             </tbody>
         </table>
     </div>
-    <div id="don-hang" class="section"><h2>Quản lý đơn hàng</h2></div>
+    <div id="don-hang" class="section ${activeTab == 'don-hang' ? 'active' : ''}">
+        <div class="title-bar">
+            <h2>Quản lý đơn hàng</h2>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID đơn</th>
+                <th>ID người dùng</th>
+                <th>Trạng thái</th>
+                <th>Tổng tiền</th>
+                <th>Chi tiết</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${listOrders}" var="o">
+                <tr>
+                    <td>#${o.id}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${o.userId > 0}">
+                                ${o.userId}
+                            </c:when>
+                            <c:otherwise>
+                                Khách
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+
+                    <td>
+                    <span style="font-weight: bold;">
+                            ${o.statusVN}
+                    </span>
+                    </td>
+
+                    <td style="color: red; font-weight: bold;">
+                            ${o.formattedTotal}
+                    </td>
+
+                    <td>
+                        <button class="btn-edit"
+                                onclick="toggleOrderDetail(${o.id})">
+                            Xem
+                        </button>
+                    </td>
+                </tr>
+
+                <!-- Chi tiết đơn -->
+                <tr id="order-detail-${o.id}" style="display: none; background: #f9f9f9;">
+                    <td colspan="5">
+                        <table style="width: 100%;">
+                            <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Ảnh</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${o.items}" var="i">
+                                <tr>
+                                    <td>${i.product.name}</td>
+                                    <td>
+                                        <img src="${i.product.image}"
+                                             style="width: 50px; height: 50px; object-fit: contain;">
+                                    </td>
+                                    <td>${i.quantity}</td>
+                                    <td>
+                                        <fmt:formatNumber value="${i.unitPrice}"
+                                                          type="currency"
+                                                          currencySymbol="đ"/>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+
     <div id="thanh-toan" class="section"><h2>Thanh toán</h2></div>
     <div id="doanh-thu" class="section"><h2>Doanh thu</h2></div>
     <div id="logout" class="section"><h2>Đăng xuất</h2></div>
