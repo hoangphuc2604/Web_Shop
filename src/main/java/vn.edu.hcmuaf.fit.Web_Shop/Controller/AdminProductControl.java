@@ -27,13 +27,14 @@ public class AdminProductControl extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 response.setContentType("text/html;charset=UTF-8");
-                response.getWriter().println("<h3>LỖI XẢY RA: " + e.getMessage() + "</h3>");
+                response.getWriter().println("<h3>Lỗi: " + e.getMessage() + "</h3>");
                 e.printStackTrace(response.getWriter());
             }
 
         } else {
             List<Product> list = dao.getAllProduct();
             request.setAttribute("listP", list);
+            request.setAttribute("activeTab", "san-pham");
             request.getRequestDispatcher("admin.jsp").forward(request, response);
         }
     }
@@ -51,20 +52,39 @@ public class AdminProductControl extends HttpServlet {
         } else if ("save".equals(action)) {
             //Thêm hoặc sửa
             String idStr = request.getParameter("id");
-            String name = request.getParameter("name");
+            String nameRaw = request.getParameter("name");
+            String name = (nameRaw != null) ? nameRaw.trim() : "";
 
             double price = 0, salePrice = 0;
             try {
                 price = Double.parseDouble(request.getParameter("price"));
                 salePrice = Double.parseDouble(request.getParameter("sale_price"));
-            } catch (NumberFormatException e) { }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
 
             String image = request.getParameter("image");
             String desc = request.getParameter("desc");
             int categoryId = Integer.parseInt(request.getParameter("category_id"));
 
             if (idStr == null || idStr.isEmpty()) {
+                if (dao.checkProductExist(name)) {
+                    request.setAttribute("error", "Tên sản phẩm '" + name + "' đã tồn tại!");
+
+                    Product p = new Product();
+                    p.setName(name);
+                    p.setPrice(price);
+                    p.setSalePrice(salePrice);
+                    p.setDescription(desc);
+                    p.setCategoryId(categoryId);
+                    p.setImage(image);
+                    request.setAttribute("product", p);
+                    request.getRequestDispatcher("admin-product-form.jsp").forward(request, response);
+                    return;
+                }
                 dao.insertProduct(name, price, salePrice, desc, categoryId, image);
+                response.sendRedirect("admin-product");
+                return;
             } else {
                 dao.updateProduct(Integer.parseInt(idStr), name, price, salePrice, desc, categoryId, image);
             }

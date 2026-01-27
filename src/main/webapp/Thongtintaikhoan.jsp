@@ -98,9 +98,6 @@
         <!-- Đơn hàng -->
         <ul class="menu-list">
             <li class="menu-item">
-                <a href="#orders" class="tab-link">Đơn Hàng (Cũ)</a>
-            </li>
-            <li class="menu-item">
                 <a href="order-history" style="color: #000000; font-weight: bold; text-decoration: none; display: block;">
                     Theo dõi đơn hàng
                 </a>
