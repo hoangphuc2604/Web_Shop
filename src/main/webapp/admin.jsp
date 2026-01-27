@@ -15,10 +15,18 @@
 
 <div class="sidebar">
     <h2>Admin Control</h2>
-    <a class="tab-link active" href="#dashboard">Bảng điều khiển</a>
-    <a class="tab-link" href="#san-pham">Sản phẩm</a>
+    <a class="${empty activeTab ? 'tab-link active' : 'tab-link'}" href="#dashboard">Bảng điều khiển</a>
+
+    <a class="${activeTab == 'san-pham' ? 'tab-link active' : 'tab-link'}"
+       href="${pageContext.request.contextPath}/admin-product">
+        Sản phẩm
+    </a>
+
     <a class="tab-link" href="#danh-muc">Danh mục</a>
-    <a class="tab-link" href="#nguoi-dung">Người dùng</a>
+    <a class="${activeTab == 'nguoi-dung' ? 'tab-link active' : 'tab-link'}"
+       href="${pageContext.request.contextPath}/admin-user">
+        Người dùng
+    </a>
     <a class="tab-link" href="#don-hang">Đơn hàng</a>
     <a class="tab-link" href="#thanh-toan">Thanh toán</a>
     <a class="tab-link" href="#doanh-thu">Doanh thu</a>
@@ -31,7 +39,7 @@
         <span>Xin chào, Admin</span>
     </div>
 
-    <div id="dashboard" class="section active">
+    <div id="dashboard" class="section ${empty activeTab ? 'active' : ''}">
         <div class="stats">
             <div class="card">Tổng số sản phẩm <div class="number">200</div></div>
             <div class="card">Người dùng <div class="number">20</div></div>
@@ -40,7 +48,7 @@
         </div>
     </div>
 
-    <div id="san-pham" class="section">
+    <div id="san-pham" class="section ${activeTab == 'san-pham' ? 'active' : ''}">
         <div class="title-bar">
             <h2>Danh sách sản phẩm</h2>
             <a href="admin-product?action=add" class="btn-add" style="text-decoration: none;">
@@ -73,10 +81,10 @@
                     <td>${p.categoryName}</td>
                     <td style="display: flex; gap: 5px; align-items: center; justify-content: center;">
                         <a href="admin-product?action=edit&id=${p.id}" class="btn-edit" style="text-decoration: none; white-space: nowrap;">
-                            Sửa
+                            <i class="fa-regular fa-pen-to-square"></i>
                         </a>
                         <button class="btn-delete" onclick="deleteProduct('${p.id}')" style="margin: 0;">
-                            Xóa
+                            <i class="fa-regular fa-trash-can"></i>
                         </button>
                     </td>
                 </tr>
@@ -86,15 +94,70 @@
     </div>
 
     <div id="danh-muc" class="section"><h2>Danh sách danh mục</h2></div>
-    <div id="nguoi-dung" class="section"><h2>Danh sách người dùng</h2></div>
+    <div id="nguoi-dung" class="section ${activeTab == 'nguoi-dung' ? 'active' : ''}">
+        <div class="title-bar">
+            <h2>Danh sách người dùng</h2>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Tên người dùng</th>
+                <th>Trạng thái</th>
+                <th>Vai trò</th>
+                <th>Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${listU}" var="u">
+                <tr>
+                    <td>${u.id}</td>
+                    <td>${u.email}</td>
+                    <td>${u.username}</td>
+
+                    <td>
+                        <c:choose>
+                            <c:when test="${u.locked == 1}">
+                                <span style="color: red; font-weight: bold;">Đã bị khóa</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span style="color: green; font-weight: bold;">Bình thường</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+
+                    <td>
+                        <c:choose>
+                            <c:when test="${u.role == 'ADMIN'}">
+                                <span style="color: blue; font-weight: bold;">ADMIN</span>
+                            </c:when>
+                            <c:otherwise>
+                                Người dùng
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+
+                    <td style="display: flex; gap: 5px; align-items: center; justify-content: center;">
+                        <c:if test="${u.locked == 0}">
+                            <button class="btn-delete" style="cursor: pointer;">Khóa</button>
+                        </c:if>
+                        <c:if test="${u.locked == 1}">
+                            <button class="btn-add" style="cursor: pointer; background-color: green;">Mở khóa</button>
+                        </c:if>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
     <div id="don-hang" class="section"><h2>Quản lý đơn hàng</h2></div>
     <div id="thanh-toan" class="section"><h2>Thanh toán</h2></div>
     <div id="doanh-thu" class="section"><h2>Doanh thu</h2></div>
     <div id="logout" class="section"><h2>Đăng xuất</h2></div>
 
 </div>
-
 <script src="./js/admin.js"></script>
-
 </body>
 </html>

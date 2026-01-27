@@ -6,6 +6,8 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
 
@@ -126,6 +128,26 @@ public class UserDao {
             e.printStackTrace();
         }
     }
-
-
+    // Lấy danh sách tất cả người dùng
+    public List<User> getAllUsers() {
+        List<User> list = new ArrayList<>();
+        String query = "SELECT id, email, username, password, `lock`, role FROM users";
+        try (Connection conn = new DBConnect().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setEmail(rs.getString("email"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setRole(rs.getString("role"));
+                u.setLocked(rs.getInt("lock"));
+                list.add(u);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

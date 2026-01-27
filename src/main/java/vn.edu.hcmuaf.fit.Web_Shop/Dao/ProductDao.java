@@ -86,7 +86,7 @@ public class ProductDao {
         }
         return desc;
     }
-    //Đếm tổng sp trong 1 category (mục đích để phân trang)
+    //Đếm tổng sp trong 1 category
     public int countProductsByCategory(int cid) {
         String query = "SELECT COUNT(*) FROM Products WHERE category_id = ?";
         try (Connection conn = DBConnect.getConnection();
@@ -309,5 +309,20 @@ public class ProductDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    //Check sp đã tồn tại chưa
+    public boolean checkProductExist(String name) {
+        String query = "SELECT id FROM Products WHERE LOWER(name) = LOWER(?)";
+        try (Connection conn = new DBConnect().getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

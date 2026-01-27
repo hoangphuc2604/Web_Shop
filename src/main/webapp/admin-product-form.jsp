@@ -4,13 +4,18 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>${product != null ? "Cập nhật sản phẩm" : "Thêm sản phẩm mới"}</title>
+    <title>${product != null && product.id > 0 ? "Cập nhật sản phẩm" : "Thêm sản phẩm mới"}</title>
     <link rel="stylesheet" href="./css/admin-form.css">
 </head>
 <body>
 
 <div class="form-box">
-    <h2>${product != null ? "Cập Nhật Sản Phẩm" : "Thêm Sản Phẩm Mới"}</h2>
+    <h2>${product != null && product.id > 0 ? "Cập nhật sản phẩm" : "Thêm sản phẩm mới"}</h2>
+    <c:if test="${not empty error}">
+        <p style="color: red; text-align: center; font-weight: bold; margin-bottom: 10px;">
+                ${error}
+        </p>
+    </c:if>
 
     <form action="admin-product" method="post">
         <input type="hidden" name="action" value="save">
@@ -48,12 +53,11 @@
         </div>
 
         <button type="submit" class="btn-submit">
-            ${product != null ? "Lưu Cập Nhật" : "Thêm Sản Phẩm"}
+            ${product != null && product.id > 0 ? "Lưu cập nhật" : "Thêm sản phẩm"}
         </button>
     </form>
 
-    <a href="admin-product" class="btn-back">← Quay lại danh sách</a>
+    <a href="admin-product" class="btn-back">Quay lại danh sách</a>
 </div>
-
 </body>
 </html>
