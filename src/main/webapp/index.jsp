@@ -221,8 +221,8 @@
                             </a>
                         </div>
                         <a href="product?id=${p.id}" class="info-link">
-                            <h4>${p.categoryName}</h4>
-                            <p>${p.name}</p>
+                            <h4>${p.name}</h4>
+                            <p>${p.categoryName}</p>
                             <span class="price1">${p.formattedOriginalPrice}</span>
                             <span class="price2">${p.formattedPrice}</span>
                         </a>
@@ -269,8 +269,8 @@
                             </div>
 
                             <a href="product?id=${p.id}" class="info-link">
-                                <h4>${p.categoryName}</h4>
-                                <p>${p.name}</p>
+                                <h4>${p.name}</h4>
+                                <p>${p.categoryName}</p>
                                 <c:choose>
                                     <c:when test="${p.salePrice < p.price}">
                                         <span class="price1">${p.formattedOriginalPrice}</span>
