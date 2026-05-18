@@ -113,8 +113,8 @@
                             <a href="product?id=${p.id}" style="display: contents;">
                                 <div class="cs-item">
                                     <img src="${p.image}" alt="${p.name}">
-                                    <h4>${p.categoryName}</h4>
-                                    <p>${p.name}</p>
+                                    <h4>${p.name}</h4>
+                                    <p>${p.categoryName}</p>
                                     <div class="cs-rating">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>
