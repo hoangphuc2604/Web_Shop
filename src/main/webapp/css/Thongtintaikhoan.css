@@ -315,3 +315,25 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-buttons .save-btn {
+    margin-top: 0;
+}
+
+.extra-btn {
+    padding: 9px 15px;
+    background: #2063f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.extra-btn:hover {
+    background-color: #164bb8;
+}

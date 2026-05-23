@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet-Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/Thongtintaikhoan.css">
+    <link rel="stylesheet" href="css/Thongtintaikhoan.css?v=1">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -199,7 +199,13 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="save-btn">Lưu</button>
+
+                    <div class="action-buttons">
+                        <button type="submit" class="save-btn">Lưu</button>
+                        <button type="button" class="extra-btn btn-generate">Tạo Khóa </button>
+                        <button type="button" class="extra-btn btn-report">Báo Mất Khóa</button>
+                    </div>
+
 
                     <c:if test="${not empty success}">
                         <p style="color:green;margin-top:10px">${success}</p>
