@@ -341,7 +341,7 @@
         <div class="button-key-group">
             <button type="button" onclick="genKey()" class="btn-model btn-gen-key">Tạo Khoá</button>
             <button type="button" onclick="" class="btn-model btn-save-pubkey">Lưu Public Key</button>
-            <button type="button" onclick="" class="btn-model btn-down-prikey">Tải Private Key</button>
+            <button type="button" onclick="taiPriKey()" class="btn-model btn-down-prikey">Tải Private Key</button>
             <button type="button" onclick="closeModel()" class="btn-model btn-close-model">Đóng</button>
         </div>
     </div>

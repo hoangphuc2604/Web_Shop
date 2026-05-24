@@ -41,3 +41,16 @@ function genKey(){
     };
     ajax.send();
 }
+
+function taiPriKey() {
+    var keyPri = document.getElementById("txtPrivateKey").value;
+    if (keyPri == "" || keyPri == null){
+        alert("Chưa có Private Key, không thể tải xuống!");
+        return;
+    }
+    var blobPriKey = new Blob([keyPri], {type : "text/plain"});
+    var linkDownKey = document.createElement("a");
+    linkDownKey.href = window.URL.createObjectURL(blobPriKey);
+    linkDownKey.download = "private_key.pri";
+    linkDownKey.click();
+}
