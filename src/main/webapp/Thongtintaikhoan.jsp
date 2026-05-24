@@ -202,7 +202,7 @@
 
                     <div class="action-buttons">
                         <button type="submit" class="save-btn">Lưu</button>
-                        <button type="button" class="extra-btn btn-generate">Tạo Khóa </button>
+                        <button type="button" class="extra-btn btn-generate" onclick="openModel()">Tạo Khóa </button>
                         <button type="button" class="extra-btn btn-report">Báo Mất Khóa</button>
                     </div>
 
@@ -325,7 +325,25 @@
                 </c:choose>
             </div>
         </div>
-
+    </div>
+</div>
+<div id="keyModel" class="model-key">
+    <div class="model-content">
+        <h3>Tạo Khoá Bảo Mật</h3>
+        <div class="key-group">
+            <b>Public Key:</b>
+            <textarea id="txtPublicKey" class="keyTextArea" rows="4" readonly placeholder="Bấm 'Tạo khoá' để tạo khoá"></textarea>
+        </div>
+        <div class="key-group">
+            <b>Private Key (Chú ý: Hãy tải về máy vì private key sẽ không lưu vào web):</b>
+            <textarea id="txtPrivateKey" class="keyTextArea" rows="4" readonly placeholder="Bấm 'Tạo khoá' để tạo khoá"></textarea>
+        </div>
+        <div class="button-key-group">
+            <button type="button" onclick="genKey()" class="btn-model btn-gen-key">Tạo Khoá</button>
+            <button type="button" onclick="" class="btn-model btn-save-pubkey">Lưu Public Key</button>
+            <button type="button" onclick="" class="btn-model btn-down-prikey">Tải Private Key</button>
+            <button type="button" onclick="closeModel()" class="btn-model btn-close-model">Đóng</button>
+        </div>
     </div>
 </div>
 <script src="js/Thongtintk.js" defer></script>
