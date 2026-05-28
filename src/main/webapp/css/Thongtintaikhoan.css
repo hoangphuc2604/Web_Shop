@@ -394,3 +394,9 @@ body {
     background: #2063f3;
     color: white;
 }
+.btn-danger {
+    background-color: #dc3545 !important;
+}
+.btn-danger:hover {
+    background-color: #c82333 !important;
+}

@@ -10,6 +10,9 @@ public class Order {
     private String status;
     private double totalAmount;
     private List<OrderItem> items;
+    private String signature;
+    private int keyId;
+    private boolean isFake;
 
     public Order() {
 
@@ -41,6 +44,30 @@ public class Order {
         Locale localeVN = new Locale("vi", "VN");
         NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
         return currencyVN.format(totalAmount);
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public int getKeyId() {
+        return keyId;
+    }
+
+    public void setKeyId(int keyId) {
+        this.keyId = keyId;
+    }
+
+    public boolean isFake() {
+        return isFake;
+    }
+
+    public void setFake(boolean fake) {
+        isFake = fake;
     }
 
     public String getStatusVN() {

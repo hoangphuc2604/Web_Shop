@@ -54,3 +54,18 @@ function taiPriKey() {
     linkDownKey.download = "private_key.pri";
     linkDownKey.click();
 }
+//
+function openModel() {
+    document.getElementById('keyModel').style.display = 'block';
+}
+function closeModel() {
+    document.getElementById('keyModel').style.display = 'none';
+}
+let btnReport = document.getElementById('btnReportKey');
+if(btnReport) {
+    btnReport.addEventListener('click', function() {
+        if(confirm('Chắc chắn báo mất khóa? Đơn hàng cũ vẫn được giữ nguyên để đối chiếu.')) {
+            alert('Thông báo mất khóa đã được gửi!');
+        }
+    });
+}
