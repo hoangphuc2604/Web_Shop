@@ -203,7 +203,7 @@
                     <div class="action-buttons">
                         <button type="submit" class="save-btn">Lưu</button>
                         <button type="button" class="extra-btn btn-generate" onclick="openModel()">Tạo Khóa </button>
-                        <button type="button" class="extra-btn btn-report">Báo Mất Khóa</button>
+                        <button type="button" id="btnReportKey" class="extra-btn btn-report btn-danger">Báo Mất Khóa</button>
                     </div>
 
 
