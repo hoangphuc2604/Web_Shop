@@ -24,8 +24,9 @@ function closeModel() {
 }
 
 function genKey(){
+    var algo = document.getElementById("selectAlgo").value;
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", "generate-key", true);
+    ajax.open("GET", "generate-key?algorithm=?" + algo, true);
     ajax.onreadystatechange = function (){
         if (ajax.readyState == 4 && ajax.status == 200){
             var result = ajax.responseText;
@@ -40,6 +41,27 @@ function genKey(){
         }
     };
     ajax.send();
+}
+
+function luuPubKey() {
+    var pubKey = document.getElementById("txtPublicKey").value;
+    var algo = document.getElementById("selectAlgo").value;
+
+    if (pubKey == "" || pubKey == null){
+        alert("Không có khoá public để lưu. Hãy nhấn 'Tạo khoá' để tạo khoá");
+        return;
+    }
+
+    var ajax = new XMLHttpRequest();
+    ajax.open("POST", "user-key", true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200){
+            alert(ajax.responseText);
+            closeModel();
+        }
+    };
+    ajax.send("action=save&publicKey=" + encodeURIComponent(pubKey) + "&algorithm=" + algo);
 }
 
 function taiPriKey() {

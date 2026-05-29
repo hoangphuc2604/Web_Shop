@@ -12,6 +12,7 @@ import java.io.IOException;
 public class UserKeyController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/plain;charset=UTF-8");
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             response.setStatus(401);
@@ -22,6 +23,16 @@ public class UserKeyController extends HttpServlet {
         if ("revoke".equals(action)) {
             boolean success = UserKeyDao.revokeKey(user.getId());
             response.getWriter().write(success ? "OK" : "FAIL");
+        }
+        else if ("save".equals(action)){
+            String pubKey = request.getParameter("publicKey");
+            String algo = request.getParameter("algorithm");
+            boolean isSaved = UserKeyDao.insertPubKey(user.getId(), pubKey, algo);
+            if (isSaved){
+                response.getWriter().write("Đã lưu khoá public cho thuật toán " + algo + " thành công!");
+            } else {
+                response.getWriter().write("Lưu khoá public thất bại!");
+            }
         }
     }
 }
