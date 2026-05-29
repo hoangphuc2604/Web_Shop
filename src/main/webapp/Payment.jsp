@@ -95,6 +95,9 @@
                 </div>
 
                 <div class="bt-success">
+                    <button type="button" class="sign-btn" id="inputPrivateKeyBtn">
+                        <i class="fa-solid fa-key"></i> Bỏ private key vô để tạo chữ ký
+                    </button>
                     <button type="submit" class="complete-order-btn">Hoàn tất đơn hàng</button>
                 </div>
             </div>
