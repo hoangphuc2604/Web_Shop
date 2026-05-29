@@ -61,11 +61,23 @@ function openModel() {
 function closeModel() {
     document.getElementById('keyModel').style.display = 'none';
 }
-let btnReport = document.getElementById('btnReportKey');
-if(btnReport) {
-    btnReport.addEventListener('click', function() {
-        if(confirm('Chắc chắn báo mất khóa? Đơn hàng cũ vẫn được giữ nguyên để đối chiếu.')) {
-            alert('Thông báo mất khóa đã được gửi!');
+async function reportKeyLoss() {
+    if (!confirm('Chắc chắn báo mất khóa? Đơn hàng cũ vẫn được giữ nguyên để đối chiếu.')) return;
+
+    try {
+        let res = await fetch('user-key?action=revoke', { method: 'POST' });
+        let text = await res.text();
+
+        if (text === 'OK') {
+            alert('Đã thu hồi khóa.');
+            location.reload();
+        } else {
+            alert('Lỗi: ' + text);
         }
-    });
+    } catch (e) {
+        alert('Lỗi kết nối server.');
+    }
 }
+
+let btnReport = document.getElementById('btnReportKey');
+if (btnReport) btnReport.onclick = reportKeyLoss;
