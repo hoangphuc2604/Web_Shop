@@ -289,3 +289,55 @@ header .payment-container{
 .product-name { font-weight: bold; margin-bottom: 5px; font-size: 14px; }
 .product-quantity { font-size: 12px; color: #666; margin-bottom: 5px;}
 .product-price { color: #2346C5; font-weight: bold; font-size: 14px;}
+
+.bt-success {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.bt-success a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Nút tạo chữ ký (màu cam) */
+.sign-btn {
+    flex: 1;
+    background-color: #f39c12;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.sign-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Nút hoàn tất đơn hàng (màu xanh) */
+.complete-order-btn {
+    flex: 1;
+    background-color: #2346C5;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.complete-order-btn:hover {
+    background-color: #18358b;
+}
