@@ -331,6 +331,13 @@
     <div class="model-content">
         <h3>Tạo Khoá Bảo Mật</h3>
         <div class="key-group">
+            <b>Chọn thuật toán:</b>
+            <select id="selectAlgo">
+                <option value="DSA">DSA</option>
+                <option value="RSA">RSA</option>
+            </select>
+        </div>
+        <div class="key-group">
             <b>Public Key:</b>
             <textarea id="txtPublicKey" class="keyTextArea" rows="4" readonly placeholder="Bấm 'Tạo khoá' để tạo khoá"></textarea>
         </div>
@@ -340,7 +347,7 @@
         </div>
         <div class="button-key-group">
             <button type="button" onclick="genKey()" class="btn-model btn-gen-key">Tạo Khoá</button>
-            <button type="button" onclick="" class="btn-model btn-save-pubkey">Lưu Public Key</button>
+            <button type="button" onclick="luuPubKey()" class="btn-model btn-save-pubkey">Lưu Public Key</button>
             <button type="button" onclick="taiPriKey()" class="btn-model btn-down-prikey">Tải Private Key</button>
             <button type="button" onclick="closeModel()" class="btn-model btn-close-model">Đóng</button>
         </div>

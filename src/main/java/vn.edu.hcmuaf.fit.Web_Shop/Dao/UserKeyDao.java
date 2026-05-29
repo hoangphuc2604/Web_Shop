@@ -14,4 +14,17 @@ public class UserKeyDao {
             return false;
         }
     }
+
+    public static boolean insertPubKey(int userId, String pubKey, String algo){
+        String query = "INSERT INTO User_keys (user_id, public_key, algorithm, status) VALUES (?, ?, ?, 'ACTIVE')";
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            ps.setString(2, pubKey);
+            ps.setString(3, algo);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
