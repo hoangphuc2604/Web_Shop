@@ -96,7 +96,7 @@
 
                 <div class="bt-success">
                     <button type="button" class="sign-btn" id="inputPrivateKeyBtn">
-                        <i class="fa-solid fa-key"></i> Bỏ private key vô để tạo chữ ký
+                        xác thực chữ ký điện tử
                     </button>
                     <button type="submit" class="complete-order-btn">Hoàn tất đơn hàng</button>
                 </div>
@@ -158,6 +158,31 @@
         </div>
     </div>
 </form>
+<div id="sigModal" class="modal-overlay">
+    <div class="modal-box">
+
+        <div class="modal-header">
+            <h2 class="modal-title">Xác thực chữ kí điện tử</h2>
+            <span id="closeModalBtn" class="close-icon">&times;</span>
+        </div>
+
+        <div class="modal-body">
+            <p class="warning-text">Vui lòng tạo chữ kí với văn bản dưới đây để xác nhận chính chủ</p>
+            <div class="input-group">
+                <label for="hashDisplay">Mã Hash:</label>
+                <textarea id="hashDisplay" class="hash-textarea" readonly>16751eacfb6ab11bd51c121b118e8a0e8dcd025e622c7201d0711c9cc411dddc</textarea>
+            </div>
+            <div class="input-group">
+                <label for="sigInput">Nhập chữ kí điện tử:</label>
+                <textarea id="sigInput" class="signature-textarea"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="confirmSigBtn" class="btn-confirm-sig">Xác Nhận Chữ Kí</button>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
