@@ -254,7 +254,7 @@ header .payment-container{
     border: none;
     border-radius: 6px;
     padding: 14px 0;
-    margin-top: 20px;
+    height: 52px;
     cursor: pointer;
 }
 
@@ -294,7 +294,8 @@ header .payment-container{
     display: flex;
     gap: 15px;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    width: 100%;
 }
 
 .bt-success a {
@@ -302,10 +303,11 @@ header .payment-container{
     color: inherit;
 }
 
-/* Nút tạo chữ ký (màu cam) */
+
 .sign-btn {
     flex: 1;
     background-color: #f39c12;
+    height: 52px;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -324,7 +326,6 @@ header .payment-container{
     background-color: #e67e22;
 }
 
-/* Nút hoàn tất đơn hàng (màu xanh) */
 .complete-order-btn {
     flex: 1;
     background-color: #2346C5;
@@ -340,4 +341,94 @@ header .payment-container{
 
 .complete-order-btn:hover {
     background-color: #18358b;
+}
+/* Pop up*/
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box {
+    background-color: white;
+    margin: 8% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 650px;
+    border-radius: 8px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 26px;
+    color: green;
+}
+
+
+.warning-text {
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    margin: 10px 0 25px 0;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: black;
+}
+
+.hash-textarea,
+.signature-textarea {
+    width: 100%;
+    height: 110px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: black;
+}
+
+.hash-textarea {
+    background-color: whitesmoke;
+}
+
+.modal-footer {
+    margin-top: 10px;
+}
+
+.btn-confirm-sig {
+    width: 100%;
+    background-color:blue;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: normal;
+    cursor: pointer;
+}
+.close-icon {
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: bold;
+    color: gray;
 }
