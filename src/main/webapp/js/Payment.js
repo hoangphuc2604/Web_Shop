@@ -38,3 +38,49 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("sigModal");
+    var openBtn = document.getElementById("inputPrivateKeyBtn");
+    var closeBtn = document.getElementById("closeModalBtn");
+    var confirmBtn = document.getElementById("confirmSigBtn");
+    var sigInput = document.getElementById("sigInput");
+    var hashInput = document.getElementById("hashDisplay");
+    var hiddenSigInput = document.getElementById("digitalSig");
+
+    openBtn .onclick =function (){
+        var email = document.querySelector('input[name="email"]').value;
+        var phone = document.querySelector('input[name="phone"]').value;
+        var fullname = document.querySelector('input[name="fullname"]').value;
+        var address = document.querySelector('input[name="address"]').value;
+        var note = document.querySelector('input[name="note"]').value;
+
+        if (!email || !phone || !fullname || !address) {
+            alert("Vui lòng điền đầy đủ thông tin nhận hàng trước khi xác thực!");
+            return;
+        }
+        var params =new  URLSearchParams({
+            email: email,
+            phone: phone,
+            fullname: fullname,
+            address: address,
+            note: note
+
+    });
+        fetch('generate-hash?' + params.toString())
+            .then(response => response.text())
+            .then(hashResult => {
+                if (hashResult.startsWith("Lỗi")) {
+                    alert(hashResult);
+                } else {
+                    hashDisplay.value = hashResult;
+                    // Bật Pop-up lên
+                    modal.style.display = "block";
+                }
+            })
+            .catch(error => {
+                alert("Lỗi kết nối đến máy chủ: " + error);
+            });
+
+
+    }})
