@@ -1,16 +1,19 @@
-package vn.edu.hcmuaf.fit.Web_Shop.Controller.cart;
+package vn.edu.hcmuaf.fit.Web_Shop.Controller;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.OrderDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserInfoDao;
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserKeyDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.Order;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.UserKey;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @WebServlet(name = "PaymentController", value = "/payment")
@@ -38,6 +41,7 @@ public class PaymentController extends HttpServlet {
 
         request.getRequestDispatcher("Payment.jsp").forward(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -47,33 +51,69 @@ public class PaymentController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         User user = (User) session.getAttribute("user");
 
-        //Kiểm tra giỏ hàng
+        // Kiểm tra giỏ hàng
         if (cart == null || cart.getTotalQuantity() == 0) {
             response.sendRedirect("Cart.jsp");
             return;
         }
 
-        //Xác định User ID
+        // Xác định User ID
         int userId = 0; // Mặc định khách vãng lai
         if (user != null) {
             userId = user.getId();
-        } else {
-
         }
-        OrderDao dao = new OrderDao();
 
+        String orderHash = request.getParameter("orderHash");
+        String digitalSig = request.getParameter("digitalSig");
+        String keyIdStr = request.getParameter("keyId");
+        if (orderHash == null || orderHash.isEmpty() ||
+                digitalSig == null || digitalSig.isEmpty() ||
+                keyIdStr == null || keyIdStr.isEmpty()) {
+
+            request.setAttribute("error", "Thiếu thông tin chữ ký điện tử!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+            return;
+        }
+
+        int keyId = 0;
         try {
-            dao.createOrder(userId, cart);
+            keyId = Integer.parseInt(keyIdStr);
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "Mã khóa không hợp lệ!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+            return;
+        }
+
+        UserKey key = UserKeyDao.getKeyById(keyId);
+        if (key == null) {
+            request.setAttribute("error", "Không tìm thấy khóa công khai!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+            return;
+        }
+
+        if (!key.isActive() && key.getRevokedAt() != null) {
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+            if (now.after(key.getRevokedAt())) {
+                request.setAttribute("error", "Khóa này đã bị báo mất, không thể sử dụng để thanh toán!");
+                request.getRequestDispatcher("Payment.jsp").forward(request, response);
+                return;
+            }
+        }
+
+        OrderDao dao = new OrderDao();
+        try {
+
+            dao.createOrder(userId, cart, orderHash, digitalSig, keyId);
 
             int newOrderId = 0;
             List<Order> orders = dao.getOrdersByUser(userId);
 
             if (orders != null && !orders.isEmpty()) {
-                // Lấy đơn hàng đầu tiên (mới nhất)
+
                 newOrderId = orders.get(0).getId();
             }
 
-            session.removeAttribute("cart"); // Xóa giỏ hàng
+            session.removeAttribute("cart");
 
             if (newOrderId > 0) {
                 request.setAttribute("orderId", newOrderId);

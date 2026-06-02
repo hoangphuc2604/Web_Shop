@@ -21,27 +21,29 @@ public class AdminOrderServlet extends HttpServlet {
 
         OrderDao dao = new OrderDao();
         List<Order> listOrders = dao.getAllOrders();
+
         // Kiểm tra toàn vẹn dữ liệu từng đơn hàng
         for (Order o : listOrders) {
             try {
-                if (o.getSignature() != null && !o.getSignature().isEmpty()) {
+                // Kiểm tra 2 trường mới: digitalSig và orderHash
+                if (o.getDigitalSig() != null && !o.getDigitalSig().isEmpty() && o.getOrderHash() != null) {
+
                     // 1. Kéo Public Key từ DB
                     UserKey key = UserKeyDao.getKeyById(o.getKeyId());
 
                     if (key != null && key.getPublicKey() != null) {
-                        // 2. Tái tạo data gốc (LƯU Ý: Phải khớp 100% với chuỗi bạn đã hash ở JS)
-                        // Ví dụ tạm: Ký dựa trên tổng tiền
-                        String rawData = String.valueOf(o.getTotalAmount());
+                        // 2. Xác thực bằng DSA (truyền orderHash từ DB thay cho rawData)
+                        boolean isValid = VerSigOrder.verifyBase64(o.getOrderHash(), o.getDigitalSig(), key.getPublicKey());
 
-                        // 3. Xác thực bằng DSA
-                        boolean isValid = VerSigOrder.verifyBase64(rawData, o.getSignature(), key.getPublicKey());
-
-                        // 4. Nếu không hợp lệ, gán cờ fake
+                        // 3. Nếu chữ ký không hợp lệ, gán cờ fake
                         o.setFake(!isValid);
                     } else {
                         // Mất khóa hoặc không tìm thấy khóa -> Đáng ngờ
                         o.setFake(true);
                     }
+                } else {
+                    // Thiếu hash hoặc chữ ký điện tử
+                    o.setFake(true);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
