@@ -11,8 +11,8 @@ import java.util.List;
 
 public class OrderDao {
     //Tạo đơn hàng
-    public void createOrder(int userId, Cart cart) {
-        String sqlOrder = "INSERT INTO Orders (user_id, order_status, subtotal, voucher_id, total_amount, order_date) VALUES (?, 'Pending', ?, NULL, ?, NOW())";
+    public void createOrder(int userId, Cart cart, String orderHash, String digitalSig, int keyId) {
+        String sqlOrder = "INSERT INTO Orders (user_id, order_status, subtotal, voucher_id, total_amount, order_date, order_hash, digital_sig, key_id) VALUES (?, 'Pending', ?, NULL, ?, NOW(), ?, ?, ?)";
         String sqlItem = "INSERT INTO Order_items (product_id, order_id, quantity, unit_price) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnect.getConnection()) {
             conn.setAutoCommit(false);
@@ -26,6 +26,9 @@ public class OrderDao {
                 }
                 ps.setDouble(2, cart.total());
                 ps.setDouble(3, cart.total());
+                ps.setString(4, orderHash);
+                ps.setString(5, digitalSig);
+                ps.setInt(6, keyId);
                 ps.executeUpdate();
                 int orderId = 0;
                 ResultSet rs = ps.getGeneratedKeys();
@@ -64,7 +67,12 @@ public class OrderDao {
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getString("order_status"),
-                        rs.getDouble("total_amount"));
+                        rs.getDouble("total_amount"),
+                        rs.getString("order_hash"),
+                        rs.getString("digital_sig"),
+                        rs.getInt("key_id")
+                );
+
                 o.setItems(getOrderItems(o.getId()));
                 list.add(o);
             }
@@ -82,11 +90,15 @@ public class OrderDao {
             ps.setInt(1, orderId);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                o = new Order(
+                 o = new Order(
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getString("order_status"),
-                        rs.getDouble("total_amount"));
+                        rs.getDouble("total_amount"),
+                        rs.getString("order_hash"),
+                        rs.getString("digital_sig"),
+                        rs.getInt("key_id")
+                );
                 o.setItems(getOrderItems(orderId));
             }
         } catch (Exception e) {
@@ -138,9 +150,11 @@ public class OrderDao {
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getString("order_status"),
-                        rs.getDouble("total_amount")
+                        rs.getDouble("total_amount"),
+                        rs.getString("order_hash"),
+                        rs.getString("digital_sig"),
+                        rs.getInt("key_id")
                 );
-
                 o.setItems(getOrderItems(o.getId()));
 
                 list.add(o);

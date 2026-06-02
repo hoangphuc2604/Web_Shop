@@ -10,7 +10,8 @@ public class Order {
     private String status;
     private double totalAmount;
     private List<OrderItem> items;
-    private String signature;
+    private String orderHash;
+    private String digitalSig;
     private int keyId;
     private boolean isFake;
 
@@ -18,11 +19,14 @@ public class Order {
 
     }
 
-    public Order(int id, int userId, String status, double totalAmount) {
+    public Order(int id, int userId, String status, double totalAmount, String orderHash, String digitalSig, int keyId) {
         this.id = id;
         this.userId = userId;
         this.status = status;
         this.totalAmount = totalAmount;
+        this.orderHash = orderHash;
+        this.digitalSig = digitalSig;
+        this.keyId = keyId;
     }
 
     public int getId() { return id; }
@@ -46,12 +50,20 @@ public class Order {
         return currencyVN.format(totalAmount);
     }
 
-    public String getSignature() {
-        return signature;
+    public String getOrderHash() {
+        return orderHash;
     }
 
-    public void setSignature(String signature) {
-        this.signature = signature;
+    public void setOrderHash(String orderHash) {
+        this.orderHash = orderHash;
+    }
+
+    public String getDigitalSig() {
+        return digitalSig;
+    }
+
+    public void setDigitalSig(String digitalSig) {
+        this.digitalSig = digitalSig;
     }
 
     public int getKeyId() {
