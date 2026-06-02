@@ -45,6 +45,13 @@
         <div class="payment-container">
 
             <div class="payment-left">
+
+                <% if (request.getAttribute("error") != null) { %>
+                <div style="color: red; font-weight: bold; padding: 10px; border: 1px solid red; background: #ffe6e6; margin-bottom: 15px; border-radius: 4px;">
+                    <%= request.getAttribute("error") %>
+                </div>
+                <% } %>
+
                 <div class="pay-inf">
                     <h2>Thông tin người nhận hàng</h2>
                     <input type="text" name="email" placeholder="Email" required
@@ -93,7 +100,9 @@
                         </div>
                     </div>
                 </div>
-
+                <input type="hidden" id="orderHash" name="orderHash" value="">
+                <input type="hidden" id="digitalSig" name="digitalSig" value="">
+                <input type="hidden" id="keyId" name="keyId" value="${sessionScope.user.id}">
                 <div class="bt-success">
                     <button type="button" class="sign-btn" id="inputPrivateKeyBtn">
                         xác thực chữ ký điện tử
