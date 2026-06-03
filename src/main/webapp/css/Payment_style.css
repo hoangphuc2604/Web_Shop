@@ -432,3 +432,23 @@ header .payment-container{
     font-weight: bold;
     color: gray;
 }
+/* set up cho cái nút tạo chữ ký */
+.modal-header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.btn-goto-create-sig {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.close-icon {
+    line-height: 1;
+}
