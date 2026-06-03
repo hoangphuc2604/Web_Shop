@@ -172,7 +172,10 @@
 
         <div class="modal-header">
             <h2 class="modal-title">Xác thực chữ kí điện tử</h2>
-            <span id="closeModalBtn" class="close-icon">&times;</span>
+            <div class="modal-header-actions">
+                <a href="create-signature.jsp" target="_blank" class="btn-goto-create-sig">Tạo chữ ký</a>
+                <span id="closeModalBtn" class="close-icon">&times;</span>
+            </div>
         </div>
 
         <div class="modal-body">
