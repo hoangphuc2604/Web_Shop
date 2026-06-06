@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @WebServlet(name = "CollectionServlet", value = "/collections")
 public class CollectionServlet extends HttpServlet{
     @Override
