@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var sigInput = document.getElementById("sigInput");
     var hashInput = document.getElementById("hashDisplay");
 
-    openBtn.onclick = function() { modal.style.display = "block"; }
+
     closeBtn.onclick = function() { modal.style.display = "none"; }
     window.onclick = function(event) { if (event.target == modal) modal.style.display = "none"; }
 
