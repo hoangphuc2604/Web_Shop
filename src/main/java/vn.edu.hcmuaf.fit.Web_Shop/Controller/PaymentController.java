@@ -33,6 +33,8 @@ public class PaymentController extends HttpServlet {
             request.setAttribute("preName", user.getUsername());
             UserInfoDao userInfoDao = new UserInfoDao();
             UserInfo info = userInfoDao.findByUserId(user.getId());
+            int activeKeyId = UserKeyDao.getActiveKeyId(user.getId());
+            request.setAttribute("activeKeyId", activeKeyId);
             if (info != null) {
                 request.setAttribute("prePhone", info.getPhone());
                 request.setAttribute("preAddress", info.getAddress());

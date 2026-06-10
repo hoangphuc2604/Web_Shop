@@ -54,4 +54,19 @@ public class UserKeyDao {
         }
         return null;
     }
+
+    public static int getActiveKeyId(int userId){
+        String query = "SELECT id FROM User_keys WHERE user_id = ? AND status = 'ACTIVE'";
+        try (Connection conn = DBConnect.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
