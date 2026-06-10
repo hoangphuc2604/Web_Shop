@@ -26,10 +26,38 @@ function taoChuKy() {
         alert("Vui lòng nhập khóa riêng tư!");
         return;
     }
-    try {
-        txtResult.value = "MOCK_SIGNATURE_BASE64_CHAY_THU_NGHIEM_CHO_KHANG";
-        alert("Tạo chữ ký số thành công! Hãy copy chuỗi kết quả bên dưới.");
-    } catch (error) {
-        alert("Có lỗi xảy ra trong quá trình ký: " + error.message);
+    const algoValue = document.getElementById("selectAlgo").value;
+    const params = new URLSearchParams();
+    params.append("hashInput", hashValue);
+    params.append("privateKeyInput", privateKeyValue);
+    params.append("algo", algoValue);
+    fetch("create-signature", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: params
+    })
+        .then(response => response.text())
+        .then(data => {
+            if (data.startsWith("Lỗi")) {
+                alert(data);
+            } else {
+                txtResult.value = data;
+                alert("Tạo chữ ký số thành công!");
+            }
+        })
+        .catch(error => {
+            alert("Lỗi kết nối đến Server!");
+            console.error(error);
+        });
+    function copyChuKy() {
+        const txtResult = document.getElementById("signatureResult");
+        if (txtResult.value === "") {
+            alert("Chưa có chữ ký để copy!");
+            return;
+        }
+        navigator.clipboard.writeText(txtResult.value);
+        alert("Đã copy chữ ký thành công!");
     }
 }

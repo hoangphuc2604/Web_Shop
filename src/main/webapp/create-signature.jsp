@@ -17,14 +17,25 @@
     <div class="input-group PrivateKey-group">
         <textarea id="privateKeyInput" class="private-textarea" rows="4" placeholder="Dán Private Key vào đây..."></textarea>
 
-            <button type="button" id="btnUploadPrivateKey" class="btn-upload">Tải Private Key</button>
-           <input type="file" id="filePrivateKey" class="file-input" accept=".txt, .pem, .key">
-    </div>
+        <div class="key-actions-row">
+            <button type="button" id="btnUploadPrivateKey" class="btn-upload" onclick="kichHoatChonFile()">Tải Private Key</button>
+            <input type="file" id="filePrivateKey" class="file-input" accept=".txt, .pem, .key, .pri" onchange="docFilePrivateKey()">
 
+            <div class="key-group">
+                <b>Chọn thuật toán:</b>
+                <select id="selectAlgo">
+                    <option value="DSA">DSA</option>
+                    <option value="RSA">RSA</option>
+                </select>
+            </div>
+        </div>
+    </div>
         <div class="result-group">
+
             <h4 class="title-result">Chữ ký tạo thành</h4>
             <textarea id="signatureResult" class="result-textarea" rows="4" readonly placeholder="Chữ ký sẽ hiển thị ở đây..."></textarea>
-            <button type="button" id="btnSign" class="btn-sign">Bắt đầu ký dữ liệu</button>
+            <button type="button" id="btnCopy" class="btn-upload" onclick="copyChuKy()" >Copy chữ ký</button>
+            <button type="button" id="btnSign" class="btn-sign"  onclick="taoChuKy()">Bắt đầu ký dữ liệu</button>
 
         </div>
 
@@ -33,6 +44,6 @@
 
 
 </div>
-
+<script src="js/create-signature.js"></script>
 </body>
 </html>
