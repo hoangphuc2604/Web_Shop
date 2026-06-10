@@ -100,3 +100,30 @@ body {
     color: #2346C5;
     margin-bottom: 8px;
 }
+.key-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.key-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #333333;
+}
+
+.key-group select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #ffffff;
+    cursor: pointer;
+    outline: none;
+}
+.btn-copy {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
