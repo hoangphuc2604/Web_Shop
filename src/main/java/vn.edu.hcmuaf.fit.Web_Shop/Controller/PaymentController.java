@@ -11,10 +11,15 @@ import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserKey;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
+import vn.edu.hcmuaf.fit.Web_Shop.DigitalSignature.VerSigOrder;
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserKeyDao;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
+
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
+
 
 @WebServlet(name = "PaymentController", value = "/payment")
 public class PaymentController extends HttpServlet {
@@ -38,6 +43,11 @@ public class PaymentController extends HttpServlet {
             if (info != null) {
                 request.setAttribute("prePhone", info.getPhone());
                 request.setAttribute("preAddress", info.getAddress());
+            }
+            // tìm active key của user để lấy id của khóa mà làm
+            UserKey activeKey = UserKeyDao.getActiveKeyByUserId(user.getId());
+            if (activeKey != null) {
+                request.setAttribute("activeKeyId", activeKey.getId());
             }
         }
 
@@ -72,7 +82,7 @@ public class PaymentController extends HttpServlet {
                 digitalSig == null || digitalSig.isEmpty() ||
                 keyIdStr == null || keyIdStr.isEmpty()) {
 
-            request.setAttribute("error", "Thiếu thông tin chữ ký điện tử!");
+            request.setAttribute("error", "LỖI: Không tìm thấy dữ liệu chữ ký số hợp lệ để tiến hành lưu đơn!");
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
             return;
         }
@@ -86,27 +96,12 @@ public class PaymentController extends HttpServlet {
             return;
         }
 
-        UserKey key = UserKeyDao.getKeyById(keyId);
-        if (key == null) {
-            request.setAttribute("error", "Không tìm thấy khóa công khai!");
-            request.getRequestDispatcher("Payment.jsp").forward(request, response);
-            return;
-        }
 
-        if (!key.isActive() && key.getRevokedAt() != null) {
-            Timestamp now = new Timestamp(System.currentTimeMillis());
-            if (now.after(key.getRevokedAt())) {
-                request.setAttribute("error", "Khóa này đã bị báo mất, không thể sử dụng để thanh toán!");
-                request.getRequestDispatcher("Payment.jsp").forward(request, response);
-                return;
-            }
-        }
 
         OrderDao dao = new OrderDao();
         try {
 
-            dao.createOrder(userId, cart, orderHash, digitalSig, keyId);
-
+          dao.createOrder(userId, cart, orderHash, digitalSig, keyId);
             int newOrderId = 0;
             List<Order> orders = dao.getOrdersByUser(userId);
 
@@ -129,4 +124,5 @@ public class PaymentController extends HttpServlet {
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
     }
+
 }

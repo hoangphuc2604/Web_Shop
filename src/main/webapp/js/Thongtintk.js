@@ -26,7 +26,7 @@ function closeModel() {
 function genKey(){
     var algo = document.getElementById("selectAlgo").value;
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", "generate-key?algorithm=?" + algo, true);
+    ajax.open("GET", "generate-key?algorithm=" + algo, true);
     ajax.onreadystatechange = function (){
         if (ajax.readyState == 4 && ajax.status == 200){
             var result = ajax.responseText;

@@ -7,7 +7,7 @@ import java.sql.*;
 public class UserKeyDao {
 
     public static boolean revokeKey(int userId) {
-        String query = "UPDATE User_keys SET status = 'REVOKED', revoked_at = NOW() WHERE user_id = ? AND status = 'ACTIVE'";
+        String query = "UPDATE user_keys SET status = 'REVOKED', revoked_at = NOW() WHERE user_id = ? AND status = 'ACTIVE'";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, userId);
@@ -19,7 +19,7 @@ public class UserKeyDao {
     }
 
     public static boolean insertPubKey(int userId, String pubKey, String algo){
-        String query = "INSERT INTO User_keys (user_id, public_key, algorithm, status) VALUES (?, ?, ?, 'ACTIVE')";
+        String query = "INSERT INTO user_keys (user_id, public_key, algorithm, status) VALUES (?, ?, ?, 'ACTIVE')";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, userId);
@@ -31,7 +31,7 @@ public class UserKeyDao {
         }
     }
     public static UserKey getKeyById(int id) {
-        String sql = "SELECT * FROM User_keys WHERE id = ?";
+        String sql = "SELECT * FROM user_keys WHERE id = ?";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -55,18 +55,28 @@ public class UserKeyDao {
         return null;
     }
 
-    public static int getActiveKeyId(int userId){
-        String query = "SELECT id FROM User_keys WHERE user_id = ? AND status = 'ACTIVE'";
+    public static UserKey getActiveKeyByUserId(int userId) {
+        String sql = "SELECT * FROM user_keys WHERE user_id = ? AND status = 'ACTIVE' LIMIT 1";
         try (Connection conn = DBConnect.getConnection();
-                 PreparedStatement ps = conn.prepareStatement(query)) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
+
             if (rs.next()) {
-                return rs.getInt("id");
+                UserKey key = new UserKey();
+                key.setId(rs.getInt("id"));
+                key.setUserId(rs.getInt("user_id"));
+                key.setPublicKey(rs.getString("public_key"));
+                key.setAlgorithm(rs.getString("algorithm"));
+                key.setStatus(rs.getString("status"));
+                key.setCreatedAt(rs.getTimestamp("created_at"));
+                key.setRevokedAt(rs.getTimestamp("revoked_at"));
+                return key;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return 0;
+        return null;
     }
 }
