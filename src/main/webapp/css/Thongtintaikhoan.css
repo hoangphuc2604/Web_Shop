@@ -407,3 +407,66 @@ body {
 .btn-danger:hover {
     background-color: #c82333 !important;
 }
+
+.key-management{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.key-mana-title{
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.key-table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #dddddd;
+}
+
+.key-table th{
+    background-color: #2063f3;
+    color: white;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: center;
+}
+
+.key-table td{
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-align: center;
+}
+
+.key-id, .key-status{
+    font-weight: bold;
+}
+
+.key-pub textarea{
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+    resize: none;
+    outline: none;
+    border: none;
+    padding: 4px;
+    background-color: transparent;
+    word-break: break-all;
+}
+
+.stt-active{
+    color: green;
+}
+
+.stt-revoked{
+    color: red;
+}
+
+.key-cre-date{
+    font-size: 12px;
+}
+
+.empty-listKey{
+    text-align: center;
+    padding: 30px;
+}

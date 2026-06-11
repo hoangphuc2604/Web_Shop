@@ -211,6 +211,52 @@
                         <p style="color:green;margin-top:10px">${success}</p>
                     </c:if>
 
+                    <div class="key-management">
+                        <h3 class="key-mana-title">Danh sách khoá đã tạo</h3>
+                        <table class="key-table">
+                            <thead>
+                            <tr>
+                                <th style="width: 5%">ID</th>
+                                <th style="width: 45%">Public Key</th>
+                                <th style="width: 10%">Trạng thái</th>
+                                <th style="width: 20%">Tạo vào ngày</th>
+                                <th style="width: 20%">Báo mất vào ngày</th>
+                            </tr>
+                            </thead>
+
+                            <c:forEach items="${listKeys}" var="k">
+                                <tbody>
+                                <tr>
+                                    <td class="key-id">${k.id}</td>
+                                    <td class="key-pub">
+                                        <textarea rows="4" readonly>${k.publicKey}</textarea>
+                                    </td>
+
+                                    <td class="key-status">
+                                        <c:choose>
+                                            <c:when test="${k.status == 'ACTIVE' || k.status == 'active'}">
+                                                <span class="stt-active">Active</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="stt-revoked">Revoked</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+                                    <td class="key-cre-date">${k.createdAt}</td>
+
+                                    <td class="key-cre-date">
+                                        <c:if test="${not empty k.revokedAt}">${k.revokedAt}</c:if>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
+
+                            <c:if test="${empty listKeys}">
+                                <tbody><tr><td colspan="5" class="empty-listKey">Bạn chưa tạo bất cứ khoá nào!</td></tr></tbody>
+                            </c:if>
+                        </table>
+                    </div>
                 </div>
             </form>
         </div>
