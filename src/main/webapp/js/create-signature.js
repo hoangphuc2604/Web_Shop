@@ -1,6 +1,7 @@
 function kichHoatChonFile() {
     document.getElementById("filePrivateKey").click();
 }
+
 function docFilePrivateKey() {
     const fileInput = document.getElementById("filePrivateKey");
     const txtPrivateKey = document.getElementById("privateKeyInput");
@@ -12,6 +13,7 @@ function docFilePrivateKey() {
     };
     reader.readAsText(file);
 }
+
 function taoChuKy() {
     const hashValue = document.getElementById("hashInput").value.trim();
     const privateKeyValue = document.getElementById("privateKeyInput").value.trim();
@@ -31,6 +33,7 @@ function taoChuKy() {
     params.append("hashInput", hashValue);
     params.append("privateKeyInput", privateKeyValue);
     params.append("algo", algoValue);
+
     fetch("create-signature", {
         method: "POST",
         headers: {
@@ -43,7 +46,7 @@ function taoChuKy() {
             if (data.startsWith("Lỗi")) {
                 alert(data);
             } else {
-                txtResult.value = data;
+                txtResult.value = data.trim();
                 alert("Tạo chữ ký số thành công!");
             }
         })
@@ -51,13 +54,20 @@ function taoChuKy() {
             alert("Lỗi kết nối đến Server!");
             console.error(error);
         });
-    function copyChuKy() {
-        const txtResult = document.getElementById("signatureResult");
-        if (txtResult.value === "") {
-            alert("Chưa có chữ ký để copy!");
-            return;
-        }
-        navigator.clipboard.writeText(txtResult.value);
-        alert("Đã copy chữ ký thành công!");
+}
+
+// ĐÃ SỬA: Đưa hàm copy chữ ký ra ngoài độc lập để nút ngoài HTML gọi được
+function copyChuKy() {
+    const txtResult = document.getElementById("signatureResult");
+    if (txtResult.value === "") {
+        alert("Chưa có chữ ký để copy!");
+        return;
     }
+    navigator.clipboard.writeText(txtResult.value)
+        .then(() => {
+            alert("Đã copy chữ ký thành công!");
+        })
+        .catch(err => {
+            alert("Lỗi khi thực hiện sao chép: " + err);
+        });
 }

@@ -102,7 +102,7 @@
                 </div>
                 <input type="hidden" id="orderHash" name="orderHash" value="">
                 <input type="hidden" id="digitalSig" name="digitalSig" value="">
-                <input type="hidden" id="keyId" name="keyId" value="${sessionScope.user.id}">
+                <input type="hidden" id="keyId" name="keyId" value="${requestScope.activeKeyId}">
                 <div class="bt-success">
                     <button type="button" class="sign-btn" id="inputPrivateKeyBtn">
                         xác thực chữ ký điện tử

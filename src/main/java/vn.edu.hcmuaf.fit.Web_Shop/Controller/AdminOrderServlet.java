@@ -33,7 +33,7 @@ public class AdminOrderServlet extends HttpServlet {
 
                     if (key != null && key.getPublicKey() != null) {
                         // 2. Xác thực bằng DSA (truyền orderHash từ DB thay cho rawData)
-                        boolean isValid = VerSigOrder.verifyBase64(o.getOrderHash(), o.getDigitalSig(), key.getPublicKey());
+                        boolean isValid = VerSigOrder.verifyBase64(o.getOrderHash(), o.getDigitalSig(), key.getPublicKey(),key.getAlgorithm());
 
                         // 3. Nếu chữ ký không hợp lệ, gán cờ fake
                         o.setFake(!isValid);

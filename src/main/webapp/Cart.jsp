@@ -216,7 +216,7 @@
                         </p>
                     </div>
 
-                    <a href="Payment.jsp">
+                    <a href="payment">
                         <button class="checkout-btn">Đi Đến Trang Thanh Toán</button>
                     </a>
 
