@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Model;
 
+import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -14,6 +15,7 @@ public class Order {
     private String digitalSig;
     private int keyId;
     private boolean isFake;
+    private Timestamp orderDate;
 
     public Order() {
 
@@ -28,7 +30,13 @@ public class Order {
         this.digitalSig = digitalSig;
         this.keyId = keyId;
     }
+    public Timestamp getOrderDate() {
+        return orderDate;
+    }
 
+    public void setOrderDate(Timestamp orderDate) {
+        this.orderDate = orderDate;
+    }
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

@@ -72,7 +72,7 @@ public class OrderDao {
                         rs.getString("digital_sig"),
                         rs.getInt("key_id")
                 );
-
+                o.setOrderDate(rs.getTimestamp("order_date"));
                 o.setItems(getOrderItems(o.getId()));
                 list.add(o);
             }
@@ -99,6 +99,7 @@ public class OrderDao {
                         rs.getString("digital_sig"),
                         rs.getInt("key_id")
                 );
+                o.setOrderDate(rs.getTimestamp("order_date"));
                 o.setItems(getOrderItems(orderId));
             }
         } catch (Exception e) {
@@ -155,6 +156,7 @@ public class OrderDao {
                         rs.getString("digital_sig"),
                         rs.getInt("key_id")
                 );
+                o.setOrderDate(rs.getTimestamp("order_date"));
                 o.setItems(getOrderItems(o.getId()));
 
                 list.add(o);
