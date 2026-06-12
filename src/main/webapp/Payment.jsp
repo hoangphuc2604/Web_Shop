@@ -11,7 +11,7 @@
     <title>Thanh toán sản phẩm</title>
     <link rel="stylesheet" href="css/Payment_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="js/Payment.js"></script>
+    <script src="js/Payment.js?V=2"></script>
 </head>
 <body>
 <%
@@ -104,9 +104,6 @@
                 <input type="hidden" id="digitalSig" name="digitalSig" value="">
                 <input type="hidden" id="keyId" name="keyId" value="${requestScope.activeKeyId}">
                 <div class="bt-success">
-                    <button type="button" class="sign-btn" id="inputPrivateKeyBtn">
-                        xác thực chữ ký điện tử
-                    </button>
                     <button type="submit" class="complete-order-btn">Hoàn tất đơn hàng</button>
                 </div>
             </div>
@@ -197,4 +194,5 @@
 </div>
 
 </body>
+
 </html>
