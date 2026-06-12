@@ -16,21 +16,10 @@
 <div class="sidebar">
     <h2>Admin Control</h2>
     <a class="${empty activeTab ? 'tab-link active' : 'tab-link'}" href="#dashboard">Bảng điều khiển</a>
-
-    <a class="${activeTab == 'san-pham' ? 'tab-link active' : 'tab-link'}"
-       href="${pageContext.request.contextPath}/admin-product">
-        Sản phẩm
-    </a>
-
+    <a class="${activeTab == 'san-pham' ? 'tab-link active' : 'tab-link'}" href="${pageContext.request.contextPath}/admin-product">Sản phẩm</a>
     <a class="tab-link" href="#danh-muc">Danh mục</a>
-    <a class="${activeTab == 'nguoi-dung' ? 'tab-link active' : 'tab-link'}"
-       href="${pageContext.request.contextPath}/admin-user">
-        Người dùng
-    </a>
-    <a class="${activeTab == 'don-hang' ? 'tab-link active' : 'tab-link'}"
-       href="${pageContext.request.contextPath}/admin-order">
-        Đơn hàng
-    </a>
+    <a class="${activeTab == 'nguoi-dung' ? 'tab-link active' : 'tab-link'}" href="${pageContext.request.contextPath}/admin-user">Người dùng</a>
+    <a class="${activeTab == 'don-hang' ? 'tab-link active' : 'tab-link'}" href="${pageContext.request.contextPath}/admin-order">Đơn hàng</a>
     <a class="tab-link" href="#thanh-toan">Thanh toán</a>
     <a class="tab-link" href="#doanh-thu">Doanh thu</a>
     <a class="tab-link" href="#logout">Đăng xuất</a>
@@ -54,11 +43,8 @@
     <div id="san-pham" class="section ${activeTab == 'san-pham' ? 'active' : ''}">
         <div class="title-bar">
             <h2>Danh sách sản phẩm</h2>
-            <a href="admin-product?action=add" class="btn-add" style="text-decoration: none;">
-                + Thêm sản phẩm
-            </a>
+            <a href="admin-product?action=add" class="btn-add" style="text-decoration: none;">+ Thêm sản phẩm</a>
         </div>
-
         <table>
             <thead>
             <tr>
@@ -75,20 +61,14 @@
             <c:forEach items="${listP}" var="p">
                 <tr>
                     <td>${p.id}</td>
-                    <td>
-                        <img src="${p.image}" alt="img" style="width: 50px; height: 50px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;">
-                    </td>
+                    <td><img src="${p.image}" alt="img" style="width: 50px; height: 50px; object-fit: contain; border: 1px solid #ddd; border-radius: 4px;"></td>
                     <td style="max-width: 200px;">${p.name}</td>
                     <td><fmt:formatNumber value="${p.price}" type="currency" currencySymbol="đ"/></td>
                     <td style="color: red; font-weight: bold;"><fmt:formatNumber value="${p.salePrice}" type="currency" currencySymbol="đ"/></td>
                     <td>${p.categoryName}</td>
                     <td style="display: flex; gap: 5px; align-items: center; justify-content: center;">
-                        <a href="admin-product?action=edit&id=${p.id}" class="btn-edit" style="text-decoration: none; white-space: nowrap;">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </a>
-                        <button class="btn-delete" onclick="deleteProduct('${p.id}')" style="margin: 0;">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </button>
+                        <a href="admin-product?action=edit&id=${p.id}" class="btn-edit" style="text-decoration: none; white-space: nowrap;"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <button class="btn-delete" onclick="deleteProduct('${p.id}')" style="margin: 0;"><i class="fa-regular fa-trash-can"></i></button>
                     </td>
                 </tr>
             </c:forEach>
@@ -101,7 +81,6 @@
         <div class="title-bar">
             <h2>Danh sách người dùng</h2>
         </div>
-
         <table>
             <thead>
             <tr>
@@ -119,7 +98,6 @@
                     <td>${u.id}</td>
                     <td>${u.email}</td>
                     <td>${u.username}</td>
-
                     <td>
                         <c:choose>
                             <c:when test="${u.locked == 1}">
@@ -130,7 +108,6 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-
                     <td>
                         <c:choose>
                             <c:when test="${u.role == 'ADMIN'}">
@@ -141,7 +118,6 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-
                     <td style="display: flex; gap: 5px; align-items: center; justify-content: center;">
                         <c:if test="${u.locked == 0}">
                             <button class="btn-delete" style="cursor: pointer;">Khóa</button>
@@ -155,25 +131,28 @@
             </tbody>
         </table>
     </div>
+
     <div id="don-hang" class="section ${activeTab == 'don-hang' ? 'active' : ''}">
         <div class="title-bar">
             <h2>Quản lý đơn hàng</h2>
         </div>
-
         <table>
             <thead>
             <tr>
                 <th>ID đơn</th>
+                <th>Ngày đặt</th>
                 <th>ID người dùng</th>
                 <th>Trạng thái</th>
                 <th>Tổng tiền</th>
-                <th>Chi tiết</th>
+                <th>Bảo mật</th>
+                <th>Hành động</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${listOrders}" var="o">
-                <tr>
+                <tr style="${o.fake ? 'background-color: #ffe6e6;' : ''}">
                     <td>#${o.id}</td>
+                    <td><fmt:formatDate value="${o.orderDate}" pattern="dd/MM/yyyy HH:mm"/></td>
                     <td>
                         <c:choose>
                             <c:when test="${o.userId > 0}">
@@ -184,28 +163,32 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-
                     <td>
-                    <span style="font-weight: bold;">
-                            ${o.statusVN}
-                    </span>
+                        <span style="font-weight: bold;">${o.statusVN}</span>
                     </td>
-
                     <td style="color: red; font-weight: bold;">
                             ${o.formattedTotal}
                     </td>
-
                     <td>
-                        <button class="btn-edit"
-                                onclick="toggleOrderDetail(${o.id})">
-                            Xem
-                        </button>
+                        <c:choose>
+                            <c:when test="${o.fake}">
+                                <span style="color: red; font-weight: bold;">Dữ liệu sai/Mất khóa</span>
+                            </c:when>
+                            <c:otherwise>
+                                <span style="color: green; font-weight: bold;">Hợp lệ</span>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td style="display: flex; gap: 5px; align-items: center;">
+                        <button class="btn-edit" onclick="toggleOrderDetail(${o.id})">Xem</button>
+                        <form action="UpdateOrder" method="post" style="margin: 0;">
+                            <input type="hidden" name="orderId" value="${o.id}">
+                            <button type="submit" class="btn-add" style="background-color: #007bff; border: none; ${o.fake ? 'opacity: 0.5; cursor: not-allowed;' : ''}" ${o.fake ? 'disabled' : ''}>Duyệt</button>
+                        </form>
                     </td>
                 </tr>
-
-                <!-- Chi tiết đơn -->
                 <tr id="order-detail-${o.id}" style="display: none; background: #f9f9f9;">
-                    <td colspan="5">
+                    <td colspan="7">
                         <table style="width: 100%;">
                             <thead>
                             <tr>
@@ -220,14 +203,11 @@
                                 <tr>
                                     <td>${i.product.name}</td>
                                     <td>
-                                        <img src="${i.product.image}"
-                                             style="width: 50px; height: 50px; object-fit: contain;">
+                                        <img src="${i.product.image}" style="width: 50px; height: 50px; object-fit: contain;">
                                     </td>
                                     <td>${i.quantity}</td>
                                     <td>
-                                        <fmt:formatNumber value="${i.unitPrice}"
-                                                          type="currency"
-                                                          currencySymbol="đ"/>
+                                        <fmt:formatNumber value="${i.unitPrice}" type="currency" currencySymbol="đ"/>
                                     </td>
                                 </tr>
                             </c:forEach>
