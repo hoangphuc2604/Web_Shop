@@ -32,7 +32,7 @@ public class VerifySignatureServlet extends HttpServlet {
             if (isValid) {
                 response.getWriter().write("SUCCESS");
             } else {
-                response.getWriter().write("Thất bại: Chữ ký koong hợp lệ!");
+                response.getWriter().write("Thất bại: Chữ ký không hợp lệ!");
             }
         } catch (Exception e) {
             e.printStackTrace();

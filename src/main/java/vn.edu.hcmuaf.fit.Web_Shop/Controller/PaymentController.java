@@ -92,8 +92,24 @@ public class PaymentController extends HttpServlet {
             return;
         }
 
+        UserKey activeKey = UserKeyDao.getKeyById(keyId);
+        if (activeKey == null) {
+            request.setAttribute("error", "LỖI: Không tìm thấy khóa trên hệ thống!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+            return;
+        }
+        boolean isReallyValid = false;
+        try {
+            isReallyValid = VerSigOrder.verifyBase64(orderHash, digitalSig, activeKey.getPublicKey(), activeKey.getAlgorithm());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
+        if (!isReallyValid) {
+            request.setAttribute("error", "PHÁT HIỆN GIAN LẬN: Chữ ký không hợp lệ, đơn hàng đã bị hủy!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+            return;
+        }
         OrderDao dao = new OrderDao();
         try {
 
