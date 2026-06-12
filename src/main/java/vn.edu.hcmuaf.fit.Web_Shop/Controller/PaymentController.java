@@ -12,8 +12,6 @@ import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserKey;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
 import vn.edu.hcmuaf.fit.Web_Shop.DigitalSignature.VerSigOrder;
-import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserKeyDao;
-import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 
 
 import java.io.IOException;
@@ -38,8 +36,6 @@ public class PaymentController extends HttpServlet {
             request.setAttribute("preName", user.getUsername());
             UserInfoDao userInfoDao = new UserInfoDao();
             UserInfo info = userInfoDao.findByUserId(user.getId());
-            int activeKeyId = UserKeyDao.getActiveKeyId(user.getId());
-            request.setAttribute("activeKeyId", activeKeyId);
             if (info != null) {
                 request.setAttribute("prePhone", info.getPhone());
                 request.setAttribute("preAddress", info.getAddress());
