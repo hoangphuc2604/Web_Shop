@@ -1,13 +1,16 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Controller;
 
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserKeyDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.UserKey;
 import vn.edu.hcmuaf.fit.Web_Shop.Service.UserService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/account")
 public class AccountController extends HttpServlet {
@@ -29,6 +32,9 @@ public class AccountController extends HttpServlet {
             if (info == null) { info = new UserInfo(); }
 
             request.setAttribute("userInfo", info);
+
+            List<UserKey> listKeys = UserKeyDao.getAllKeysByUserId(user.getId());
+            request.setAttribute("listKeys", listKeys);
             request.getRequestDispatcher("Thongtintaikhoan.jsp").forward(request, response);
         }
 

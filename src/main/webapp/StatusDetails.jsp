@@ -40,7 +40,7 @@
             </a>
 
             <c:if test="${not empty sessionScope.user}">
-                <a href="Thongtintaikhoan.jsp" class="icon-item">
+                <a href="account" class="icon-item">
                     <i class="fa fa-user"></i>
                     <p>${sessionScope.user.username}</p>
                 </a>
