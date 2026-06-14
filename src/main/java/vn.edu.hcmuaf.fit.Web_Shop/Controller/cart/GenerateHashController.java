@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.CartItem;
 import vn.edu.hcmuaf.fit.Web_Shop.DigitalSignature.SHA256;
@@ -19,11 +20,11 @@ public class GenerateHashController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/plain;charset=UTF-8");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String fullname = request.getParameter("fullname");
-        String address = request.getParameter("address");
-        String  note = request.getParameter("note");
+//        String email = request.getParameter("email");
+//        String phone = request.getParameter("phone");
+//        String fullname = request.getParameter("fullname");
+//        String address = request.getParameter("address");
+//        String  note = request.getParameter("note");
 
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
@@ -32,21 +33,17 @@ public class GenerateHashController extends HttpServlet {
             return;
 
         }
+        User user = (User) session.getAttribute("user");
+        int userId = (user != null) ? user.getId() : 0;
         StringBuilder dataToHash = new StringBuilder();
-        dataToHash.append(email).append("|")
-                .append(phone).append("|")
-                .append(fullname).append("|")
-                .append(address).append("|")
-                .append(note).append("|");
+        dataToHash.append(userId);
+        dataToHash.append((long) cart.total());
         for(CartItem item : cart.getItems()){
-            dataToHash.append(item.getProduct().getId()).append(":")
-                    .append(item.getQuantity()).append(":")
-                    .append(item.getPrice()).append("|");
+            dataToHash.append(item.getProduct().getId())
+                    .append(item.getQuantity())
+                    .append((long) item.getPrice());
         }
-        double shippingFee = 25000;
-        dataToHash.append("|Ship:").append(shippingFee).append("||");
-        double finalTotal = cart.total() + shippingFee;
-        dataToHash.append("Total:").append(finalTotal);
+
         System.out.println("Data to hash: " + dataToHash.toString());
         SHA256 hasher = new SHA256();
         String hashResult = hasher.checkSum(dataToHash.toString());

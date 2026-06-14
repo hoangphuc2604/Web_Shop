@@ -9,9 +9,11 @@ public class OrderVerifierService {
 
     public static void verifyOrderIntegrity(Order order) {
         try {
+
+
             // Ràng buộc ON DELETE SET NULL của DB sẽ làm key_id = 0 nếu khóa bị xóa cứng
             if (order.getKeyId() <= 0 || order.getDigitalSig() == null) {
-                order.setFake(true);
+                order.setFake(false);
                 return;
             }
 
@@ -27,16 +29,16 @@ public class OrderVerifierService {
             }
 
             StringBuilder dataBuilder = new StringBuilder();
-            dataBuilder.append(order.getTotalAmount());
+            dataBuilder.append(order.getUserId());
+            dataBuilder.append((long) order.getTotalAmount());
             for (OrderItem item : order.getItems()) {
                 dataBuilder.append(item.getProduct().getId())
                         .append(item.getQuantity())
-                        .append(item.getUnitPrice());
+                        .append((long) item.getUnitPrice());
             }
 
             SHA256 sha256 = new SHA256();
             String currentHash = sha256.checkSum(dataBuilder.toString());
-
             boolean isHashMatched = false;
             if(order.getOrderHash() != null){
                 isHashMatched = currentHash.equals(order.getOrderHash());
