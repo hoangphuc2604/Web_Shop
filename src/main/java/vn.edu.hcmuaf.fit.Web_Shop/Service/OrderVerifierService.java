@@ -22,7 +22,7 @@ public class OrderVerifierService {
             }
 
             boolean isTimeViolated = false;
-            if ("REVOKED".equals(key.getStatus()) && key.getRevokedAt() != null) {
+            if ("REVOKED".equals(key.getStatus()) && key.getRevokedAt() != null && order.getOrderDate() != null) {
                 isTimeViolated = order.getOrderDate().after(key.getRevokedAt());
             }
 
@@ -37,10 +37,15 @@ public class OrderVerifierService {
             SHA256 sha256 = new SHA256();
             String currentHash = sha256.checkSum(dataBuilder.toString());
 
-            boolean isHashMatched = currentHash.equals(order.getOrderHash());
+            boolean isHashMatched = false;
+            if(order.getOrderHash() != null){
+                isHashMatched = currentHash.equals(order.getOrderHash());
+            }
 
-            boolean isSigValid = VerSigOrder.verifyBase64(currentHash, order.getDigitalSig(), key.getPublicKey(), key.getAlgorithm());
-
+            boolean isSigValid = false;
+            if(order.getOrderHash() != null && key.getPublicKey() != null){
+                isSigValid = VerSigOrder.verifyBase64(order.getOrderHash(), order.getDigitalSig(), key.getPublicKey(), key.getAlgorithm());
+            }
             order.setFake(!isHashMatched || !isSigValid || isTimeViolated);
 
         } catch (Exception e) {

@@ -21,7 +21,9 @@ public class UserKeyController extends HttpServlet {
 
         String action = request.getParameter("action");
         if ("revoke".equals(action)) {
-            boolean success = UserKeyDao.revokeKey(user.getId());
+            int keyId = Integer.parseInt(request.getParameter("keyId"));
+            UserKeyDao keyDao = new UserKeyDao();
+            boolean success = UserKeyDao.revokeKey(keyId,user.getId());
             response.getWriter().write(success ? "OK" : "FAIL");
         }
         else if ("save".equals(action)){
