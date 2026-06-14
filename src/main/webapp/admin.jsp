@@ -164,7 +164,18 @@
                         </c:choose>
                     </td>
                     <td>
-                        <span style="font-weight: bold;">${o.statusVN}</span>
+                     <span style="font-weight: bold;">
+                             <c:choose>
+                          <%-- Nếu đơn hàng bị ai đó vào Database sửa bậy (o.fake == true) --%>
+                       <c:when test="${o.fake}">
+                     <span style="color: red;">Đã thay đổi</span>
+                    </c:when>
+                         <%-- Nếu đơn hàng an toàn, không bị ai đụng chạm --%>
+                     <c:otherwise>
+                     ${o.statusVN}
+                     </c:otherwise>
+                       </c:choose>
+                      </span>
                     </td>
                     <td style="color: red; font-weight: bold;">
                             ${o.formattedTotal}
