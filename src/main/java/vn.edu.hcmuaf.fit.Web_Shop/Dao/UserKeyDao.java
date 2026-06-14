@@ -8,16 +8,17 @@ import java.util.List;
 
 public class UserKeyDao {
 
-    public static boolean revokeKey(int userId) {
-        String query = "UPDATE user_keys SET status = 'REVOKED', revoked_at = NOW() WHERE user_id = ? AND status = 'ACTIVE'";
+    public static boolean revokeKey(int keyId, int userId) {
+        String query = "UPDATE user_keys SET status = 'REVOKED', revoked_at = NOW() WHERE id = ? AND user_id = ?";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setInt(1, userId);
+            ps.setInt(1, keyId);
+            ps.setInt(2, userId);
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     public static boolean insertPubKey(int userId, String pubKey, String algo){
