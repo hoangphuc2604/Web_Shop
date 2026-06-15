@@ -14,11 +14,12 @@ public class OrderDao {
     public void createOrder(int userId, Cart cart, String orderHash, String digitalSig, int keyId) {
         String sqlOrder = "INSERT INTO Orders (user_id, order_status, subtotal, voucher_id, total_amount, order_date, order_hash, digital_sig, key_id) VALUES (?, 'Pending', ?, NULL, ?, NOW(), ?, ?, ?)";
         String sqlItem = "INSERT INTO Order_items (product_id, order_id, quantity, unit_price) VALUES (?, ?, ?, ?)";
+
         try (Connection conn = DBConnect.getConnection()) {
             conn.setAutoCommit(false);
             try {
                 PreparedStatement ps = conn.prepareStatement(sqlOrder, Statement.RETURN_GENERATED_KEYS);
-                //Nếu là khách không đăng nhập thì sẽ đưa id về null
+
                 if (userId <= 0) {
                     ps.setNull(1, java.sql.Types.INTEGER);
                 } else {
@@ -28,13 +29,19 @@ public class OrderDao {
                 ps.setDouble(3, cart.total());
                 ps.setString(4, orderHash);
                 ps.setString(5, digitalSig);
-                ps.setInt(6, keyId);
+
+                if (keyId == 0) {
+                    ps.setNull(6, java.sql.Types.INTEGER);
+                } else {
+                    ps.setInt(6, keyId);
+                }
                 ps.executeUpdate();
                 int orderId = 0;
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     orderId = rs.getInt(1);
                 }
+
                 PreparedStatement psItem = conn.prepareStatement(sqlItem);
                 for (CartItem item : cart.getItems()) {
                     psItem.setInt(1, item.getProduct().getId());
@@ -166,5 +173,18 @@ public class OrderDao {
         }
         return list;
     }
+    public void updateOrderSignature(int orderId, String orderHash, String digitalSig, int keyId) {
+        String sql = "UPDATE Orders SET order_hash = ?, digital_sig = ?, key_id = ? WHERE id = ?";
+        try (Connection conn = DBConnect.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, orderHash);
+            ps.setString(2, digitalSig);
+            ps.setInt(3, keyId);
+            ps.setInt(4, orderId);
+            ps.executeUpdate();
 
-}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+}}

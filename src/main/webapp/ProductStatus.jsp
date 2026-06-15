@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/PStatus_Style.css">
+    <script src="js/PStatus.js?V=3"></script>
+
 </head>
 <body>
 <!-- Header trên -->
@@ -65,19 +67,6 @@
     </div>
 </header>
 <!-- MENU GIỮ NGUYÊN CẤU TRÚC CŨ -->
-<nav class="menu">
-    <ul>
-        <li><a href="#">Chó</a></li>
-        <li><a href="#">Mèo</a></li>
-        <li><a href="#">Thiết bị thông minh</a></li>
-        <li><a href="#">Hàng mới về</a></li>
-        <li><a href="#">Thương hiệu</a></li>
-        <li><a href="#">Pagazine chăm Boss</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Today's Sale</a></li>
-    </ul>
-</nav>
-<!--Product status-->
 <div class="product-status">
     <div class="ps-container">
         <div class="ps-header">
@@ -90,6 +79,7 @@
                     <th>SẢN PHẨM</th>
                     <th>TỔNG TIỀN</th>
                     <th>TRẠNG THÁI</th>
+                    <th>XÁC THỰC</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -102,7 +92,7 @@
                             <div>
                                 <p class="ps-name">${o.items[0].product.name}</p>
                                 <c:if test="${o.items.size() > 1}">
-                                    <p class="ps-weight" style="font-size: 12px; color: #888;">(và ${o.items.size() - 1} sản phẩm khác)</p>
+                                    <p class="ps-weight">(và ${o.items.size() - 1} sản phẩm khác)</p>
                                 </c:if>
                                 <p class="ps-brand">Mã đơn: #${o.id}</p>
                             </div>
@@ -111,6 +101,18 @@
 
                         <td class="${o.status == 'Delivered' ? 'ps-stt-shipped' : (o.status == 'Cancelled' ? 'ps-stt' : 'ps-stt-shipping')}">
                                 ${o.statusVN}
+                        </td>
+
+                        <td class="ps-verify-col">
+                            <c:choose>
+                                <c:when test="${not empty o.orderHash}">
+                                    <span class="status-verified">Đã xác thực</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="status-unverified">Chưa xác thực</span>
+                                    <button class="btn-sign" onclick="document.getElementById('sigModal').style.display='block';">Xác thực</button>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
 
                         <td class="ps-details">
@@ -123,11 +125,40 @@
                 </c:forEach>
 
                 <c:if test="${empty listOrders}">
-                    <tbody><tr><td colspan="4" style="text-align:center; padding:30px;">Bạn chưa có đơn hàng nào.</td></tr></tbody>
+                    <tbody><tr><td colspan="5" style="text-align:center; padding:30px;">Bạn chưa có đơn hàng nào.</td></tr></tbody>
                 </c:if>
             </table>
         </div>
     </div>
 </div>
+
+<div id="sigModal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2 class="modal-title">Xác thực chữ kí điện tử</h2>
+            <div class="modal-header-actions">
+                <a href="create-signature.jsp" target="_blank" class="btn-goto-create-sig">Tải về tool tạo chữ ký</a>
+                <span id="closeModalBtn" class="close-icon" onclick="document.getElementById('sigModal').style.display='none';">&times;</span>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <p class="warning-text">Vui lòng tạo chữ kí với văn bản dưới đây để xác nhận chính chủ</p>
+            <div class="input-group">
+                <label for="hashDisplay">Mã Hash:</label>
+                <textarea id="hashDisplay" class="hash-textarea" readonly></textarea>
+            </div>
+            <div class="input-group">
+                <label for="sigInput">Nhập chữ kí điện tử:</label>
+                <textarea id="sigInput" class="signature-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" id="confirmSigBtn" class="btn-confirm-sig">Xác Nhận Chữ Kí</button>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

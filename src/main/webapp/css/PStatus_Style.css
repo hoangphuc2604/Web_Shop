@@ -69,3 +69,161 @@
 .ps-button:hover{
     background: #18358b;
 }
+.ps-verify-col {
+    vertical-align: middle;
+}
+.verify-signed {
+    display: flex;
+    align-items: center;
+}
+.icon-signed {
+    color: #28a745; /* Màu Tick Xanh */
+    font-size: 26px;
+}
+.verify-unsigned {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa X đỏ và nút bấm */
+}
+.icon-unsigned {
+    color: #dc3545; /* Màu X Đỏ */
+    font-size: 26px;
+}
+.btn-sign {
+    background-color: #0d57e4; /* Màu xanh nước biển */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.btn-sign:hover {
+    background-color: #18358b;
+}
+
+/* =======================================================
+   CSS CHO POP-UP XÁC THỰC CHỮ KÝ (MỚI)
+   ======================================================= */
+.ps-verify-col {
+    vertical-align: middle;
+}
+.status-verified {
+    color: #28a745; /* Màu Xanh lá */
+    font-weight: bold;
+}
+.status-unverified {
+    color: #dc3545; /* Màu Đỏ */
+    font-weight: bold;
+    display: block; /* Ép rớt dòng cho cái nút nằm dưới */
+    margin-bottom: 8px;
+}
+.btn-sign {
+    background-color: #0d57e4; /* Màu xanh nước biển */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.btn-sign:hover {
+    background-color: #18358b;
+}
+
+/* =======================================================
+   CSS CHO POP-UP XÁC THỰC
+   ======================================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-box {
+    background-color: white;
+    margin: 8% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 650px;
+    border-radius: 8px;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.modal-title {
+    margin: 0;
+    font-size: 24px;
+    color: green;
+}
+.modal-header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.btn-goto-create-sig {
+    background-color: #f39c12;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.close-icon {
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: bold;
+    color: gray;
+    line-height: 1;
+}
+.warning-text {
+    text-align: center;
+    color: red;
+    font-size: 16px;
+    margin: 10px 0 20px 0;
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.hash-textarea,
+.signature-textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    resize: none;
+}
+.hash-textarea {
+    background-color: whitesmoke;
+}
+.modal-footer {
+    margin-top: 15px;
+}
+.btn-confirm-sig {
+    width: 100%;
+    background-color: blue;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
