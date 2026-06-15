@@ -98,6 +98,11 @@ public class PaymentController extends HttpServlet {
             request.getRequestDispatcher("Payment.jsp").forward(request, response);
             return;
         }
+        if("REVOKED".equals(activeKey.getStatus())|| !activeKey.isActive()){
+            request.setAttribute("error", "LỖI: Khóa đã bị thu hồi hoặc không còn hoạt động!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
+            return;
+        }
         boolean isReallyValid = false;
         try {
             isReallyValid = VerSigOrder.verifyBase64(orderHash, digitalSig, activeKey.getPublicKey(), activeKey.getAlgorithm());
