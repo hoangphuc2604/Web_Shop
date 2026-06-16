@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.edu.hcmuaf.fit.Web_Shop.Dao.OrderDao;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.Order;
+import vn.edu.hcmuaf.fit.Web_Shop.Model.OrderItem;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
 import vn.edu.hcmuaf.fit.Web_Shop.cart.CartItem;
@@ -20,40 +23,36 @@ public class GenerateHashController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/plain;charset=UTF-8");
-//        String email = request.getParameter("email");
-//        String phone = request.getParameter("phone");
-//        String fullname = request.getParameter("fullname");
-//        String address = request.getParameter("address");
-//        String  note = request.getParameter("note");
-
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cart");
-        if(cart == null || cart.getTotalQuantity() ==0){
-            response.getWriter().write("Lỗi: Giỏ hàng trống");
+        String orderIdStr = request.getParameter("orderId");
+        if (orderIdStr == null || orderIdStr.isEmpty()) {
+            response.getWriter().write("Lỗi: Không tìm thấy mã đơn hàng để tạo Hash");
             return;
+        }
+        try {
+            int orderId = Integer.parseInt(orderIdStr);
+            OrderDao dao = new OrderDao();
+            Order order = dao.getOrderById(orderId);
+
+            if (order == null) {
+                response.getWriter().write("Lỗi: Đơn hàng không tồn tại");
+                return;
 
         }
-        User user = (User) session.getAttribute("user");
-        int userId = (user != null) ? user.getId() : 0;
-        StringBuilder dataToHash = new StringBuilder();
-        dataToHash.append(userId);
-        dataToHash.append((long) cart.total());
-        for(CartItem item : cart.getItems()){
-            dataToHash.append(item.getProduct().getId())
-                    .append(item.getQuantity())
-                    .append((long) item.getPrice());
+            StringBuilder dataToHash = new StringBuilder();
+            dataToHash.append(order.getUserId());
+            dataToHash.append((long) order.getTotalAmount());
+            for (OrderItem item : order.getItems()) {
+                dataToHash.append(item.getProduct().getId())
+                        .append(item.getQuantity())
+                        .append((long) item.getUnitPrice());
+            }
+            System.out.println("Data to hash (Tu Database): " + dataToHash.toString());
+            SHA256 hasher = new SHA256();
+            String hashResult = hasher.checkSum(dataToHash.toString());
+            response.getWriter().write(hashResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().write("Lỗi hệ thống khi tạo mã băm!");
         }
-
-        System.out.println("Data to hash: " + dataToHash.toString());
-        SHA256 hasher = new SHA256();
-        String hashResult = hasher.checkSum(dataToHash.toString());
-
-
-        response.getWriter().write(hashResult);
-
-
-
-
-
     }
 }

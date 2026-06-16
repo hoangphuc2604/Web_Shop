@@ -11,7 +11,7 @@
     <title>Thanh toán sản phẩm</title>
     <link rel="stylesheet" href="css/Payment_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="js/Payment.js?V=2"></script>
+
 </head>
 <body>
 <%
@@ -100,9 +100,6 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="orderHash" name="orderHash" value="">
-                <input type="hidden" id="digitalSig" name="digitalSig" value="">
-                <input type="hidden" id="keyId" name="keyId" value="${requestScope.activeKeyId}">
                 <div class="bt-success">
                     <button type="submit" class="complete-order-btn">Hoàn tất đơn hàng</button>
                 </div>
@@ -164,34 +161,7 @@
         </div>
     </div>
 </form>
-<div id="sigModal" class="modal-overlay">
-    <div class="modal-box">
 
-        <div class="modal-header">
-            <h2 class="modal-title">Xác thực chữ kí điện tử</h2>
-            <div class="modal-header-actions">
-                <a href="create-signature.jsp" target="_blank" class="btn-goto-create-sig">Tải về tool tạo chữ ký</a>
-                <span id="closeModalBtn" class="close-icon">&times;</span>
-            </div>
-        </div>
-
-        <div class="modal-body">
-            <p class="warning-text">Vui lòng tạo chữ kí với văn bản dưới đây để xác nhận chính chủ</p>
-            <div class="input-group">
-                <label for="hashDisplay">Mã Hash:</label>
-                <textarea id="hashDisplay" class="hash-textarea" readonly>16751eacfb6ab11bd51c121b118e8a0e8dcd025e622c7201d0711c9cc411dddc</textarea>
-            </div>
-            <div class="input-group">
-                <label for="sigInput">Nhập chữ kí điện tử:</label>
-                <textarea id="sigInput" class="signature-textarea"></textarea>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="confirmSigBtn" class="btn-confirm-sig">Xác Nhận Chữ Kí</button>
-        </div>
-
-    </div>
-</div>
 
 </body>
 
