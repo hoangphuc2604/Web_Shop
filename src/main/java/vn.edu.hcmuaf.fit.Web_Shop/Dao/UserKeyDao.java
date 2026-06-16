@@ -1,24 +1,22 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Dao;
 
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserKey;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserKeyDao {
 
-    public static boolean revokeKey(int keyId, int userId) {
-        String query = "UPDATE user_keys SET status = 'REVOKED', revoked_at = NOW() WHERE id = ? AND user_id = ?";
+    public static boolean revokeKey(int userId) {
+        String query = "UPDATE user_keys SET status = 'REVOKED', revoked_at = NOW() WHERE user_id = ? AND (status = 'ACTIVE' OR status = 'active')";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setInt(1, keyId);
-            ps.setInt(2, userId);
+            ps.setInt(1, userId);
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     public static boolean insertPubKey(int userId, String pubKey, String algo){
@@ -33,6 +31,7 @@ public class UserKeyDao {
             throw new RuntimeException(e);
         }
     }
+
     public static UserKey getKeyById(int id) {
         String sql = "SELECT * FROM user_keys WHERE id = ?";
         try (Connection conn = DBConnect.getConnection();
@@ -59,7 +58,8 @@ public class UserKeyDao {
     }
 
     public static UserKey getActiveKeyByUserId(int userId) {
-        String sql = "SELECT * FROM user_keys WHERE user_id = ? AND status = 'ACTIVE' LIMIT 1";
+        // Code mới: Hỗ trợ tìm kiếm cả chữ in hoa và in thường
+        String sql = "SELECT * FROM user_keys WHERE user_id = ? AND (status = 'ACTIVE' OR status = 'active') LIMIT 1";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -92,7 +92,7 @@ public class UserKeyDao {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 UserKey key = new UserKey();
                 key.setId(rs.getInt("id"));
                 key.setUserId(rs.getInt("user_id"));

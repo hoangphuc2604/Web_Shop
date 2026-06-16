@@ -93,47 +93,63 @@
                     <th>SẢN PHẨM</th>
                     <th>TỔNG TIỀN</th>
                     <th>TRẠNG THÁI</th>
-                    <th>XÁC THỰC</th>
-                    <th></th>
-                </tr>
+                    <th></th> <th style="text-align: center;">XÁC THỰC</th> </tr>
                 </thead>
 
                 <c:forEach items="${listOrders}" var="o">
-                    <tbody>
-                    <tr class="ps-item">
+                    <tbody style="${o.fake ? 'background-color: #fff5f5;' : ''}"> <tr class="ps-item">
+
                         <td class="ps-info">
                             <img src="${o.items[0].product.image}" alt="" class="ps-img">
                             <div>
                                 <p class="ps-name">${o.items[0].product.name}</p>
                                 <c:if test="${o.items.size() > 1}">
-                                    <p class="ps-weight">(và ${o.items.size() - 1} sản phẩm khác)</p>
+                                    <p class="ps-weight" style="font-size: 12px; color: #888;">(và ${o.items.size() - 1} sản phẩm khác)</p>
                                 </c:if>
                                 <p class="ps-brand">Mã đơn: #${o.id}</p>
                             </div>
                         </td>
-                        <td class="ps-price" style="font-weight: bold;">${o.formattedTotal}</td>
+
+                        <td class="ps-price" style="font-weight: bold; color: #d32f2f;">${o.formattedTotal}</td>
 
                         <td class="${o.status == 'Delivered' ? 'ps-stt-shipped' : (o.status == 'Cancelled' ? 'ps-stt' : 'ps-stt-shipping')}">
-                                ${o.statusVN}
-                        </td>
-
-                        <td class="ps-verify-col">
                             <c:choose>
-                                <c:when test="${not empty o.orderHash}">
-                                    <span class="status-verified">Đã xác thực</span>
+                                <c:when test="${o.fake}">
+                                    <span style="color: red; font-weight: bold; font-size: 14px;">Tạm ngưng (Lỗi bảo mật)</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <span class="status-unverified">Chưa xác thực</span>
-                                    <button class="btn-sign" onclick="openSigModal('${o.id}')">Xác thực</button>
+                                    ${o.statusVN}
                                 </c:otherwise>
                             </c:choose>
                         </td>
 
-                        <td class="ps-details">
+                        <td class="ps-details" style="text-align: center;">
                             <a href="order-detail?id=${o.id}">
                                 <button class="ps-button">Xem chi tiết</button>
                             </a>
                         </td>
+
+                        <td class="ps-verify-col" style="text-align: center; border-left: 1px dashed #ddd;">
+                            <c:choose>
+
+                                <c:when test="${o.fake}">
+                                    <span class="status-unverified" style="color: red; font-weight: bold; display: block;">Đã ký (Bị sửa đổi)</span>
+                                    <button class="btn-sign" style="background-color: #ff9800; border-color: #ff9800; margin-top: 5px;" onclick="openResignModal('${o.id}')">Ký Lại</button>
+                                </c:when>
+
+                                <c:when test="${not empty o.digitalSig}">
+                                    <span class="status-verified" style="color: green; font-weight: bold; display: block;">
+                                        Đã ký <i class="fa-solid fa-circle-check" style="font-size: 1.2em; vertical-align: middle;"></i>
+                                    </span>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <span class="status-unverified" style="color: gray; font-weight: bold; display: block;">Chưa ký</span>
+                                    <button class="btn-sign" style="margin-top: 5px;" onclick="openSigModal('${o.id}')">Ký ngay</button>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+
                     </tr>
                     </tbody>
                 </c:forEach>
@@ -178,6 +194,54 @@
         </div>
     </div>
 </div>
+<div id="resignModal" class="modal-overlay" style="display: none;">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2 class="modal-title" style="color: #d32f2f;">Yêu cầu ký lại đơn hàng</h2>
+            <div class="modal-header-actions">
+                <span class="close-icon" onclick="document.getElementById('resignModal').style.display='none';">&times;</span>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <p class="warning-text">Hệ thống phát hiện thông tin đơn hàng đã bị thay đổi. Vui lòng ký lại xác nhận với mã Hash mới dưới đây để tiếp tục.</p>
+
+            <form action="order-history?action=update-sig" method="post" id="resignForm">
+                <input type="hidden" name="orderId" id="resignOrderId">
+
+                <div class="input-group">
+                    <label style="font-weight: bold;">Mã Hash mới (Đã cập nhật):</label>
+                    <textarea id="resignHashDisplay" name="orderHash" class="hash-textarea" readonly style="background: #f5f5f5;"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label style="font-weight: bold;">Nhập chữ ký điện tử của bạn:</label>
+                    <textarea name="digitalSig" id="resignSigInput" class="signature-textarea" required placeholder="Dán chữ ký vào đây..."></textarea>
+                </div>
+
+                <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 15px; padding: 0;">
+                    <button type="button" class="btn-confirm-sig" style="background: #ccc; width: auto; padding: 10px 25px; margin: 0; box-sizing: border-box;" onclick="document.getElementById('resignModal').style.display='none';">Hủy</button>
+                    <button type="submit" class="btn-confirm-sig" style="background: #28a745; width: auto; padding: 10px 25px; margin: 0; box-sizing: border-box;">Xác nhận ký lại</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openResignModal(orderId) {
+        document.getElementById('resignOrderId').value = orderId;
+
+        fetch('order-history?action=get-new-hash&id=' + orderId)
+            .then(response => response.text())
+            .then(hash => {
+                document.getElementById('resignHashDisplay').value = hash.trim();
+                document.getElementById('resignSigInput').value = '';
+                document.getElementById('resignModal').style.display = 'flex';
+            })
+            .catch(error => alert("Lỗi tải dữ liệu Hash: " + error));
+    }
+</script>
 
 </body>
 </html>
