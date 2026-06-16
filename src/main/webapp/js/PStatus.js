@@ -1,39 +1,38 @@
 function openSigModal(orderId) {
     var modal = document.getElementById('sigModal');
     modal.style.display = 'block';
-
     document.getElementById('modalOrderId').value = orderId;
-
-    var hashInput = document.getElementById('hashDisplay');
-    hashInput.value = "Đang tạo mã Hash...";
+    var hashDisplay = document.getElementById('hashDisplay');
+    hashDisplay.value = "Đang tạo mã Hash...";
 
 
     fetch('generate-hash?orderId=' + orderId)
         .then(response => response.text())
         .then(hashResult => {
-            hashInput.value = hashResult.trim();
+            hashDisplay.value = hashResult.trim();
         })
-        .catch(error => alert("Lỗi kết nối hệ thống: " + error));
+        .catch(error => {
+            hashDisplay.value = "Lỗi khi lấy mã Hash!";
+            console.error(error);
+        });
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    var confirmBtn = document.getElementById("confirmSigBtn");
+function submitSignature() {
+    var signature = document.getElementById("sigInput").value.trim();
+    var hash = document.getElementById("hashDisplay").value.trim();
     var verifyForm = document.getElementById("verifyForm");
 
-    if (confirmBtn) {
-        confirmBtn.onclick = function() {
-            var signature = document.getElementById("sigInput").value.trim();
-            var hash = document.getElementById("hashDisplay").value.trim();
-
-            if (signature === "") {
-                alert("Vui lòng nhập chữ kí điện tử!");
-                return;
-            }
-
-            document.getElementById("modalOrderHash").value = hash;
-            document.getElementById("modalDigitalSig").value = signature;
-
-            verifyForm.submit();
-        };
+    if (signature === "") {
+        alert("Vui lòng nhập chữ kí điện tử!");
+        return;
     }
-});
+
+    if (!verifyForm) {
+        alert("Lỗi giao diện: Không tìm thấy form ẩn (verifyForm) trong file JSP!");
+        return;
+    }
+
+    document.getElementById("modalOrderHash").value = hash;
+    document.getElementById("modalDigitalSig").value = signature;
+
+    verifyForm.submit();
+}

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/PStatus_Style.css">
-    <script src="js/PStatus.js?V=3"></script>
+    <script src="js/PStatus.js?V=4"></script>
 
 </head>
 <body>
@@ -66,7 +66,21 @@
 
     </div>
 </header>
-<!-- MENU GIỮ NGUYÊN CẤU TRÚC CŨ -->
+<c:if test="${not empty sessionScope.success}">
+    <div style="color: green; background: #e6ffe6; padding: 15px; text-align: center; font-weight: bold; border: 1px solid green; margin: 10px auto; max-width: 800px; border-radius: 5px;">
+            ${sessionScope.success}
+    </div>
+    <c:remove var="success" scope="session" />
+</c:if>
+
+<c:if test="${not empty sessionScope.error}">
+    <div style="color: red; background: #ffe6e6; padding: 15px; text-align: center; font-weight: bold; border: 1px solid red; margin: 10px auto; max-width: 800px; border-radius: 5px;">
+            ${sessionScope.error}
+    </div>
+    <c:remove var="error" scope="session" />
+</c:if>
+
+
 <div class="product-status">
     <div class="ps-container">
         <div class="ps-header">
@@ -110,7 +124,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <span class="status-unverified">Chưa xác thực</span>
-                                    <button class="btn-sign" onclick="document.getElementById('sigModal').style.display='block';">Xác thực</button>
+                                    <button class="btn-sign" onclick="openSigModal('${o.id}')">Xác thực</button>
                                 </c:otherwise>
                             </c:choose>
                         </td>
@@ -152,10 +166,15 @@
                 <label for="sigInput">Nhập chữ kí điện tử:</label>
                 <textarea id="sigInput" class="signature-textarea"></textarea>
             </div>
+            <form id="verifyForm" action="SignOrderController" method="post" style="display: none;">
+                <input type="hidden" id="modalOrderId" name="orderId" value="">
+                <input type="hidden" id="modalOrderHash" name="orderHash" value="">
+                <input type="hidden" id="modalDigitalSig" name="digitalSig" value="">
+            </form>
         </div>
 
         <div class="modal-footer">
-            <button type="button" id="confirmSigBtn" class="btn-confirm-sig">Xác Nhận Chữ Kí</button>
+            <button type="button" id="confirmSigBtn" class="btn-confirm-sig" onclick="submitSignature()">Xác Nhận Chữ Kí</button>
         </div>
     </div>
 </div>
