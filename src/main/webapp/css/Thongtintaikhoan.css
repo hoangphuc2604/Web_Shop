@@ -470,3 +470,21 @@ body {
     text-align: center;
     padding: 30px;
 }
+
+.btn-down-tool{
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    display: inline-flex;
+    text-align: center;
+    border-radius: 4px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.btn-down-tool:hover{
+    background-color: darkred;
+}
