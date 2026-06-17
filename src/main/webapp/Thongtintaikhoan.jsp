@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet-Shop</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/Thongtintaikhoan.css?v=1">
+    <link rel="stylesheet" href="css/Thongtintaikhoan.css?v=2">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -204,6 +204,9 @@
                         <button type="submit" class="save-btn">Lưu</button>
                         <button type="button" class="extra-btn btn-generate" onclick="openModel()">Tải khoá public</button>
                         <button type="button" id="btnReportKey" class="extra-btn btn-report btn-danger">Báo Mất Khóa</button>
+                        <a href="${pageContext.request.contextPath}/assets/ToolTaoKhoaVaChuKy.exe" download class="extra-btn btn-down-tool">
+                            <i class="fa-solid fa-download"></i>Tải về tool tạo chữ ký
+                        </a>
                     </div>
 
 

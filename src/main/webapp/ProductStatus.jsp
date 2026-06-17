@@ -167,7 +167,9 @@
         <div class="modal-header">
             <h2 class="modal-title">Xác thực chữ kí điện tử</h2>
             <div class="modal-header-actions">
-                <a href="create-signature.jsp" target="_blank" class="btn-goto-create-sig">Tải về tool tạo chữ ký</a>
+                <a href="${pageContext.request.contextPath}/assets/ToolTaoKhoaVaChuKy.exe" download class="btn-goto-create-sig">
+                    <i class="fa-solid fa-download"></i>Tải về tool tạo chữ ký
+                </a>
                 <span id="closeModalBtn" class="close-icon" onclick="document.getElementById('sigModal').style.display='none';">&times;</span>
             </div>
         </div>
