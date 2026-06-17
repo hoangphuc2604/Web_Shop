@@ -202,7 +202,7 @@
 
                     <div class="action-buttons">
                         <button type="submit" class="save-btn">Lưu</button>
-                        <button type="button" class="extra-btn btn-generate" onclick="openModel()">Tạo Khóa </button>
+                        <button type="button" class="extra-btn btn-generate" onclick="openModel()">Tải khoá public</button>
                         <button type="button" id="btnReportKey" class="extra-btn btn-report btn-danger">Báo Mất Khóa</button>
                     </div>
 
@@ -375,26 +375,22 @@
 </div>
 <div id="keyModel" class="model-key">
     <div class="model-content">
-        <h3>Tạo Khoá Bảo Mật</h3>
+        <h3>Cập nhật khoá public</h3>
+
         <div class="key-group">
-            <b>Chọn thuật toán:</b>
+            <b>Chọn thuật toán khoá của bạn:</b>
             <select id="selectAlgo">
                 <option value="DSA">DSA</option>
                 <option value="RSA">RSA</option>
             </select>
         </div>
         <div class="key-group">
-            <b>Public Key:</b>
-            <textarea id="txtPublicKey" class="keyTextArea" rows="4" readonly placeholder="Bấm 'Tạo khoá' để tạo khoá"></textarea>
+            <b>Hãy nhập khoá public vào đây:</b>
+            <textarea id="txtPublicKey" class="keyTextArea" rows="6" placeholder="Nhập khoá public đã tạo được từ tool vào đây"></textarea>
         </div>
-        <div class="key-group">
-            <b>Private Key (Chú ý: Hãy tải về máy vì private key sẽ không lưu vào web):</b>
-            <textarea id="txtPrivateKey" class="keyTextArea" rows="4" readonly placeholder="Bấm 'Tạo khoá' để tạo khoá"></textarea>
-        </div>
+
         <div class="button-key-group">
-            <button type="button" onclick="genKey()" class="btn-model btn-gen-key">Tạo Khoá</button>
-            <button type="button" onclick="luuPubKey()" class="btn-model btn-save-pubkey">Lưu Public Key</button>
-            <button type="button" onclick="taiPriKey()" class="btn-model btn-down-prikey">Tải Private Key</button>
+            <button type="button" onclick="luuPubKey()" class="btn-model btn-save-pubkey">Lưu khoá public lên hệ thống</button>
             <button type="button" onclick="closeModel()" class="btn-model btn-close-model">Đóng</button>
         </div>
     </div>

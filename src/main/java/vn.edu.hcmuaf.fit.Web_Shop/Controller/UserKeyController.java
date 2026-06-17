@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.Web_Shop.Controller;
 
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserKeyDao;
+import vn.edu.hcmuaf.fit.Web_Shop.DigitalSignature.VerSigOrder;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserKey;
 import jakarta.servlet.annotation.WebServlet;
@@ -40,6 +41,14 @@ public class UserKeyController extends HttpServlet {
         else if ("save".equals(action)){
             String pubKey = request.getParameter("publicKey");
             String algo = request.getParameter("algorithm");
+
+            pubKey = pubKey.replaceAll("\\s+", "");
+            try {
+                VerSigOrder.loadPublicKeyBase64(pubKey, algo);
+            } catch (Exception e) {
+                response.getWriter().write("Lỗi: Lưu sai thuật toán hoặc lưu nhầm khoá private!");
+                return;
+            }
 
             UserKeyDao.revokeKey(user.getId());
 
