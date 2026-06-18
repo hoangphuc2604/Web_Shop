@@ -129,23 +129,44 @@
                             </a>
                         </td>
 
-                        <td class="ps-verify-col" style="text-align: center; border-left: 1px dashed #ddd;">
+                        <td class="ps-verify-col" style="text-align: center; border-left: 1px dashed #ddd; vertical-align: middle; white-space: nowrap; width: 120px;">
                             <c:choose>
+                                <c:when test="${o.timeViolated}">
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                        <span class="status-unverified" style="color: red; font-weight: bold; font-size: 13px;">Khóa đã báo mất</span>
+                                        <span style="color: #d32f2f; font-size: 11px;">(Đơn hàng vô hiệu)</span>
+                                    </div>
+                                </c:when>
 
                                 <c:when test="${o.fake}">
-                                    <span class="status-unverified" style="color: red; font-weight: bold; display: block;">Đã ký (Bị sửa đổi)</span>
-                                    <button class="btn-sign" style="background-color: #ff9800; border-color: #ff9800; margin-top: 5px;" onclick="openResignModal('${o.id}')">Ký Lại</button>
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+                                        <span class="status-unverified" style="color: red; font-weight: bold; font-size: 13px;">Đã ký (Lỗi)</span>
+                                        <button class="btn-sign" style="background-color: #ff9800; border-color: #ff9800; padding: 6px 12px; width: 85px; font-size: 12px; margin: 0;" onclick="openResignModal('${o.id}')">Ký Lại</button>
+                                    </div>
                                 </c:when>
 
                                 <c:when test="${not empty o.digitalSig}">
-                                    <span class="status-verified" style="color: green; font-weight: bold; display: block;">
-                                        Đã ký <i class="fa-solid fa-circle-check" style="font-size: 1.2em; vertical-align: middle;"></i>
+                                    <span class="status-verified" style="color: green; font-weight: bold; font-size: 14px;">
+                                        Đã ký <i class="fa-solid fa-circle-check" style="font-size: 1.1em; vertical-align: middle;"></i>
                                     </span>
                                 </c:when>
 
                                 <c:otherwise>
-                                    <span class="status-unverified" style="color: gray; font-weight: bold; display: block;">Chưa ký</span>
-                                    <button class="btn-sign" style="margin-top: 5px;" onclick="openSigModal('${o.id}')">Ký ngay</button>
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+
+                                        <c:choose>
+                                            <c:when test="${hasActiveKey}">
+                                                <span class="status-unverified" style="color: gray; font-weight: bold; font-size: 13px;">Chưa ký</span>
+                                                <button class="btn-sign" style="padding: 6px 12px; width: 85px; font-size: 12px; margin: 0;" onclick="openSigModal('${o.id}')">Ký ngay</button>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <span class="status-unverified" style="color: red; font-weight: bold; font-size: 13px;">Khóa đã vô hiệu</span>
+                                                <span style="color: #d32f2f; font-size: 11px;">(Không thể xác nhận)</span>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                    </div>
                                 </c:otherwise>
                             </c:choose>
                         </td>
