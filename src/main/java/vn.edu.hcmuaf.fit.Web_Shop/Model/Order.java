@@ -1,3 +1,4 @@
+
 package vn.edu.hcmuaf.fit.Web_Shop.Model;
 
 import java.sql.Timestamp;
@@ -15,10 +16,10 @@ public class Order {
     private String digitalSig;
     private int keyId;
     private boolean isFake;
+    private boolean timeViolated;
     private Timestamp orderDate;
 
     public Order() {
-
     }
 
     public Order(int id, int userId, String status, double totalAmount, String orderHash, String digitalSig, int keyId) {
@@ -30,6 +31,16 @@ public class Order {
         this.digitalSig = digitalSig;
         this.keyId = keyId;
     }
+
+    public boolean isTimeViolated() {
+        return timeViolated;
+    }
+
+    public void setTimeViolated(boolean timeViolated) {
+        this.timeViolated = timeViolated;
+    }
+
+
     public Timestamp getOrderDate() {
         return orderDate;
     }
@@ -37,6 +48,7 @@ public class Order {
     public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
