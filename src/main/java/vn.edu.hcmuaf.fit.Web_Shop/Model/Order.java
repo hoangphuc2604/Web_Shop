@@ -1,4 +1,3 @@
-
 package vn.edu.hcmuaf.fit.Web_Shop.Model;
 
 import java.sql.Timestamp;
@@ -16,11 +15,10 @@ public class Order {
     private String digitalSig;
     private int keyId;
     private boolean isFake;
-    private boolean timeViolated;
+    private boolean timeViolated; // Bổ sung cờ báo lỗi thời gian
     private Timestamp orderDate;
 
-    public Order() {
-    }
+    public Order() {}
 
     public Order(int id, int userId, String status, double totalAmount, String orderHash, String digitalSig, int keyId) {
         this.id = id;
@@ -32,35 +30,19 @@ public class Order {
         this.keyId = keyId;
     }
 
-    public boolean isTimeViolated() {
-        return timeViolated;
-    }
+    public boolean isTimeViolated() { return timeViolated; }
+    public void setTimeViolated(boolean timeViolated) { this.timeViolated = timeViolated; }
 
-    public void setTimeViolated(boolean timeViolated) {
-        this.timeViolated = timeViolated;
-    }
-
-
-    public Timestamp getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Timestamp orderDate) {
-        this.orderDate = orderDate;
-    }
-
+    public Timestamp getOrderDate() { return orderDate; }
+    public void setOrderDate(Timestamp orderDate) { this.orderDate = orderDate; }
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
-
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
-
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
-
     public double getTotalAmount() { return totalAmount; }
     public void setTotalAmount(double totalAmount) { this.totalAmount = totalAmount; }
-
     public List<OrderItem> getItems() { return items; }
     public void setItems(List<OrderItem> items) { this.items = items; }
 
@@ -70,37 +52,14 @@ public class Order {
         return currencyVN.format(totalAmount);
     }
 
-    public String getOrderHash() {
-        return orderHash;
-    }
-
-    public void setOrderHash(String orderHash) {
-        this.orderHash = orderHash;
-    }
-
-    public String getDigitalSig() {
-        return digitalSig;
-    }
-
-    public void setDigitalSig(String digitalSig) {
-        this.digitalSig = digitalSig;
-    }
-
-    public int getKeyId() {
-        return keyId;
-    }
-
-    public void setKeyId(int keyId) {
-        this.keyId = keyId;
-    }
-
-    public boolean isFake() {
-        return isFake;
-    }
-
-    public void setFake(boolean fake) {
-        isFake = fake;
-    }
+    public String getOrderHash() { return orderHash; }
+    public void setOrderHash(String orderHash) { this.orderHash = orderHash; }
+    public String getDigitalSig() { return digitalSig; }
+    public void setDigitalSig(String digitalSig) { this.digitalSig = digitalSig; }
+    public int getKeyId() { return keyId; }
+    public void setKeyId(int keyId) { this.keyId = keyId; }
+    public boolean isFake() { return isFake; }
+    public void setFake(boolean fake) { isFake = fake; }
 
     public String getStatusVN() {
         if ("Pending".equalsIgnoreCase(status)) return "Đang xử lý";

@@ -22,6 +22,7 @@ public class OrderVerifierService {
                 order.setFake(true);
                 return;
             }
+
             boolean isTimeViolated = false;
             if ("REVOKED".equalsIgnoreCase(key.getStatus()) && key.getRevokedAt() != null && order.getOrderDate() != null) {
                 isTimeViolated = order.getOrderDate().after(key.getRevokedAt());
@@ -32,7 +33,6 @@ public class OrderVerifierService {
                 order.setTimeViolated(true);
                 return;
             }
-
             if (order.getDigitalSig() == null || order.getDigitalSig().trim().isEmpty()) {
                 order.setFake(false);
                 order.setTimeViolated(false);

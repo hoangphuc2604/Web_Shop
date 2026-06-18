@@ -48,6 +48,9 @@ public class OrderController extends HttpServlet {
                 OrderVerifierService.verifyOrderIntegrity(o);
             }
 
+            UserKey activeKey = UserKeyDao.getActiveKeyByUserId(user.getId());
+            request.setAttribute("hasActiveKey", activeKey != null);
+
             request.setAttribute("listOrders", listOrders);
             request.getRequestDispatcher("ProductStatus.jsp").forward(request, response);
         }
@@ -91,6 +94,7 @@ public class OrderController extends HttpServlet {
             response.sendRedirect("order-history");
         }
     }
+
     private String generateOrderHash(Order order) {
         StringBuilder dataBuilder = new StringBuilder();
 
