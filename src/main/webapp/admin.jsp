@@ -54,7 +54,7 @@
                 <th>Giá gốc</th>
                 <th>Giá bán</th>
                 <th>Danh mục</th>
-                <th>Hành động</th>
+                <th style="text-align: center; width: 150px;">Hành động</th>
             </tr>
             </thead>
             <tbody>
@@ -150,7 +150,7 @@
             </thead>
             <tbody>
             <c:forEach items="${listOrders}" var="o">
-                <tr style="${o.fake ? 'background-color: #ffe6e6;' : ''}">
+                <tr style="${o.fake || o.timeViolated ? 'background-color: #ffe6e6;' : ''}">
                     <td>#${o.id}</td>
                     <td><fmt:formatDate value="${o.orderDate}" pattern="dd/MM/yyyy HH:mm"/></td>
                     <td>
@@ -183,19 +183,20 @@
                     <td>
                         <c:choose>
                             <c:when test="${o.fake}">
-                                <span style="color: red; font-weight: bold;">Dữ liệu sai/Mất khóa</span>
+                                <span style="color: red; font-weight: bold;">Dữ liệu sai</span>
+                            </c:when>
+                            <c:when test="${empty o.digitalSig || o.timeViolated}">
+                                <span style="color: red; font-weight: bold;">Không hợp lệ</span>
                             </c:when>
                             <c:otherwise>
                                 <span style="color: green; font-weight: bold;">Hợp lệ</span>
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td style="display: flex; gap: 5px; align-items: center;">
-                        <button class="btn-edit" onclick="toggleOrderDetail(${o.id})">Xem</button>
-                        <form action="UpdateOrder" method="post" style="margin: 0;">
-                            <input type="hidden" name="orderId" value="${o.id}">
-                            <button type="submit" class="btn-add" style="background-color: #007bff; border: none; ${o.fake ? 'opacity: 0.5; cursor: not-allowed;' : ''}" ${o.fake ? 'disabled' : ''}>Duyệt</button>
-                        </form>
+                    <td align="center" style="vertical-align: middle;">
+                        <button type="button" class="btn-edit" onclick="toggleOrderDetail('${o.id}')" style="padding: 6px 12px; cursor: pointer; border-radius: 4px; font-weight: bold; display: inline-block;">
+                            <i class="fa-solid fa-eye"></i> Xem chi tiết
+                        </button>
                     </td>
                 </tr>
                 <tr id="order-detail-${o.id}" style="display: none; background: #f9f9f9;">
@@ -236,6 +237,17 @@
     <div id="logout" class="section"><h2>Đăng xuất</h2></div>
 
 </div>
+<script>
+    function toggleOrderDetail(id) {
+        var row = document.getElementById('order-detail-' + id);
+
+        if (row.style.display === 'none' || row.style.display === '') {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    }
+</script>
 <script src="./js/admin.js"></script>
 </body>
 </html>
