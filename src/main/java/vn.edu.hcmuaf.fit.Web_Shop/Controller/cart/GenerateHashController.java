@@ -48,8 +48,15 @@ public class GenerateHashController extends HttpServlet {
             }
             System.out.println("Data to hash (Tu Database): " + dataToHash.toString());
             SHA256 hasher = new SHA256();
-            String hashResult = hasher.checkSum(dataToHash.toString());
-            response.getWriter().write(hashResult);
+            String currentHash = hasher.checkSum(dataToHash.toString());
+            String originalHash = order.getOrderHash();
+            if (originalHash != null && !originalHash.trim().isEmpty() && !originalHash.equals(currentHash)) {
+                System.out.println("=> CẢNH BÁO BẢO MẬT: Đơn hàng #" + orderId + " đã bị thay đổi dữ liệu trái phép trước khi ký!");
+                response.getWriter().write("Lỗi: Đơn hàng này đã bị thay đổi dữ liệu trái phép trước khi ký! Không thể xác thực.");
+                return;
+            }
+            System.out.println("Mã Hash hợp lệ : " + currentHash);
+            response.getWriter().write(currentHash);
         } catch (Exception e) {
             e.printStackTrace();
             response.getWriter().write("Lỗi hệ thống khi tạo mã băm!");

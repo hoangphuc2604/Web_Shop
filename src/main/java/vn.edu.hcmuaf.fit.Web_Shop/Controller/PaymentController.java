@@ -5,12 +5,13 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.OrderDao;
 import vn.edu.hcmuaf.fit.Web_Shop.Dao.UserInfoDao;
+import vn.edu.hcmuaf.fit.Web_Shop.DigitalSignature.SHA256;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.Order;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.User;
 import vn.edu.hcmuaf.fit.Web_Shop.Model.UserInfo;
 
 import vn.edu.hcmuaf.fit.Web_Shop.cart.Cart;
-
+import vn.edu.hcmuaf.fit.Web_Shop.cart.CartItem;
 
 
 import java.io.IOException;
@@ -65,28 +66,33 @@ public class PaymentController extends HttpServlet {
 
 
             OrderDao dao = new OrderDao();
-            try {
-                dao.createOrder(userId, cart, null, null, 0);
-
-                int newOrderId = 0;
-                List<Order> orders = dao.getOrdersByUser(userId);
-
-                if (orders != null && !orders.isEmpty()) {
-                    newOrderId = orders.get(0).getId();
-                }
-
-                session.removeAttribute("cart");
-
-                if (newOrderId > 0) {
-                    request.setAttribute("orderId", newOrderId);
-                }
-
-                request.getRequestDispatcher("NotifyPayment.jsp").forward(request, response);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                request.setAttribute("error", "Có lỗi xảy ra trong quá trình lưu đơn hàng!");
-                request.getRequestDispatcher("Payment.jsp").forward(request, response);
+        try {
+            StringBuilder dataToHash = new StringBuilder();
+            dataToHash.append(userId);
+            dataToHash.append((long) cart.total());
+            for (CartItem item : cart.getItems()) {
+                dataToHash.append(item.getProduct().getId())
+                        .append(item.getQuantity())
+                        .append((long) item.getPrice());
             }
+            SHA256 hasher = new SHA256();
+            String originalOrderHash = hasher.checkSum(dataToHash.toString());
+            dao.createOrder(userId, cart, originalOrderHash, null, 0);
+
+            int newOrderId = 0;
+            List<Order> orders = dao.getOrdersByUser(userId);
+            if (orders != null && !orders.isEmpty()) {
+                newOrderId = orders.get(0).getId();
+            }
+            session.removeAttribute("cart");
+            if (newOrderId > 0) {
+                request.setAttribute("orderId", newOrderId);
+            }
+            request.getRequestDispatcher("NotifyPayment.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Có lỗi xảy ra trong quá trình lưu đơn hàng!");
+            request.getRequestDispatcher("Payment.jsp").forward(request, response);
         }
     }
+}
