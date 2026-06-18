@@ -93,11 +93,14 @@
                     <th>SẢN PHẨM</th>
                     <th>TỔNG TIỀN</th>
                     <th>TRẠNG THÁI</th>
-                    <th></th> <th style="text-align: center;">XÁC THỰC</th> </tr>
+                    <th></th>
+                    <th style="text-align: center;">XÁC THỰC</th>
+                </tr>
                 </thead>
 
                 <c:forEach items="${listOrders}" var="o">
-                    <tbody style="${o.fake ? 'background-color: #fff5f5;' : ''}"> <tr class="ps-item">
+                    <tbody style="${o.fake || o.timeViolated ? 'background-color: #fff5f5;' : ''}">
+                    <tr class="ps-item">
 
                         <td class="ps-info">
                             <img src="${o.items[0].product.image}" alt="" class="ps-img">
@@ -114,6 +117,9 @@
 
                         <td class="${o.status == 'Delivered' ? 'ps-stt-shipped' : (o.status == 'Cancelled' ? 'ps-stt' : 'ps-stt-shipping')}">
                             <c:choose>
+                                <c:when test="${o.timeViolated}">
+                                    <span style="color: red; font-weight: bold; font-size: 14px;">Lỗi mất khóa</span>
+                                </c:when>
                                 <c:when test="${o.fake}">
                                     <span style="color: red; font-weight: bold; font-size: 14px;">Tạm ngưng (Lỗi bảo mật)</span>
                                 </c:when>
@@ -133,7 +139,7 @@
                             <c:choose>
                                 <c:when test="${o.timeViolated}">
                                     <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                                        <span class="status-unverified" style="color: red; font-weight: bold; font-size: 13px;">Khóa đã báo mất</span>
+                                        <span class="status-unverified" style="color: red; font-weight: bold; font-size: 13px;">Khóa bị hủy</span>
                                         <span style="color: #d32f2f; font-size: 11px;">(Đơn hàng vô hiệu)</span>
                                     </div>
                                 </c:when>
@@ -153,24 +159,20 @@
 
                                 <c:otherwise>
                                     <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-
                                         <c:choose>
                                             <c:when test="${hasActiveKey}">
                                                 <span class="status-unverified" style="color: gray; font-weight: bold; font-size: 13px;">Chưa ký</span>
                                                 <button class="btn-sign" style="padding: 6px 12px; width: 85px; font-size: 12px; margin: 0;" onclick="openSigModal('${o.id}')">Ký ngay</button>
                                             </c:when>
-
                                             <c:otherwise>
                                                 <span class="status-unverified" style="color: red; font-weight: bold; font-size: 13px;">Khóa đã vô hiệu</span>
                                                 <span style="color: #d32f2f; font-size: 11px;">(Không thể xác nhận)</span>
                                             </c:otherwise>
                                         </c:choose>
-
                                     </div>
                                 </c:otherwise>
                             </c:choose>
                         </td>
-
                     </tr>
                     </tbody>
                 </c:forEach>
